@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: 
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -26,7 +26,7 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    # (pkgs.nerdfonts.override { fonts = [ "JetbrainsMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -44,12 +44,6 @@
     lfs.enable = true;
   };
   
-  programs.neovim = {
-    enable = true;
-  };
-
-  # Configure nvim
-  xdg.configFile."nvim".source = ../../programs/nvim;
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. If you don't want to manage your shell through Home
@@ -67,7 +61,7 @@
   #  /etc/profiles/per-user/spacenerden/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nano";
+    EDITOR = "neovim";
   };
   
   xdg.enable = true;

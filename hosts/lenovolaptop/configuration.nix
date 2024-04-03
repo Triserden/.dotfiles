@@ -66,6 +66,10 @@
     };
   };
 
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -78,6 +82,13 @@
     pkgs.gcc_multi
     pkgs.cargo
   ];
+  
+  # Install programs
+  programs = {
+    npm = {
+      enable = true;
+    };
+  };
 
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes"];
