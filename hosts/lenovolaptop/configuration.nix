@@ -81,6 +81,7 @@
     pkgs.wget
     pkgs.gcc_multi
     pkgs.cargo
+    pkgs.unzip
   ];
   
   # Install programs
