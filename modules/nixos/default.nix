@@ -1,3 +1,3 @@
 {
-  hyprland = import ./hyperland.nix;
+  hyprland = import ./hyprland.nix;
 }
