@@ -1,0 +1,3 @@
+{
+  hyprland = import ./hyperland.nix;
+}

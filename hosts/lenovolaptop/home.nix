@@ -1,6 +1,12 @@
-{ config, pkgs, ... }: 
+{ config, pkgs, outputs, ... }: 
 
 {
+  # Import other modules
+  imports = [
+#    outputs.homeModules.nvim
+  ];
+
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "triserden";

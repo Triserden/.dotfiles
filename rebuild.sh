@@ -16,12 +16,12 @@ set -e
 pushd ~/.dotfiles/
 
 # Shows your changes
-git diff -U0 '**/*.nix'
+git diff *.nix
 
 echo "NixOS Rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
-sudo nixos-rebuild switch --flake ~/.dotfiles#$HOSTNAME &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo nixos-rebuild switch --show-trace --flake ~/.dotfiles#$HOSTNAME &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)

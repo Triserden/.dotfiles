@@ -1,4 +1,16 @@
 {
+
+  nixConfig = {
+    # substituers will be appended to the default substituters when fetching packages
+    # nix com    extra-substituters = [munity's cache server
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   description = "Nixos config flake";
 
   inputs = {
@@ -10,9 +22,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: let inherit (self) outputs;
+
+  in {
+    homeModules = import ./modules/home-manager;
+    nixModules = import ./modules/nixos;
+
     nixosConfigurations.lenovolaptop = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs outputs;};
       modules = [
         ./hosts/lenovolaptop/configuration.nix
         inputs.home-manager.nixosModules.default
