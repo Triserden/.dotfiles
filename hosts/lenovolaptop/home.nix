@@ -3,7 +3,7 @@
 {
   # Import other modules
   imports = [
-#    outputs.homeModules.nvim
+    outputs.homeModules.nvim
   ];
 
 
