@@ -32,7 +32,6 @@
   };
  
   in {
-
     nixosConfigurations.lenovolaptop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs commonModules; };
       modules = [
@@ -41,12 +40,12 @@
       ];
     };
     
-    # nixosConfigurations.littlecreek = nixpkgs.lib.nixosSystem {
-      # specialArgs = {inherit inputs outputs;};
-      # modules = [
-        # ./hosts/littlecreek/configuration.nix
-        # inputs.home-manager.nixosModules.default
-      # ];
-    # };
+    nixosConfigurations.littlecreek = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs outputs;};
+      modules = [
+        ./hosts/littlecreek/configuration.nix
+        inputs.home-manager.nixosModules.default
+      ];
+    };
   };
 }

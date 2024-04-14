@@ -35,6 +35,12 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
