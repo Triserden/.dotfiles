@@ -1,11 +1,10 @@
-{ config, pkgs, outputs, ... }: 
+{ commonModules, ... }: 
 
 {
   # Import other modules
   imports = [
-    outputs.homeModules.nvim
+    commonModules.home.nvim
   ];
-
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -67,7 +66,7 @@
   #  /etc/profiles/per-user/spacenerden/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "neovim";
+    EDITOR = "nvim";
   };
   
   xdg.enable = true;

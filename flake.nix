@@ -22,18 +22,31 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: let inherit (self) outputs;
 
+  outputs = { self, nixpkgs, ... }@inputs: let
+  inherit (self) outputs; 
+  commonModules = {
+    home = import ./modules/home-manager;
+    nixos = import ./modules/nixos;
+    common = import ./hosts/common;
+  };
+ 
   in {
-    homeModules = import ./modules/home-manager;
-    nixModules = import ./modules/nixos;
 
     nixosConfigurations.lenovolaptop = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs commonModules; };
       modules = [
         ./hosts/lenovolaptop/configuration.nix
         inputs.home-manager.nixosModules.default
       ];
     };
+    
+    # nixosConfigurations.littlecreek = nixpkgs.lib.nixosSystem {
+      # specialArgs = {inherit inputs outputs;};
+      # modules = [
+        # ./hosts/littlecreek/configuration.nix
+        # inputs.home-manager.nixosModules.default
+      # ];
+    # };
   };
 }
