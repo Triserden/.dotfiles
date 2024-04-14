@@ -1,3 +1,5 @@
 {
-  nvim = import ./nvim.nix;
+  cli = import ./cli.nix;
+  alacritty = import ./alacritty.nix;
+  git = import ./git.nix;
 }

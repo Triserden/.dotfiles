@@ -11,6 +11,7 @@
     ];
   };
 
+
   description = "Nixos config flake";
 
   inputs = {
@@ -41,7 +42,7 @@
     };
     
     nixosConfigurations.littlecreek = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs commonModules;};
       modules = [
         ./hosts/littlecreek/configuration.nix
         inputs.home-manager.nixosModules.default

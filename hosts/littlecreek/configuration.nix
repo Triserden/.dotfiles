@@ -26,7 +26,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
-    users."triserden".imports = [ modules.common.home ];
+    users."triserden".imports = [ ./home.nix ];
   };
 
 }

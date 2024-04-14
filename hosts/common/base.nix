@@ -1,6 +1,12 @@
-{pkgs, ...}:
+{pkgs, commonModules, ...}:
 
 {
+  imports = [
+    commonModules.nixos.cli
+    commonModules.nixos.git
+    commonModules.nixos.tailscale
+  ];
+
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
@@ -44,22 +50,18 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Add some useful tools
+  programs.mtr.enable = true;
   environment.systemPackages = [
-    pkgs.neovim 
     pkgs.wget
-    
-    # Required for nvim plugins
-    pkgs.gcc_multi
-    pkgs.cargo
-    pkgs.unzip
-    pkgs.nodejs_21
+    pkgs.ripgrep
   ];
   
-  # Install programs
-  programs.npm.enable = true;
-
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = false;
+  };
 
   system.stateVersion = "23.11"; # Did you read the comment?
 

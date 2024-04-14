@@ -11,7 +11,10 @@
       commonModules.common.base
       commonModules.nixos.hyprland
       commonModules.nixos.nwmanager
-    ];
+      commonModules.nixos.firefox
+      commonModules.nixos.gpg
+      # commonModules.nixos.alacritty 
+];
 
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
@@ -26,6 +29,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs commonModules; };
-    users."triserden".imports = [commonModules.common.home];
+    users."triserden".imports = [./home.nix];
+
   };
 }
