@@ -8,7 +8,6 @@
   imports =
     [
       commonModules.common.base
-      commonModules.nixos.nwmanager
     ];
 
   nix.settings = {
@@ -16,16 +15,11 @@
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
-
   networking.hostName = "littlecreek"; # Define your hostname.
   
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = { inherit inputs outputs commonModules; };
     users."triserden".imports = [ ./home.nix ];
   };
 
