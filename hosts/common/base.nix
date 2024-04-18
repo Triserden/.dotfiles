@@ -1,4 +1,4 @@
-{pkgs, commonModules, ...}:
+{pkgs, commonModules, lib, ...}:
 
 {
   imports = [
@@ -60,8 +60,14 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    openFirewall = false;
+    openFirewall = lib.mkDefault false;
+    settings.PasswordAuthentication = false;
   };
+  
+   
+  users.users."triserden".openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICCG7lTuHjzSp57sgrVz/dbGP5zHC5isZx9gcEI+ZlgW triserden@lenovolaptop"
+  ];
 
   system.stateVersion = "23.11"; # Did you read the comment?
 

@@ -3,6 +3,6 @@
 {
   imports = [
     commonModules.common.base-home
-    commonModules.home.alacritty
+    # commonModules.home.alacritty
   ];
 }

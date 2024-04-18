@@ -16,7 +16,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-
+    disko.url = "github:nix-community/disko";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,12 +41,12 @@
       ];
     };
     
-    nixosConfigurations.littlecreek = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.lcvps = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs commonModules;};
       system = "x86_64-linux";
       modules = [
-        "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-        ./hosts/littlecreek/configuration.nix
+        ./hosts/lcvps/configuration.nix
+        inputs.disko.nixosModules.disko
         inputs.home-manager.nixosModules.default
       ];
     };

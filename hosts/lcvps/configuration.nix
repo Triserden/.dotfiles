@@ -2,13 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ commonModules, inputs, outputs, ... }:
+{ commonModules, inputs, outputs, lib, modulesPath, ... }:
 
 {
   imports =
     [
       commonModules.common.base
+      (modulesPath+"/profiles/qemu-guest.nix")
+      (modulesPath + "/installer/scan/not-detected.nix")
+      ./disk-config.nix
     ];
+
+  services.openssh.openFirewall = lib.mkForce true;
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
