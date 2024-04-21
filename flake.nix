@@ -21,10 +21,11 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
 
-  outputs = { self, nixpkgs, ... }@inputs: let
+  outputs = { self, nixpkgs, sops-nix, ... }@inputs: let
   inherit (self) outputs; 
   commonModules = {
     home = import ./modules/home-manager;
@@ -38,6 +39,7 @@
       modules = [
         ./hosts/lenovolaptop/configuration.nix
         inputs.home-manager.nixosModules.default
+        sops-nix.nixosModules.sops
       ];
     };
     
@@ -48,6 +50,7 @@
         ./hosts/lcvps/configuration.nix
         inputs.disko.nixosModules.disko
         inputs.home-manager.nixosModules.default
+        sops-nix.nixosModules.sops
       ];
     };
   };
