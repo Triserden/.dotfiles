@@ -65,10 +65,6 @@
   };
   
    
-  users.users."triserden".openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICCG7lTuHjzSp57sgrVz/dbGP5zHC5isZx9gcEI+ZlgW triserden@lenovolaptop"
-  ];
-
   system.stateVersion = "23.11"; # Did you read the comment?
 
   # Enable Flakes

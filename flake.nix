@@ -43,6 +43,17 @@
       ];
     };
     
+    nixosConfigurations.bootstrapper = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs outputs commonModules;};
+      system = "x86_64-linux";
+      modules = [
+        ./hosts/bootstrapper/configuration.nix
+        inputs.disko.nixosModules.disko
+        inputs.home-manager.nixosModules.default
+        sops-nix.nixosModules.sops
+      ];
+    };
+
     nixosConfigurations.lcvps = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs commonModules;};
       system = "x86_64-linux";
