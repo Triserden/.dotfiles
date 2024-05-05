@@ -19,7 +19,7 @@
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "lenovolaptop"; # Define your hostname.
+  networking.hostName = "megumi"; # Define your hostname.
 
   # Configure keymap in X11
   services.xserver = {

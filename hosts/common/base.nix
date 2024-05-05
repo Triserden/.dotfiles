@@ -1,4 +1,4 @@
-{pkgs, commonModules, lib, ...}:
+{pkgs, commonModules, lib, config, ...}:
 
 {
   imports = [
@@ -6,6 +6,11 @@
     commonModules.nixos.git
     commonModules.nixos.tailscale
   ];
+
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  };
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -35,6 +40,7 @@
     isNormalUser = true;
     description = "Triserden";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+    hashedPasswordFile = config.sops.secrets.triserden_password.path;
   };
   
   fonts.fonts = with pkgs; [

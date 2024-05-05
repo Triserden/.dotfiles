@@ -1,0 +1,32 @@
+keys:
+  - &izumi age1qn0dx48sgp6mqx9dm6kj0y2uk9emphjz934mgw0vqsjcy82d4uzqkx2hl5
+  - &triserden 2422C7EE03C629FD998BF923FD5CD86B6562D6B7
+  - &megumi age1efr63nm6ns58x0y0xrlgwf9kc5mc84ln9ea4fknjs4y50s3xmqnq9lqxtk
+creation_rules:
+  - path_regex: hosts/common/secrets.yaml$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *izumi
+          - *megumi
+  - path_regex: modules\/[^\/]+\/secrets\/[^\/]+\.yaml$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *izumi
+          - *megumi
+
+  - path_regex: hosts/izumi/secrets.yaml$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *izumi
+  - path_regex: hosts/megumi/secrets.yaml$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *megumi

@@ -34,10 +34,10 @@
   };
  
   in {
-    nixosConfigurations.lenovolaptop = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.megumi = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs commonModules; };
       modules = [
-        ./hosts/lenovolaptop/configuration.nix
+        ./hosts/megumi/configuration.nix
         inputs.home-manager.nixosModules.default
         sops-nix.nixosModules.sops
       ];
@@ -54,11 +54,11 @@
       ];
     };
 
-    nixosConfigurations.lcvps = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.izumi = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs commonModules;};
       system = "x86_64-linux";
       modules = [
-        ./hosts/lcvps/configuration.nix
+        ./hosts/izumi/configuration.nix
         inputs.disko.nixosModules.disko
         inputs.home-manager.nixosModules.default
         sops-nix.nixosModules.sops

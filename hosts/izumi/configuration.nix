@@ -15,7 +15,7 @@
 
   services.openssh.openFirewall = lib.mkForce true;
 
-  networking.hostName = "lcvps"; # Define your hostname.
+  networking.hostName = "izumi"; # Define your hostname.
   
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs commonModules; };
