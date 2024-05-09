@@ -16,6 +16,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     disko.url = "github:nix-community/disko";
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager = {
@@ -34,8 +35,14 @@
     common = import ./hosts/common;
   };
 
- 
+
   in {
+   
+   add-unstable-packages = final: _prev: {
+       unstable = import inputs.nixpkgs-unstable {
+       system = "x86_64-linux";
+     };
+   };
    
    nixosConfigurations.megumi = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs commonModules; };

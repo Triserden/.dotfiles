@@ -2,6 +2,6 @@
 
 {
   environment.systemPackages = [
-    pkgs.hledger
+    pkgs.unstable.hledger
   ];
 }

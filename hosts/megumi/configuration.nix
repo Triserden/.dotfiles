@@ -57,7 +57,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.overlays = [outputs.add-unstable-packages];
   system.stateVersion = "23.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];
