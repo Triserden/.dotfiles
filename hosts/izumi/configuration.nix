@@ -12,6 +12,8 @@
       (modulesPath + "/installer/scan/not-detected.nix")
       ./disk-config.nix
     ];
+  
+  sops.defaultSopsFile = ./secrets.yaml;
 
   services.openssh.openFirewall = lib.mkForce true;
 

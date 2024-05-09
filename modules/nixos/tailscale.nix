@@ -1,9 +1,7 @@
 {config, pkgs, ...}:
 
 {
-  sops.secrets.tailscale_auth_key = {
-    sopsFile = ./secrets/tailscale.yaml;
-  };
+  sops.secrets.tailscale_auth_key = {};
 
   environment.systemPackages = [ pkgs.tailscale ];
   services.tailscale.enable = true;

@@ -17,29 +17,37 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     disko.url = "github:nix-community/disko";
+    sops-nix.url = "github:Mic92/sops-nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix.url = "github:Mic92/sops-nix";
   };
 
 
-  outputs = { self, nixpkgs, sops-nix, ... }@inputs: let
+  outputs = { self, nixpkgs, sops-nix, home-manager, ... }@inputs: let
   inherit (self) outputs; 
+  
   commonModules = {
     home = import ./modules/home-manager;
     nixos = import ./modules/nixos;
     common = import ./hosts/common;
   };
+
  
   in {
-    nixosConfigurations.megumi = nixpkgs.lib.nixosSystem {
+   
+   nixosConfigurations.megumi = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs commonModules; };
       modules = [
         ./hosts/megumi/configuration.nix
-        inputs.home-manager.nixosModules.default
         sops-nix.nixosModules.sops
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.sharedModules = [
+            inputs.sops-nix.homeManagerModule
+          ];
+        }
       ];
     };
     
