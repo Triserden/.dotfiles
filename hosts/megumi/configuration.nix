@@ -20,6 +20,7 @@
       commonModules.nixos.fonts
       commonModules.nixos.utils
       commonModules.nixos.tailscale
+      commonModules.nixos.hledger
       # commonModules.nixos.alacritty 
 ];
 

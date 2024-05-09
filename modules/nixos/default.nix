@@ -16,5 +16,8 @@
   # CLI stuff
   cli = import ./cli.nix;
   utils = import ./utils.nix;
+
+  # Other apps
+  hledger = ./hledger.nix;
   
 }
