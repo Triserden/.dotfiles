@@ -10,6 +10,8 @@
   fonts = import ./fonts.nix;
   ssh = import ./ssh.nix;
   nvidia = import ./nvidia.nix;
+  pipewire = import ./pipewire.nix;
+
   # Locales
   amsterdam = import ./amsterdam.nix;
 
