@@ -9,7 +9,7 @@
   cachix = import ./cachix.nix;
   fonts = import ./fonts.nix;
   ssh = import ./ssh.nix;
-
+  nvidia = import ./nvidia.nix;
   # Locales
   amsterdam = import ./amsterdam.nix;
 

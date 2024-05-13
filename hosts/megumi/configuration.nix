@@ -21,7 +21,7 @@
       commonModules.nixos.utils
       commonModules.nixos.tailscale
       commonModules.nixos.hledger
-      # commonModules.nixos.alacritty 
+      commonModules.nixos.nvidia
 ];
 
   sops.defaultSopsFile = ./secrets.yaml;

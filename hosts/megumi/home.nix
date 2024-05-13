@@ -5,7 +5,7 @@
     commonModules.home.cli
     commonModules.home.git
     commonModules.home.ssh
-    # commonModules.home.alacritty
+    commonModules.home.alacritty
   ];
   
   home.username = "triserden";
