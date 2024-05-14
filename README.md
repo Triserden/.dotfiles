@@ -15,3 +15,11 @@
 # Add secrets
 
 Use ``nix-shell -p sops --run "sops ./secrets/keys.yaml"
+
+# TODO
+
+- Add matugen for colors
+
+# Thanks
+
+- [u/wiilou](https://www.reddit.com/r/hyprland/comments/15g2bin/comment/jugirrj/) for the hyprland snippets

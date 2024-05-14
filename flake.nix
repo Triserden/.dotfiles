@@ -23,6 +23,9 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    matugen = {
+      url = "github:/InioX/Matugen?ref=v2.2.0";
+    };
   };
 
 
