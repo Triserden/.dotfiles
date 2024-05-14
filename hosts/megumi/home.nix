@@ -6,6 +6,7 @@
     commonModules.home.git
     commonModules.home.ssh
     commonModules.home.alacritty
+    commonModules.home.hyprland
   ];
   
   home.username = "triserden";
