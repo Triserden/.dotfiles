@@ -8,7 +8,6 @@
       (modulesPath+"/profiles/qemu-guest.nix")
       (modulesPath + "/installer/scan/not-detected.nix")
       ./disk-config.nix
-      commonModules.common.base
       commonModules.nixos.git
     ];
 

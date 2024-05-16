@@ -1,0 +1,5 @@
+[config]
+reload_apps = true
+
+[config.reload_apps_list]
+gtk_theme = true
