@@ -2,6 +2,7 @@
 
 - Izumi (Hashima): VPS1
 - Megumi (Katou): Main lenovo laptop
+- Ayano (Yuugiri): Personalized Installation ISO
 
 # Bootstrap a device
 

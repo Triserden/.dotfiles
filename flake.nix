@@ -47,6 +47,22 @@
      };
    };
    
+   nixosConfigurations.ayano = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {inherit inputs outputs commonModules; };
+      modules = [
+        ./hosts/ayano/configuration.nix
+        sops-nix.nixosModules.sops
+        "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.sharedModules = [
+            inputs.sops-nix.homeManagerModule
+          ];
+        }
+      ];
+    };
+   
    nixosConfigurations.megumi = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs commonModules; };
       modules = [

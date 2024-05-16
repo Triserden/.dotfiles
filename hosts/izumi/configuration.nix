@@ -23,7 +23,7 @@
     isNormalUser = true;
     description = "Triserden";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    hashedPassword = config.sops.secrets.triserden_password.path;
+    hashedPasswordFile = config.sops.secrets.triserden_password.path;
   };
   
   services.openssh.openFirewall = lib.mkForce true;
