@@ -43,7 +43,7 @@
     isNormalUser = true;
     description = "Triserden";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    hashedPasswordFile = config.sops.secrets.triserden_password.path;
+    hashedPassword = config.sops.secrets.triserden_password.path;
   };
 
   boot.loader.grub.device = "/dev/vda";

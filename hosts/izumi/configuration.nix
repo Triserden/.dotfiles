@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ commonModules, inputs, outputs, lib, modulesPath, ... }:
+{ config, commonModules, inputs, outputs, lib, modulesPath, ... }:
 
 {
   imports =
@@ -14,7 +14,18 @@
     ];
   
   sops.defaultSopsFile = ./secrets.yaml;
+  sops.secrets.triserden_password = {
+     sopsFile = ./secrets.yaml;
+     neededForUsers = true;
+  };
 
+  users.users.triserden = {
+    isNormalUser = true;
+    description = "Triserden";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    hashedPassword = config.sops.secrets.triserden_password.path;
+  };
+  
   services.openssh.openFirewall = lib.mkForce true;
 
   networking.hostName = "izumi"; # Define your hostname.
