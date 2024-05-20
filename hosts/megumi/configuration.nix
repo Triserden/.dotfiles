@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./btrfs-disk-config.nix
       commonModules.nixos.hyprland
       commonModules.nixos.nwmanager
       commonModules.nixos.firefox
@@ -27,10 +28,6 @@
 
   sops.defaultSopsFile = ./secrets.yaml;
  
-  sops.secrets.triserden_password = {
-     neededForUsers = true;
-  };
-
   sops.secrets.id_ed25519 = {
     sopsFile = ./id_ed25519;
     mode = "6600";
@@ -43,11 +40,14 @@
     isNormalUser = true;
     description = "Triserden";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    hashedPassword = config.sops.secrets.triserden_password.path;
+    hashedPassword = "$y$j9T$MTzUZh4e5BCre7KQ0nzyS1$XerRKkLOByi6u3BUQ2WerOym2MIc2pv.YuXUwWLc519";
   };
 
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub = {
+    device = "/dev/sda";
+    useOSProber = true;
+    efiSupport = true;
+  };
 
   networking.hostName = "megumi"; # Define your hostname.
 
