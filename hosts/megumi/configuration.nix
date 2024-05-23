@@ -44,7 +44,7 @@
   };
 
   boot.loader.grub = {
-    device = "/dev/vda";
+    device = "/dev/nvme0n1";
     useOSProber = true;
     efiSupport = true;
   };
