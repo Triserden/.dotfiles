@@ -44,7 +44,7 @@
   };
 
   boot.loader.grub = {
-    device = "/dev/sda";
+    device = "/dev/vda";
     useOSProber = true;
     efiSupport = true;
   };
