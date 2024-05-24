@@ -11,6 +11,8 @@
   ssh = import ./ssh.nix;
   nvidia = import ./nvidia.nix;
   pipewire = import ./pipewire.nix;
+  nemo = import ./nemo.nix;
+  waybar = import ./waybar.nix;
 
   # Locales
   amsterdam = import ./amsterdam.nix;

@@ -67,7 +67,6 @@
       specialArgs = {inherit inputs outputs commonModules; };
       modules = [
         ./hosts/megumi/configuration.nix
-        inputs.disko.nixosModules.disko
         sops-nix.nixosModules.sops
         home-manager.nixosModules.home-manager
         {

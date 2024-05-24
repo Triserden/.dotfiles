@@ -35,8 +35,6 @@
     pkgs.libnotify
     pkgs.swww
     pkgs.tofi
-    inputs.matugen.packages."x86_64-linux".default
-    # TODO Add matugen and theme randomization
   ];
 
   xdg.portal.enable = true;

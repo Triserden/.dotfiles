@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./btrfs-disk-config.nix
+      inputs.disko.nixosModules.disko
       commonModules.nixos.hyprland
       commonModules.nixos.nwmanager
       commonModules.nixos.firefox
@@ -21,7 +22,6 @@
       commonModules.nixos.fonts
       commonModules.nixos.utils
       commonModules.nixos.tailscale
-      commonModules.nixos.hledger
       commonModules.nixos.nvidia
       commonModules.nixos.pipewire
 ];
@@ -44,10 +44,10 @@
   };
 
   boot.loader.grub = {
-    device = "/dev/nvme0n1";
-    useOSProber = true;
+    #useOSProber = true;
     efiSupport = true;
-  };
+  };  
+  boot.loader.grub.efiInstallAsRemovable = true;
 
   networking.hostName = "megumi"; # Define your hostname.
 

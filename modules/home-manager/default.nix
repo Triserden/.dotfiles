@@ -4,4 +4,5 @@
   git = import ./git.nix;
   ssh = import ./ssh.nix;
   hyprland = import ./hyprland.nix;
+  waybar = import ./waybar.nix;
 }

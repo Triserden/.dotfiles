@@ -11,7 +11,6 @@
     pkgs.nodejs_21
   
     pkgs.eza
-    pkgs.nushell
     pkgs.bat
   ];
 
