@@ -24,6 +24,8 @@
       commonModules.nixos.tailscale
       commonModules.nixos.nvidia
       commonModules.nixos.pipewire
+      commonModules.nixos.nemo
+      commonModules.nixos.waybar
 ];
 
   sops.defaultSopsFile = ./secrets.yaml;
@@ -39,15 +41,16 @@
   users.users.triserden = {
     isNormalUser = true;
     description = "Triserden";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "inputs" "networkmanager" "wheel" "docker" ];
     hashedPassword = "$y$j9T$MTzUZh4e5BCre7KQ0nzyS1$XerRKkLOByi6u3BUQ2WerOym2MIc2pv.YuXUwWLc519";
   };
 
   boot.loader.grub = {
-    #useOSProber = true;
+    useOSProber = true;
     efiSupport = true;
   };  
   boot.loader.grub.efiInstallAsRemovable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "megumi"; # Define your hostname.
 

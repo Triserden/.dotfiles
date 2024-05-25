@@ -1,24 +1,12 @@
 {
   programs.waybar.enable = true;
   programs.waybar.settings = [
-    // =============================================================================
-//
-// Waybar configuration
-//
-// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
-//
-// =============================================================================
-
 {
-    // -------------------------------------------------------------------------
-    // Global configuration
-    // -------------------------------------------------------------------------
 
     "layer": "top",
 
     "position": "top",
 
-    // If height property would be not present, it'd be calculated dynamically
     "height": 30,
 
     "modules-left": [
@@ -41,19 +29,13 @@
     ],
 
 
-    // -------------------------------------------------------------------------
-    // Modules
-    // -------------------------------------------------------------------------
-
     "battery": {
         "interval": 10,
         "states": {
             "warning": 30,
             "critical": 15
         },
-        // Connected to AC
         "format": "  {icon}  {capacity}%", // Icon: bolt
-        // Not connected to AC
         "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
             "", // Icon: battery-full

@@ -2,6 +2,7 @@
 
 {
   imports = [
+    # commonModules.home.waybar
     commonModules.home.cli
     commonModules.home.git
     commonModules.home.ssh
