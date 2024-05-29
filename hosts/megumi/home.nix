@@ -2,12 +2,13 @@
 
 {
   imports = [
-    # commonModules.home.waybar
+    commonModules.home.waybar
     commonModules.home.cli
     commonModules.home.git
     commonModules.home.ssh
     commonModules.home.alacritty
     commonModules.home.hyprland
+    commonModules.home.networkmanager-dmenu
   ];
   
   home.username = "triserden";

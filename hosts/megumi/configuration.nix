@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ commonModules, inputs, outputs, config, ... }:
+{ commonModules, inputs, outputs, config, options, ... }:
 
 {
   imports =
@@ -19,14 +19,16 @@
       commonModules.nixos.ssh
       commonModules.nixos.amsterdam
       commonModules.nixos.cachix
-      commonModules.nixos.fonts
+      commonModules.nixos.stylix
       commonModules.nixos.utils
       commonModules.nixos.tailscale
       commonModules.nixos.nvidia
       commonModules.nixos.pipewire
       commonModules.nixos.nemo
       commonModules.nixos.waybar
+      commonModules.nixos.docker
 ];
+
 
   sops.defaultSopsFile = ./secrets.yaml;
  
@@ -48,9 +50,14 @@
   boot.loader.grub = {
     useOSProber = true;
     efiSupport = true;
+    extraEntries = 
+      ''
+        menuentry "Windows 11" {
+          chainloader /efi/Windows/Boot/bootmgfw.efi
+        }
+      '';
   };  
   boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "megumi"; # Define your hostname.
 

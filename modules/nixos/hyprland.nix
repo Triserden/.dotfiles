@@ -34,7 +34,7 @@
     pkgs.mako
     pkgs.libnotify
     pkgs.swww
-    pkgs.tofi
+    pkgs.fuzzel
   ];
 
   xdg.portal.enable = true;

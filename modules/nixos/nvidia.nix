@@ -4,7 +4,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # NVIDIA drivers are unfree.  
-  services.xserver.videoDrivers = [ "nvidia" ]; # If you are using a hybrid laptop add its iGPU manufacturer
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ]; # TODO: Separate amdgpu to it's own file
+
   hardware.opengl = {  
     enable = true;  
     driSupport = true;  
@@ -20,5 +21,16 @@
     nvidiaSettings = true;
     # Select the appropriate driver version for your specific GPU
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  #TODO: Move to dedicated hybrid file?
+  hardware.nvidia.prime = {
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
+    amdgpuBusId = "PCI:6:0:0";
+
+    nvidiaBusId = "PCI:1:0:0";
   };
 }

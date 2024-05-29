@@ -7,12 +7,12 @@
   git = import ./git.nix;
   tailscale = import ./tailscale.nix;
   cachix = import ./cachix.nix;
-  fonts = import ./fonts.nix;
   ssh = import ./ssh.nix;
   nvidia = import ./nvidia.nix;
   pipewire = import ./pipewire.nix;
   nemo = import ./nemo.nix;
   waybar = import ./waybar.nix;
+  stylix = import ./stylix.nix;
 
   # Locales
   amsterdam = import ./amsterdam.nix;
@@ -23,5 +23,6 @@
 
   # Other apps
   hledger = ./hledger.nix;
+  docker = ./docker.nix;
   
 }

@@ -5,4 +5,5 @@
   ssh = import ./ssh.nix;
   hyprland = import ./hyprland.nix;
   waybar = import ./waybar.nix;
+  networkmanager-dmenu = import ./networkmanager-dmenu.nix;
 }
