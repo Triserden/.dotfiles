@@ -6,4 +6,5 @@
   hyprland = import ./hyprland.nix;
   waybar = import ./waybar.nix;
   networkmanager-dmenu = import ./networkmanager-dmenu.nix;
+  bluetooth = import ./bluetooth.nix;
 }

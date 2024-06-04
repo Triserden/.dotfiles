@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ commonModules, inputs, outputs, config, options, ... }:
+{ commonModules, inputs, outputs, config, pkgs, ... }:
 
 {
   imports =
@@ -27,8 +27,23 @@
       commonModules.nixos.nemo
       commonModules.nixos.waybar
       commonModules.nixos.docker
+      commonModules.nixos.bluetooth
 ];
 
+  environment.systemPackages = [
+    pkgs.jetbrains.webstorm
+    pkgs.python313
+    pkgs.nvd
+    pkgs.unstable.beekeeper-studio 
+    pkgs.unstable.obsidian
+    pkgs.ffmpeg_5-full
+    pkgs.yt-dlp
+];
+  
+  programs.direnv.enable = true;
+
+  nixpkgs.config.permittedInsecurePackages = [
+  ];
 
   sops.defaultSopsFile = ./secrets.yaml;
  
@@ -58,7 +73,7 @@
       '';
   };  
   boot.loader.grub.efiInstallAsRemovable = true;
-
+  boot.supportedFilesystems = ["ntfs" "btrfs"];
   networking.hostName = "megumi"; # Define your hostname.
 
   # Configure keymap in X11
@@ -68,7 +83,9 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [outputs.add-unstable-packages];
+  nixpkgs.overlays = [
+    outputs.add-unstable-packages
+  ];
   system.stateVersion = "23.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];

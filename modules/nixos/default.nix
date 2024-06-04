@@ -13,7 +13,8 @@
   nemo = import ./nemo.nix;
   waybar = import ./waybar.nix;
   stylix = import ./stylix.nix;
-
+  auto-cpufreq = import ./auto-cpufreq.nix;
+  bluetooth = import ./bluetooth.nix;
   # Locales
   amsterdam = import ./amsterdam.nix;
 

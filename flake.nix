@@ -45,11 +45,12 @@
 
   in {
    
-   add-unstable-packages = final: _prev: {
-       unstable = import inputs.nixpkgs-unstable {
-       system = "x86_64-linux";
-     };
-   };
+  add-unstable-packages = final: _prev: {
+    unstable = import inputs.nixpkgs-unstable {
+      system = "x86_64-linux";
+      config.allowUnfree = true;   
+    };
+  };
    
    nixosConfigurations.ayano = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";

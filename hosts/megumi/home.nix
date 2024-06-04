@@ -9,7 +9,8 @@
     commonModules.home.alacritty
     commonModules.home.hyprland
     commonModules.home.networkmanager-dmenu
-  ];
+    commonModules.home.bluetooth
+];
   
   home.username = "triserden";
   home.homeDirectory = "/home/triserden";
@@ -21,10 +22,25 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    NIXOS_OZONE_WL = "1";
   };
   
   xdg.enable = true;
-  
+ 
+  xdg.desktopEntries.beekeeper-studio = {
+    name = "beekeeper-studio";
+    exec = "beekeeper-studio --disable-gpu --enable-features=UseOzonePlatform --ozone-platform=wayland %U";
+    icon = "beekeeper-studio";
+    type = "Application";
+  };
+
+  xdg.desktopEntries.obsidian = {
+    name = "Obsidian";
+    exec = "obsidian --disable-gpu --enable-features=UseOzonePlatform --ozone-platform=wayland %U";
+    icon = "obsidian";
+    type = "Application";
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
