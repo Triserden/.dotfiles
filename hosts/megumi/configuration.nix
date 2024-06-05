@@ -38,6 +38,8 @@
     pkgs.unstable.obsidian
     pkgs.ffmpeg_5-full
     pkgs.yt-dlp
+    pkgs.vlc
+    pkgs.libvlc
 ];
   
   programs.direnv.enable = true;

@@ -9,7 +9,7 @@ sudo nixos-rebuild switch --flake . "$@" &&  nvd diff $(ls -dv /nix/var/nix/prof
 # https://discourse.nixos.org/t/nvd-simple-nix-nixos-version-diff-tool/12397/33
 
 echo "Commiting to git repo"
-current=$(nixos-rebuild list-generations | grep current)
+current=$(nixos-rebuild list-generations --flake . | grep current)
 
 git commit -am "$current"
 
