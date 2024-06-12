@@ -35,6 +35,7 @@
     pkgs.libnotify
     pkgs.swww
     pkgs.fuzzel
+    pkgs.grimblast
   ];
 
   xdg.portal.enable = true;
