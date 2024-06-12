@@ -28,7 +28,9 @@
       commonModules.nixos.waybar
       commonModules.nixos.docker
       commonModules.nixos.bluetooth
+      commonModules.nixos.games
 ];
+
 
   environment.systemPackages = [
     pkgs.jetbrains.webstorm

@@ -25,5 +25,5 @@
   # Other apps
   hledger = ./hledger.nix;
   docker = ./docker.nix;
-  
+  games = import ./games.nix;  
 }
