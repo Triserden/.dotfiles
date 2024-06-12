@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     # winetricks (all versions)
     winetricks
-
+    prismlauncher
     # native wayland support (unstable)
     wineWowPackages.waylandFull
   ];
