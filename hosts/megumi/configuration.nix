@@ -42,7 +42,7 @@
     pkgs.yt-dlp
     pkgs.vlc
     pkgs.libvlc
-    pkgs.nodePackages.pnpm
+    pkgs.unstable.nodePackages.pnpm
 ];
   
   programs.direnv.enable = true;
