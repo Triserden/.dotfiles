@@ -45,8 +45,6 @@
     pkgs.unstable.nodePackages.pnpm
 ];
   
-  programs.direnv.enable = true;
-
   nixpkgs.config.permittedInsecurePackages = [
   ];
 
