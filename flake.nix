@@ -24,6 +24,7 @@
         home-manager.follows = "home-manager";
       };
     };
+    nix-alien.url = "github:thiagokokada/nix-alien";
     disko.url = "github:nix-community/disko";
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager = {
@@ -33,7 +34,7 @@
   };
 
 
-  outputs = { self, nixpkgs, stylix, sops-nix, home-manager, ... }@inputs: let
+  outputs = { self, nixpkgs, stylix, sops-nix, home-manager, nix-alien, ... }@inputs: let
   inherit (self) outputs; 
   
   commonModules = {
