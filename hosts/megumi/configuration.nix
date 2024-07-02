@@ -34,7 +34,7 @@
 
   environment.systemPackages = [
     inputs.nix-alien.packages.x86_64-linux.nix-alien
-    pkgs.nss_latest
+    pkgs.nss_latest.dev
     pkgs.jetbrains.webstorm
     pkgs.python313
     pkgs.nvd
