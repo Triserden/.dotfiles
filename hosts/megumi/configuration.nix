@@ -33,6 +33,7 @@
 
 
   environment.systemPackages = [
+    pkgs.nss_latest
     pkgs.jetbrains.webstorm
     pkgs.python313
     pkgs.nvd
