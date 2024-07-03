@@ -47,7 +47,15 @@
     pkgs.vlc
     pkgs.libvlc
     pkgs.unstable.nodePackages.pnpm
-];
+  ];
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      nss
+      nss.dev
+    ];
+  };
   
   nixpkgs.config.permittedInsecurePackages = [
   ];
