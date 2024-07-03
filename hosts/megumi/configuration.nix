@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ commonModules, inputs, outputs, config, pkgs, ... }:
+{ commonModules, inputs, outputs, config, pkgs, lib, ... }:
 
 {
   imports =
@@ -49,14 +49,14 @@
     pkgs.unstable.nodePackages.pnpm
   ];
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      nss
-      nss.dev
-    ];
+  environment.sessionVariables = {
+  LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath [
+      pkgs.libglvnd
+      pkgs.nss
+      pkgs.nss.dev
+    ]);
   };
-  
+
   nixpkgs.config.permittedInsecurePackages = [
   ];
 
