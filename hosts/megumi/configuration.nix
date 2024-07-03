@@ -49,14 +49,6 @@
     pkgs.unstable.nodePackages.pnpm
   ];
 
-  environment.sessionVariables = {
-  LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath [
-      pkgs.libglvnd
-      pkgs.nss
-      pkgs.nss.dev
-    ]);
-  };
-
   nixpkgs.config.permittedInsecurePackages = [
   ];
 
