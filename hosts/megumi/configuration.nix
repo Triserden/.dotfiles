@@ -61,6 +61,7 @@
     fuse3
     icu
     nss
+    nss.dev
     openssl
     curl
     expat
