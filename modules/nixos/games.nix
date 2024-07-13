@@ -13,6 +13,7 @@
           mesa
           alsa-lib
           libcef
+          glib.out
         ];
       withWaylandGLFW = true;
       
