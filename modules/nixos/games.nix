@@ -6,6 +6,21 @@
     winetricks
     # native wayland support (unstable)
     wineWowPackages.waylandFull
-    (unstable.prismlauncher.override { additionalLibs = [nss nspr mesa alsa-lib libcef ungoogled-chromium chromedriver]; })
+    (unstable.prismlauncher.override { 
+      additionalLibs = [
+          nss
+          nspr
+          mesa
+          alsa-lib
+          libcef
+        ];
+      
+      additionalPrograms = [
+          ungoogled-chromium
+          chromedriver
+        ];
+      }
+    )
+
   ];
 }
