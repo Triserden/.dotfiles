@@ -6,6 +6,6 @@
     winetricks
     # native wayland support (unstable)
     wineWowPackages.waylandFull
-    (unstable.prismlauncher.override { additionalLibs = [nss]; })
+    (unstable.prismlauncher.override { additionalLibs = [nss nspr]; })
   ];
 }
