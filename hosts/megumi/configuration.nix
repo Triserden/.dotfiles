@@ -48,6 +48,7 @@
     pkgs.libvlc
     pkgs.unstable.nodePackages.pnpm
     pkgs.gnome-network-displays
+    pkgs.miraclecast
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
