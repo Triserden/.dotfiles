@@ -15,10 +15,10 @@
           libcef
         ];
       
-      additionalPrograms = [
-          ungoogled-chromium
-          chromedriver
-        ];
+      #additionalPrograms = [
+      #    ungoogled-chromium
+      #    chromedriver
+      #  ];
       }
     )
 
