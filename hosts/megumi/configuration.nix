@@ -47,8 +47,8 @@
     pkgs.vlc
     pkgs.libvlc
     pkgs.unstable.nodePackages.pnpm
-    pkgs.gnome-network-displays
-    pkgs.miraclecast
+    pkgs.brightnessctl
+    pkgs.btop
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
