@@ -14,6 +14,7 @@
           alsa-lib
           libcef
         ];
+      withWaylandGLFW = true;
       
       #additionalPrograms = [
       #    ungoogled-chromium
