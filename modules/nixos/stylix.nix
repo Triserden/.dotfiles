@@ -3,6 +3,7 @@
   stylix = {
     image = ../../hosts/megumi/wallpaper.png;
     polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     fonts = {
       sansSerif = {
         package = pkgs.open-sans;
