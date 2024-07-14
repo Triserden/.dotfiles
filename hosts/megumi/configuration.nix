@@ -49,7 +49,7 @@
     pkgs.unstable.nodePackages.pnpm
     pkgs.brightnessctl
     pkgs.btop
-    pkgs.distrobox
+    pkgs.unstable.distrobox
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
