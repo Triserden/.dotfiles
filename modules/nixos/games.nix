@@ -6,23 +6,37 @@
     winetricks
     # native wayland support (unstable)
     wineWowPackages.waylandFull
-    (unstable.prismlauncher.override { 
-      additionalLibs = [
-          nss
-          nspr
-          mesa
-          alsa-lib
-          libcef
-          #glib.out
-        ];
-      withWaylandGLFW = true;
+    
+   (pkgs.buildFHSEnv {
+     name = "prismlauncher";
+     targetPkgs = pkgs: (with pkgs; [
+      nss
+      nspr
+      mesa
+      alsa-lib
+      libcef
+      unstable.prismlauncher
+     ]);
+
+    runScript = "prismlauncher";
+  }) 
+
+    #(unstable.prismlauncher.override { 
+    #  additionalLibs = [
+    #      nss
+    #      nspr
+    #      mesa
+    #      alsa-lib
+    #      libcef
+    #      #glib.out
+    #    ];
       
       #additionalPrograms = [
       #    ungoogled-chromium
       #    chromedriver
       #  ];
-      }
-    )
+    #  }
+    #)
 
   ];
 }
