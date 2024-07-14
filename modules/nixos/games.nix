@@ -10,7 +10,7 @@
    (pkgs.buildFHSEnv {
      name = "prismlauncher";
      targetPkgs = pkgs: (with pkgs; [
-      nss
+      nss.dev
       nspr
       mesa
       alsa-lib
