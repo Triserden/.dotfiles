@@ -22,6 +22,7 @@
     bash.enable = true; # see note on other shells below
   };
   
+  sops.defaultSopsFile = ./secrets.yaml;
   home.username = "triserden";
   home.homeDirectory = "/home/triserden";
 
