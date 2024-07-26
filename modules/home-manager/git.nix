@@ -1,8 +1,8 @@
 {config, ...}:
 {
-  sops.secrets.spcUser = {};
-  sops.secrets.spcEmail = {};
-  sops.secrets.spcGPGKey = {};
+  sops.secrets.spcuser = {};
+  sops.secrets.spcemail = {};
+  sops.secrets.spcgpgkey = {};
 
   programs.git = {
     enable = true;
@@ -13,9 +13,9 @@
     includes = [{
       condition = "gitdir:~/Code/spc/"; # Trailing slash is important!
       contents = {
-        user.name = config.sops.secrets.spcUser;
-        user.email = config.sops.secrets.spcEmail;
-        user.signingkey = config.sops.secrets.spcGPGKey;
+        user.name = config.sops.secrets.spcuser;
+        user.email = config.sops.secrets.spcemail;
+        user.signingkey = config.sops.secrets.spcgpgkey;
   };
 }];
 

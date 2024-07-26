@@ -26,7 +26,7 @@
   home.username = "triserden";
   home.homeDirectory = "/home/triserden";
 
-  # sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   
 
   home.stateVersion = "23.11"; # Please read the comment before changing. 
