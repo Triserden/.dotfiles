@@ -12,11 +12,7 @@
     
     includes = [{
       condition = "gitdir:~/Code/spc/"; # Trailing slash is important!
-      contents = {
-        user.name = config.sops.secrets.spcuser;
-        user.email = config.sops.secrets.spcemail;
-        user.signingkey = config.sops.secrets.spcgpgkey;
-  };
+      path = "./config/gitusers";
 }];
 
     extraConfig = {
