@@ -12,7 +12,7 @@
     
     includes = [{
       condition = "gitdir:~/Code/spc/"; # Trailing slash is important!
-      path = "./config/gitusers";
+      path = "~/.dotfiles/modules/home-manager/config/gitusers";
 }];
 
     extraConfig = {
