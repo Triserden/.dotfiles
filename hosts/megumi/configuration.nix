@@ -50,6 +50,8 @@
     pkgs.brightnessctl
     pkgs.btop
     pkgs.unstable.distrobox
+    pkgs.unstable.moon
+    pkgs.pv
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
