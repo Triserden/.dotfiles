@@ -91,7 +91,7 @@
     mode = "6600";
     owner = config.users.users.triserden.name;
     format = "binary";
-    path = "/home/triserden/.ssh/spc.id_ed25519";
+    path = "/home/triserden/.ssh/spc_id_ed25519";
   };
   
   users.users.triserden = {

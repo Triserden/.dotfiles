@@ -9,7 +9,7 @@
         identityFile = "~/.ssh/id_ed25519";
       };
       "spc.github.com" = {
-        identityFile = "~/.ssh/spc.id_ed25519";
+        identityFile = "~/.ssh/spc_id_ed25519";
       };
     };
   };
