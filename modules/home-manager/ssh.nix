@@ -8,7 +8,8 @@
       "github.com" = {
         identityFile = "~/.ssh/id_ed25519";
       };
-      "spc-github.com" = {
+      "spc.github.com" = {
+        hostname = "github.com";
         identityFile = "~/.ssh/spc_id_ed25519";
       };
     };
