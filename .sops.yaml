@@ -35,6 +35,12 @@ creation_rules:
           - *triserden
         age:
           - *megumi
+  - path_regex: hosts/megumi/spc.id_ed25519$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *megumi
   - path_regex: hosts/megumi/secrets.yaml$
     key_groups:
       - pgp:

@@ -86,6 +86,14 @@
     path = "/home/triserden/.ssh/id_ed25519";
   };
   
+  sops.secrets.spc_id_ed25519 = {
+    sopsFile = ./spc.id_ed25519;
+    mode = "6600";
+    owner = config.users.users.triserden.name;
+    format = "binary";
+    path = "/home/triserden/.ssh/spc.id_ed25519";
+  };
+  
   users.users.triserden = {
     isNormalUser = true;
     description = "Triserden";
