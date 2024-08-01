@@ -51,6 +51,7 @@
     pkgs.btop
     pkgs.unstable.distrobox
     pkgs.pv
+    pkgs.unstable.packwiz
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
