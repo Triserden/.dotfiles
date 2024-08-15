@@ -127,7 +127,7 @@
   nixpkgs.overlays = [
     outputs.add-unstable-packages
   ];
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];
   
