@@ -38,7 +38,7 @@
     pkgs.nss_latest
     pkgs.glfw
     pkgs.jetbrains.webstorm
-    pkgs.jetbrains.rust-rover
+    pkgs.unstable.jetbrains.rust-rover
     pkgs.python313
     pkgs.nvd
     pkgs.unstable.beekeeper-studio 
