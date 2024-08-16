@@ -8,7 +8,7 @@
     pkgs.gcc_multi
     pkgs.cargo
     pkgs.unzip
-    pkgs.nodejs_21
+    pkgs.nodejs_22
   
     pkgs.eza
     pkgs.bat
