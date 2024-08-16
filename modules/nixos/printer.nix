@@ -1,5 +1,10 @@
 {pkgs, ...}:
 {
+  
+  environment.systemPackages = [
+    pkgs.sane-backends
+  ];
+  
   hardware.sane = {
     enable = true; # enables support for SANE scanners
     extraBackends = [ pkgs.hplipWithPlugin ];
