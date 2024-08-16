@@ -41,6 +41,7 @@
     pkgs.jetbrains.webstorm
     pkgs.neofetch
     pkgs.unstable.jetbrains.rust-rover
+    pkgs.unstable.rustup
     pkgs.python313
     pkgs.nvd
     pkgs.unstable.beekeeper-studio 
