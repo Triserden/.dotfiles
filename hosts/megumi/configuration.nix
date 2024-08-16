@@ -29,7 +29,7 @@
       commonModules.nixos.docker
       commonModules.nixos.bluetooth
       commonModules.nixos.games
-      commonModules.nixos.printers
+      commonModules.nixos.printer
 ];
 
 
