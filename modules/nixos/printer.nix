@@ -3,6 +3,7 @@
   
   environment.systemPackages = [
     pkgs.sane-backends
+    pkgs.naps2
   ];
   
   hardware.sane = {
