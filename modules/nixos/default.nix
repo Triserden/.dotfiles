@@ -15,7 +15,8 @@
   stylix = import ./stylix.nix;
   auto-cpufreq = import ./auto-cpufreq.nix;
   bluetooth = import ./bluetooth.nix;
-  # Locales
+  printer = import ./printer.nix;
+# Locales
   amsterdam = import ./amsterdam.nix;
 
   # CLI stuff
