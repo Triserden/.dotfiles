@@ -39,6 +39,7 @@
     pkgs.nss_latest
     pkgs.glfw
     pkgs.jetbrains.webstorm
+    pkgs.neofetch
     pkgs.unstable.jetbrains.rust-rover
     pkgs.python313
     pkgs.nvd
