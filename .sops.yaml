@@ -3,7 +3,7 @@ keys:
 
     # Note: These 2 have temp keys until they are fully deployed
   - &yuki age1rldtavqum7mtsvd5zjkafdlvc4tw5j735x2tnpy22znad2jgm9fsuvhxay
-  - &futaba age1dgzv9vag3j4ed52f95nx7p9mmqsnfmu9245kjmex9p66yq935vxq37m4gj
+  - &futaba age1v3jwkwxk5sd3ahs0qsypu92lwc8qhlzaufp372ds03u40zxwr5nqjw69lz
 
 creation_rules:
   - path_regex: hosts/yuki/id_ed25519$

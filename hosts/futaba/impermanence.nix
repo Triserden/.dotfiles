@@ -9,8 +9,8 @@
       "/var/lib/bluetooth" #TODO at some point persist a host key
     ];
     files = [
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/id_ed25519"
+      "/etc/ssh/id_ed25519.pub"
     ];
   };
 }

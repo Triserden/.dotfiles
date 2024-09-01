@@ -1,4 +1,4 @@
-{sops, config, pkgs}:
+{config, ...}:
 {
   imports = [
     ./disk-config.nix
@@ -7,28 +7,40 @@
 
   # Setup sops-nix
   sops.defaultSopsFile = ./secrets.yaml;
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
   ## === User ===
   # Enable user and pass password to module
   sops.secrets.triserden_futaba_password.neededForUsers = true;
   user.triserden = {
     enable = true;
-    hashedPasswordFile = config.sops.secrets.triserden_yuki_password.path;
+    hashedPasswordFile = config.sops.secrets.triserden_futaba_password.path;
   };
 
 
+  sops.secrets.tailscale_key = { };
   ## === Config ===
+
   docker = {
     enable = true;
     storageDriver = "zfs";
   };
 
-  sops.secrets.tailscale_key = {};
   tailscale = {
     enable = true;
-    keyfile = config.sops.secrets.tailscale_key;
+    authkey = config.sops.secrets.tailscale_key.path;
   };
-  
+
+  boot.loader.grub = {
+    enable = true;
+    zfsSupport = true;
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    mirroredBoots = [
+      { devices = [ "nodev"]; path = "/boot"; }
+    ];
+  };
+
   # Hetzner Online specific config
   systemd.network = {
     enable = true;
@@ -45,4 +57,8 @@
       linkConfig.RequiredForOnline = "routable";
     };
   };
+  
+  networking.hostId = "088fdbf6";
+  networking.hostName = "futaba";
+  system.stateVersion = "24.05";
 }

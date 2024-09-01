@@ -1,14 +1,14 @@
-{lib, config, pkgs, type, ...}: 
+{lib, config, pkgs, ...}: 
 {
   options = {
     tailscale.enable = lib.mkEnableOption "Enable tailscale";
     tailscale.authkey = lib.mkOption {
-      type = type.path;
+      type = lib.types.path;
       description = "Tailscale auth keyfile from sops-nix or other secrets provider";
     };
   };
   
-  config = lib.mkIf config.example.enable {
+  config = lib.mkIf config.tailscale.enable {
     environment.systemPackages = [ pkgs.tailscale ];
     services.tailscale.enable = true;
   

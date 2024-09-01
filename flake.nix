@@ -5,11 +5,20 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
-    stylix.url = "github:danth/stylix/release-24.05";
+    impermanence.url = "github:nix-community/impermanence";
+    #stylix.url = "github:danth/stylix/release-24.05";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
+    { self, nixpkgs, nixpkgs-unstable, sops-nix, disko, impermanence, ... }@inputs:
     {
       
       # Megumi (Lenovo Ideapad Gaming 3)
@@ -17,17 +26,19 @@
         system = "x86_64-linux";
         
         specialArgs = {
-          pkgs.unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
+          inherit inputs;
+          #pkgs.unstable = import nixpkgs-unstable {
+          #  inherit system;
+          #  config.allowUnfree = true;
+          #};
         };
 
         modules = [ 
-          "./hosts/yuki/configuration.nix"
-          "./modules"
+          ./hosts/yuki/configuration.nix
+          ./modules
           inputs.sops-nix.nixosModules.sops
-          inputs.stylix.nixosModules.stylix
+          #inputs.stylix.nixosModules.stylix
+          disko.nixosModules.disko
 
 
           inputs.home-manager.nixosModules.home-manager
@@ -46,18 +57,20 @@
         system = "x86_64-linux";
         
         specialArgs = {
-          pkgs.unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
+          inherit inputs;
+          #pkgs.unstable = import nixpkgs-unstable {
+          #  inherit system;
+          #  config.allowUnfree = true;
+          #};
         };
 
         modules = [ 
-          "./hosts/futaba/configuration.nix"
-          "./modules"
+          ./hosts/futaba/configuration.nix
+          ./modules
+          impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
-          inputs.stylix.nixosModules.stylix
-
+          #inputs.stylix.nixosModules.stylix
+          disko.nixosModules.disko
 
           inputs.home-manager.nixosModules.home-manager
           # Add sops-nix home manager module
