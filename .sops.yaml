@@ -1,0 +1,35 @@
+keys:
+  - &triserden 2422C7EE03C629FD998BF923FD5CD86B6562D6B7
+
+    # Note: These 2 have temp keys until they are fully deployed
+  - &yuki age1rldtavqum7mtsvd5zjkafdlvc4tw5j735x2tnpy22znad2jgm9fsuvhxay
+  - &futaba age1dgzv9vag3j4ed52f95nx7p9mmqsnfmu9245kjmex9p66yq935vxq37m4gj
+
+creation_rules:
+  - path_regex: hosts/yuki/id_ed25519$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *yuki
+  - path_regex: hosts/yuki/secrets.yaml$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *yuki
+  - path_regex: hosts/futaba/id_ed25519$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *futaba
+  - path_regex: hosts/futaba/secrets.yaml$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *futaba
+
+
+

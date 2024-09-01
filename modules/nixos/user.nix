@@ -5,7 +5,7 @@
       enable = lib.mkEnableOption "Enables the Triserden user";
       hashedPasswordFile = lib.mkOption {
         type = types.path;
-        description = "A file containing the hashed password for this user. Used with sops-nix or equivalent."
+        description = "A file containing the hashed password for this user. Used with sops-nix or equivalent.";
       };
     };
   };
