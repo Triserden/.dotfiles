@@ -50,32 +50,24 @@
         rootFsOptions = {
           canmount = "off";
         };
-        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot/encrypted/root@blank$' || zfs snapshot zroot/encrypted/root@blank";
+        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot/root@blank$' || zfs snapshot zroot/root@blank";
         datasets = {
-          encrypted = {
-            type = "zfs_fs";
-            options.mountpoint = "none";
-            options.encryption = "aes-256-gcm";
-            options.keyformat = "passphrase";
-            options.keylocation = "file:///tmp/disk-1.key"; #TODO use nix-anywhere with --disk-encryption-keys
-            postCreateHook = ''zfs set keylocation="prompt" "zroot/encrypted"'';
-          };
-          "encrypted/root" = {
+          root = {
             type = "zfs_fs";
             mountpoint = "/";
             options.mountpoint = "legacy";
           };
-          "encrypted/nix" = {
+          nix = {
             type = "zfs_fs";
             mountpoint = "/nix";
             options.mountpoint = "legacy";
           };
-          "encrypted/persist" = {
+          persist = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
             mountpoint = "/persist";
           };
-          "encrypted/home" = {
+          home = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
             mountpoint = "/home";

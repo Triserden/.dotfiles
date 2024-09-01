@@ -5,6 +5,7 @@
     hideMounts = true;
     directories = [
       "/etc/nixos"
+      "/var/lib/nixos" #TODO: Assign UID/GUIDs to all users/groups
       "/etc/NetworkManager"
       "/var/lib/bluetooth" #TODO at some point persist a host key
     ];

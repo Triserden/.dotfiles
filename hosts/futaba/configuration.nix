@@ -47,17 +47,15 @@
     networks.default = {
       name = "en01"; # The name of the interface
       DHCP = "ipv4";
-      addresses = [ 
-        {
-          # Replace the address with the one assigned to your machine
-          Address = "2a01:4f8:110:31cb::/64"; 
-        }
+      address = [ 
+        "2a01:4f8:110:31cb::/64"
       ];
       gateway = [ "fe80::1" ];
       linkConfig.RequiredForOnline = "routable";
     };
   };
-  
+ 
+  networking.useNetworkd = true;
   networking.hostId = "088fdbf6";
   networking.hostName = "futaba";
   system.stateVersion = "24.05";
