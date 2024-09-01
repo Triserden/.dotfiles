@@ -15,3 +15,9 @@ I choose them from my favorite anime characters.
  - Unified styles and fonts with [stylix](https://stylix.danth.me/index.html)
  - AGS bar, greeter, and lockscreen
 
+# How do I install?
+1. Make a tmp dir with `temp=$(mkdir -d)`
+2. Generate SSH key for device with `ssh-keygen` to tempdir
+3. Generate AGE key with `nix-shell -p ssh-to-age --run 'cat /tmp/tmp.xkNjloVAv5/etc/ssh/id_ed25519.pub | ssh-to-age'`
+4. Add AGE key to `.sops.yaml`
+
