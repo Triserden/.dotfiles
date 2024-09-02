@@ -9,10 +9,9 @@
   sops.age.keyFile = /etc/ssh/ssh_host_ed25519_key;
 
   # Enable user and pass password to module
-  sops.secrets.triserden_yuki_password.neededForUsers = true;
   user.triserden = {
     enable = true;
-    hashedPasswordFile = config.sops.secrets.triserden_yuki_password.path;
+    hashedPassword = "$y$j9T$3O1atJXszc0vlBAzBEby00$YPWEJlb6clsGgTa4xy.x0lhMQTF53pGZQyNzAUd8jKD";
   };
 
   boot.loader.grub = {
@@ -28,6 +27,7 @@
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.supportedFilesystems = ["ntfs" "btrfs"];
   
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
   networking.hostName = "yuki";
   system.stateVersion = "24.05";
 }

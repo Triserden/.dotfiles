@@ -1,3 +1,4 @@
+{lib, ...}:
 {
   security.sudo.extraConfig = "Defaults lecture=never";
   environment.persistence."/persist" = {
@@ -17,6 +18,12 @@
     "ssh/ssh_host_rsa_key.pub".source = "/persist/etc/ssh/ssh_host_rsa_key.pub";
     "ssh/ssh_host_ed25519_key".source = "/persist/etc/ssh/ssh_host_ed25519_key";
     "ssh/ssh_host_ed25519_key.pub".source = "/persist/etc/ssh/ssh_host_ed25519_key.pub";
+     
   };
+
+  # Rollback every boot
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r zroot/root@blank
+  '';
 }
 

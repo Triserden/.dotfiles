@@ -1,4 +1,4 @@
-{config, ...}:
+{config, lib, ...}:
 {
   imports = [
     ./disk-config.nix
@@ -11,10 +11,9 @@
 
   ## === User ===
   # Enable user and pass password to module
-  sops.secrets.triserden_futaba_password.neededForUsers = true;
   user.triserden = {
     enable = true;
-    hashedPasswordFile = config.sops.secrets.triserden_futaba_password.path;
+    hashedPassword = "$y$j9T$tM7GLVR0bQVHJjd/VVQaU1$/foK/4wed6K7QSd5t65ey2t/dzpaSzDJ8.MsFbv.Zg3";
   };
 
 
@@ -30,6 +29,8 @@
     enable = true;
     authkey = config.sops.secrets.tailscale_key.path;
   };
+  
+  ssh.enable = false;
 
   boot.loader.grub = {
     enable = true;
@@ -39,6 +40,9 @@
     mirroredBoots = [
       { devices = [ "nodev"]; path = "/boot"; }
     ];
+
+    ## VM testing
+    devices = lib.mkForce [];
   };
 
   # Hetzner Online specific config
@@ -58,5 +62,6 @@
   networking.useNetworkd = true;
   networking.hostId = "088fdbf6";
   networking.hostName = "futaba";
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
   system.stateVersion = "24.05";
 }
