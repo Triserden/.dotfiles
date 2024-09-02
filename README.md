@@ -16,9 +16,9 @@ I choose them from my favorite anime characters.
  - AGS bar, greeter, and lockscreen
 
 # How do I install?
-1. Make a tmp dir with `temp=$(mkdir -d)`
-2. Generate SSH key for device with `ssh-keygen` to tempdir (`mkdir $temp/etc/ && mkdir $temp/etc/ssh/ && ssh-keygen -f $temp/etc/ssh/ssh_host_ed25519_key -C ""`)
-3. Generate AGE key with `cat $temp/etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age`
+1. Make a tmp dir with `temp=$(mktemp -d)`
+2. Generate SSH key for device with `ssh-keygen` to tempdir (`mkdir -p $temp/persist/etc/ssh/ && ssh-keygen -f $temp/persist/etc/ssh/ssh_host_ed25519_key -C "" && ssh-keygen -t rsa -f $temp/persist/etc/ssh/ssh_host_rsa_key -C ""`
+3. Generate AGE key with `cat $temp/persist/etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age`
 4. Add AGE key to `.sops.yaml`
 5. Update secrets with `nix-shell -p sops --run "sops updatekeys <secrets file>"`
 6. Generate disk encryption keys with `openssl rand -out /tmp/.disk_key 32` (Remember to delete this after or make a new tmpdir)

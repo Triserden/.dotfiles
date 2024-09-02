@@ -1,9 +1,9 @@
 keys:
   - &triserden 2422C7EE03C629FD998BF923FD5CD86B6562D6B7
+  - &futaba age18rx8sm60n6m7qd0sa57c6e3e40yd90eu08w6yxur0vmv8hsd8d3smz7n44
 
     # Note: These 2 have temp keys until they are fully deployed
   - &yuki age1rldtavqum7mtsvd5zjkafdlvc4tw5j735x2tnpy22znad2jgm9fsuvhxay
-  - &futaba age1v3jwkwxk5sd3ahs0qsypu92lwc8qhlzaufp372ds03u40zxwr5nqjw69lz
 
 creation_rules:
   - path_regex: hosts/yuki/id_ed25519$

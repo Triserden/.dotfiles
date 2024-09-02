@@ -1,18 +1,22 @@
 {
   security.sudo.extraConfig = "Defaults lecture=never";
-  system.activationScripts.createPersist = "mkdir -p /nix/persist";
-  environment.persistence."/nix/persist" = {
+  environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
       "/etc/nixos"
-      "/var/lib/nixos" #TODO: Assign UID/GUIDs to all users/groups
-      "/etc/NetworkManager"
-      "/var/lib/bluetooth" #TODO at some point persist a host key
+      "/srv"
+      "/var/lib"
+      "/var/log"
     ];
-    files = [
-      "/etc/ssh/id_ed25519"
-      "/etc/ssh/id_ed25519.pub"
-    ];
+  };
+  
+  # We need to hardlink it or else the system will make it 
+  environment.etc = {
+    "machine-id".source = "/persist/etc/machine-id";
+    "ssh/ssh_host_rsa_key".source = "/persist/etc/ssh/ssh_host_rsa_key";
+    "ssh/ssh_host_rsa_key.pub".source = "/persist/etc/ssh/ssh_host_rsa_key.pub";
+    "ssh/ssh_host_ed25519_key".source = "/persist/etc/ssh/ssh_host_ed25519_key";
+    "ssh/ssh_host_ed25519_key.pub".source = "/persist/etc/ssh/ssh_host_ed25519_key.pub";
   };
 }
 
