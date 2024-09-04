@@ -1,4 +1,4 @@
-{config, lib, ...}:
+{config, lib, inputs, outputs, ...}:
 {
   imports = [
     ./disk-config.nix
@@ -30,7 +30,7 @@
     authkey = config.sops.secrets.tailscale_key.path;
   };
   
-  ssh.enable = false;
+  ssh.enable = true;
 
   boot.loader.grub = {
     enable = true;
@@ -46,6 +46,7 @@
   };
 
   # Hetzner Online specific config
+  powerManagement.cpuFreqGovernor = "performance";
   systemd.network = {
     enable = true;
     networks.default = {
@@ -59,6 +60,12 @@
     };
   };
  
+  # Home-manager
+  home-manager.extraSpecialArgs = { inherit inputs outputs; };
+  home-manager.users."triserden" = {
+    imports = [./home-configuration.nix]; 
+  };
+
   networking.useNetworkd = true;
   networking.hostId = "088fdbf6";
   networking.hostName = "futaba";

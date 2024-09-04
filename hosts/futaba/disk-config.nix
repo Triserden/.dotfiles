@@ -1,3 +1,4 @@
+{config, ...}:
 {
   disko.devices = {
     disk = {
@@ -72,6 +73,18 @@
             options.mountpoint = "legacy";
             mountpoint = "/home";
           };
+          encrypted = {
+            type = "zfs_fs";
+            options = {
+              mountpoint = "none";
+              encryption = "aes-256-gcm";
+              keyformat = "passphrase";
+              keylocation = "prompt";
+            };
+          };
+          "encrypted/data" = {
+            type = "zfs_fs";
+          };
         };
       };
     };
@@ -83,5 +96,15 @@
     "/boot".neededForBoot = true;
     "/persist".neededForBoot = true;
   };
+
+  # Un/lock aliases
+  programs.bash.shellAliases = {
+    unlock = "sudo zfs load-key zroot/encrypted; sudo zfs mount zroot/encrypted/data";
+    lock = "sudo zfs unmount zroot/encrypted/data; sudo zfs unload-key zroot/encrypted";
+  };
+  
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages; 
+  boot.zfs.requestEncryptionCredentials = false;
 }
 

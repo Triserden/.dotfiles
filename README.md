@@ -21,6 +21,6 @@ I choose them from my favorite anime characters.
 3. Generate AGE key with `cat $temp/persist/etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age`
 4. Add AGE key to `.sops.yaml`
 5. Update secrets with `nix-shell -p sops --run "sops updatekeys <secrets file>"`
-6. Generate disk encryption keys with `openssl rand -out /tmp/.disk_key 32` (Remember to delete this after or make a new tmpdir)
-7. Run `nix run github:nix-community/nixos-anywhere -- --flake .#<hostname> --build-on-remote --extra-files "$temp" --disk-encryption-keys /tmp/disk-1.key /tmp/.disk_key root@<ip>`
+6. Generate disk encryption keys with `openssl rand -out /tmp/.secret.key 32` (Remember to delete this after or make a new tmpdir)
+7. Run `nix run github:nix-community/nixos-anywhere -- --flake .#<hostname> --build-on-remote --extra-files "$temp" --disk-encryption-keys /tmp/.secret.key /tmp/.disk_key root@<ip>`
 
