@@ -6,8 +6,17 @@
   ];
 
   # Setup sops-nix
-  sops.defaultSopsFile = ./secrets.yaml;
-  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  # Make docker secrets available
+  sops = {
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
+    defaultSopsFile = ./secrets.yaml;
+    secrets = {
+      traefik_env = {
+        path = "/home/triserden/services/traefik/.env";
+      };
+    }; 
+  };
 
   ## === User ===
   # Enable user and pass password to module

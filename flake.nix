@@ -72,12 +72,6 @@
           disko.nixosModules.disko
 
           inputs.home-manager.nixosModules.home-manager
-          # Add sops-nix home manager module
-          {
-            home-manager.sharedModules = [
-              inputs.sops-nix.homeManagerModules.sops
-            ];
-          }
         ];
       };
     };

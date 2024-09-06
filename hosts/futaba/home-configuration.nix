@@ -1,4 +1,7 @@
-{config, ...}:{
+{inputs, ...}:{
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
   home = {
     
     # Files to copy to home dir
@@ -18,6 +21,7 @@
       EDITOR = "nvim";
     };
   };
+  
 
   programs.home-manager.enable = true;
 }
