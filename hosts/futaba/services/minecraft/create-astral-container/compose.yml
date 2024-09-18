@@ -1,0 +1,16 @@
+services:
+  create-astral:
+    image: ghcr.io/maxi0604/create-astral:v2.0.5b
+    environment:
+        EULA: "TRUE"
+        RCON_PASSWORD: "hunter2"
+    ports:
+      - 25565:25565
+    volumes:
+      - ./ops.json:/data/ops.json:z
+      - ./banned-players.json:/data/banned-players.json:z
+      - ./banned-ips.json:/data/banned-ips.json:z
+      - ./server.properties:/init/server.properties:z     
+      - /data/minecraft/create-astral/astral-world:/data/world:z
+      - /data/minecraft/create-astral/astral-backup:/data/backup:z
+
