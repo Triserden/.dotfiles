@@ -20,31 +20,13 @@ services:
       - "/data/traefik/letsencrypt:/letsencrypt"
     environment: 
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
-    depends_on:
-      - tailscale-internal
-    network_mode: service:tailscale-internal
     restart: unless-stopped
+    ports:
+      - "100.112.252.10:8080:8080"
+      - "100.112.252.10:80:80"
+      - "100.112.252.10:443:443"
 
-  whoami:
-    image: "traefik/whoami"
-    container_name: "whoami-internal"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.local.triserden.dev`)"
-      - "traefik.http.routers.whoami.entrypoints=websecure"
-      - "traefik.http.routers.whoami.tls.certresolver=cloudflare"
-
-  tailscale-internal:
-    image: tailscale/tailscale:latest
-    hostname: futaba-internal
-    container_name: tailscale-internal
-    environment:
-      - TS_AUTHKEY=${TS_AUTHKEY}
-      - TS_STATE_DIR=/var/lib/tailscale
-    volumes:
-      - /data/tailscale-internal/state:/var/lib/tailscale
-      - /dev/net/tun:/dev/net/tun
-    cap_add:
-      - net_admin
-      - sys_module
-    restart: unless-stopped
+networks:
+  default:
+    name: internal
+    external: true

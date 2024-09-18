@@ -1,0 +1,62 @@
+version: "2.4"
+
+volumes:
+    rss-cache:
+
+services:
+  fullfeedrss:
+    image: 'heussd/fivefilters-full-text-rss:latest'
+    environment:
+      # Leave empty to disable admin section
+      - FTR_ADMIN_PASSWORD=${FFRSS_ADMIN_PASSWORD}
+    volumes:
+      - 'rss-cache:/var/www/html/cache/rss'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fullfeedrss.rule=Host(`fullfeedrss.local.triserden.dev`)"
+      - "traefik.http.routers.fullfeedrss.entrypoints=websecure"
+      - "traefik.http.routers.fullfeedrss.tls.certresolver=cloudflare"
+
+  rss-bridge:
+    image: rssbridge/rss-bridge:latest
+    volumes:
+      - /data/rss/rss-bridge/config:/config
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rssbridge.rule=Host(`rssbridge.local.triserden.dev`)"
+      - "traefik.http.routers.rssbridge.entrypoints=websecure"
+      - "traefik.http.routers.rssbridge.tls.certresolver=cloudflare"
+
+  freshrss:
+    image: freshrss/freshrss:latest
+    container_name: freshrss
+    hostname: freshrss
+    restart: unless-stopped
+    volumes:
+      - /data/rss/freshrss/data:/var/www/FreshRSS/data
+      - /data/rss/freshrss/extensions:/var/www/FreshRSS/extensions
+    environment:
+      TZ: Europe/Amsterdam
+      CRON_MIN: '3,33'
+      FRESHRSS_INSTALL: |-
+        --api-enabled
+        --base-url ${BASE_URL}
+        --language en
+        --default_user admin
+      FRESHRSS_USER: |-
+        --api-password ${ADMIN_API_PASSWORD}
+        --email ${ADMIN_EMAIL}
+        --language en
+        --password ${FRESHRSS_ADMIN_PASSWORD}
+        --user admin
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.freshrss.rule=Host(`freshrss.local.triserden.dev`)"
+      - "traefik.http.routers.freshrss.entrypoints=websecure"
+      - "traefik.http.routers.freshrss.tls.certresolver=cloudflare"
+
+networks:
+  default:
+    name: internal
+    external: true
