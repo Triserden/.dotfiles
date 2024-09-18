@@ -14,6 +14,16 @@
     hashedPassword = "$y$j9T$3O1atJXszc0vlBAzBEby00$YPWEJlb6clsGgTa4xy.x0lhMQTF53pGZQyNzAUd8jKD";
   };
 
+  docker = {
+    enable = true;
+    storageDriver = "zfs";
+  };
+
+  tailscale = {
+    enable = true;
+    authkey = config.sops.secrets.tailscale_key.path;
+  };
+  
   boot.loader.grub = {
     useOSProber = true;
     efiSupport = true;

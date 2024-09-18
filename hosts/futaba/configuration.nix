@@ -1,8 +1,13 @@
-{config, lib, inputs, outputs, ...}:
+{pkgs, config, lib, inputs, outputs, ...}:
 {
   imports = [
     ./disk-config.nix
     ./impermanence.nix
+  ];
+
+  environment.systemPackages = [
+    pkgs.jdk17
+    pkgs.zellij
   ];
 
   # Setup sops-nix
@@ -12,6 +17,10 @@
 
     defaultSopsFile = ./secrets.yaml;
     secrets = {
+      freshrss_env = {
+        path = "/home/triserden/services/rss/.env";
+        owner="triserden";
+      };
       traefik_env = {
         path = "/home/triserden/services/traefik/.env";
       };
@@ -38,6 +47,14 @@
     enable = true;
     authkey = config.sops.secrets.tailscale_key.path;
   };
+
+  # Open minecraft port
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 25565 ];
+    allowedUDPPorts = [ 25565 ];
+  };
+
   
   ssh.enable = true;
 
