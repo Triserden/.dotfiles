@@ -22,7 +22,7 @@
     {
       
       # Megumi (Lenovo Ideapad Gaming 3)
-      nixosConfigurations.yuki = nixpkgs.lib.nixosSystem rec {
+      nixosConfigurations.megumi = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         
         specialArgs = {
@@ -34,8 +34,8 @@
         };
 
         modules = [ 
-          ./hosts/yuki/configuration.nix
-          ./modules
+          ./hosts/megumi/configuration.nix
+          ./modules/nixos
           inputs.sops-nix.nixosModules.sops
           #inputs.stylix.nixosModules.stylix
           disko.nixosModules.disko
@@ -46,6 +46,7 @@
           {
             home-manager.sharedModules = [
               inputs.sops-nix.homeManagerModules.sops
+              ./modules/home
             ];
           }
         ];
@@ -65,13 +66,19 @@
 
         modules = [ 
           ./hosts/futaba/configuration.nix
-          ./modules
+          ./modules/nixos
           impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
           #inputs.stylix.nixosModules.stylix
           disko.nixosModules.disko
 
           inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.sharedModules = [
+              inputs.sops-nix.homeManagerModules.sops
+              ./modules/home
+            ];
+          }
         ];
       };
     };

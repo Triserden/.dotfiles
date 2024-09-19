@@ -56,7 +56,7 @@
   };
 
   
-  ssh.enable = true;
+  ssh.enable = false;
 
   boot.loader.grub = {
     enable = true;

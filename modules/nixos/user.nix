@@ -10,7 +10,7 @@
     };
   };
 
-  config = lib.mkIf config.user.triserden.enable {  
+  config = lib.mkIf config.user.triserden.enable { 
     users.mutableUsers = false;
     users.users.triserden = {
       isNormalUser = true;

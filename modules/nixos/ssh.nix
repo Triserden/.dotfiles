@@ -1,7 +1,7 @@
 {lib, config, ...}: 
 {
   options = {
-    ssh.enable = lib.mkEnableOption "Enable SSH escape hatch";
+    ssh.enable = lib.mkEnableOption "Enable SSH";
   };
   
   config = lib.mkIf config.ssh.enable {
@@ -10,7 +10,8 @@
       # require public key authentication for better security
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
-      #settings.PermitRootLogin = "yes";
+      openFirewall = lib.mkDefault false;
+      settings.PermitRootLogin = "no";
     };
 
     users.users.triserden.openssh.authorizedKeys.keys = [
