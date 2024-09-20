@@ -26,6 +26,7 @@
     pkgs.nix-output-monitor
     pkgs.unstable.packwiz
     pkgs.nvd
+    pkgs.arrpc
   ];
   
 
