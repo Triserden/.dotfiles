@@ -9,14 +9,13 @@
   programs = {
     firefox.enable = true;
     steam.enable = true;
-    
-
+    adb.enable = true;
   };
   environment.systemPackages = [
     pkgs.winetricks
     pkgs.wineWowPackages.waylandFull
     pkgs.prismlauncher
-    pkgs.neofetch
+    pkgs.unstable.fastfetch
     pkgs.yt-dlp
     pkgs.vlc
     pkgs.btop
@@ -25,6 +24,8 @@
     pkgs.vesktop
     pkgs.android-studio
     pkgs.nix-output-monitor
+    pkgs.unstable.packwiz
+    pkgs.nvd
   ];
   
 
@@ -108,7 +109,7 @@
 
   docker = {
     enable = true;
-    storageDriver = "zfs";
+    storageDriver = "btrfs";
   };
 
   sops.secrets.tailscale_key = { };
@@ -122,6 +123,7 @@
   gpg.enable = true;
   git.enable = true;
   ssh.enable = true;
+  unstable.enable = true;
   nvidia.enable = true;
   nwmanager.enable = true;
   printers.enable = true;

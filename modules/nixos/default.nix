@@ -13,5 +13,6 @@
     ./printers.nix
     ./nvidia.nix
     ./nwmanager.nix
+    ./unstable.nix
   ];
 }

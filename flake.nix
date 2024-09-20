@@ -27,10 +27,6 @@
         
         specialArgs = {
           inherit inputs;
-          #pkgs.unstable = import nixpkgs-unstable {
-          #  inherit system;
-          #  config.allowUnfree = true;
-          #};
         };
 
         modules = [ 
@@ -59,9 +55,6 @@
         
         specialArgs = {
           inherit inputs;
-          #pkgs.unstable = import nixpkgs-unstable {
-          #  inherit system;
-          #  config.allowUnfree = true;
         };
 
         modules = [ 

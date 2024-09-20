@@ -15,7 +15,7 @@
     users.users.triserden = {
       isNormalUser = true;
       home = "/home/triserden/";
-      extraGroups = [ "wheel" "networkmanager"];
+      extraGroups = [ "wheel" "adbusers" "networkmanager" "kvm"];
       hashedPassword = config.user.triserden.hashedPassword;
     };
   };
