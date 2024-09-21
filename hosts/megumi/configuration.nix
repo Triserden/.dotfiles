@@ -14,7 +14,7 @@
   environment.systemPackages = [
     pkgs.winetricks
     pkgs.wineWowPackages.waylandFull
-    pkgs.prismlauncher
+    pkgs.unstable.prismlauncher
     pkgs.unstable.fastfetch
     pkgs.yt-dlp
     pkgs.vlc
@@ -27,6 +27,8 @@
     pkgs.unstable.packwiz
     pkgs.nvd
     pkgs.arrpc
+    pkgs.unstable.kicad
+    pkgs.unstable.logisim-evolution
   ];
   
 
