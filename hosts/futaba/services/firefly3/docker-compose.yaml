@@ -38,7 +38,7 @@ services:
     volumes:
       - /data/firefly3/firefly_iii_db:/var/lib/mysql
     ports:
-      - 8180:8080
+      - 3306:3306
   cron:
     #
     # To make this work, set STATIC_CRON_TOKEN in your .env file or as an environment variable and replace REPLACEME below
