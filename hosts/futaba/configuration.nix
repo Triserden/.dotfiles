@@ -26,9 +26,11 @@
       };
       firefly3_env = {
         path = "/home/triserden/services/firefly3/.env";
+        owner="triserden";
       };
       firefly3_db_env = {
         path = "/home/triserden/services/firefly3/.db.env";
+        owner="triserden";
       };
     }; 
   };
