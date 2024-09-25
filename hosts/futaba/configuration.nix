@@ -24,6 +24,12 @@
       traefik_env = {
         path = "/home/triserden/services/traefik/.env";
       };
+      firefly3_env = {
+        path = "/home/triserden/services/firefly3/.env";
+      };
+      firefly3_db_env = {
+        path = "/home/triserden/services/firefly3/.db.env";
+      };
     }; 
   };
 
