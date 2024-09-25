@@ -15,6 +15,20 @@ services:
       - "traefik.http.routers.firefly3.entrypoints=websecure"
       - "traefik.http.routers.firefly3.tls.certresolver=cloudflare"
       - "traefik.http.services.firefly3.loadbalancer.server.port=8080"
+  importer:
+    image: fireflyiii/data-importer:latest
+    hostname: importer
+    restart: always
+    container_name: firefly_iii_importer
+    depends_on:
+      - app
+    env_file: .importer.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fireflyimporter.rule=Host(`fireflyimporter.local.triserden.dev`)"
+      - "traefik.http.routers.fireflyimporter.entrypoints=websecure"
+      - "traefik.http.routers.fireflyimporter.tls.certresolver=cloudflare"
+      - "traefik.http.services.fireflyimporter.loadbalancer.server.port=8080"
   db:
     image: mariadb:lts
     hostname: db

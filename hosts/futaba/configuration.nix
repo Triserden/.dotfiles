@@ -30,6 +30,9 @@
       firefly3_db_env = {
         path = "/home/triserden/services/firefly3/.db.env";
       };
+      firefly3_importer_env = {
+        path = "/home/triserden/services/firefly3/.db.env";
+      };
     }; 
   };
 
