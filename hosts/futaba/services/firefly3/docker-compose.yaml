@@ -9,6 +9,11 @@ services:
     env_file: .env
     depends_on:
       - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.firefly3.rule=Host(`firefly3.local.triserden.dev`)"
+      - "traefik.http.routers.firefly3.entrypoints=websecure"
+      - "traefik.http.routers.firefly3.tls.certresolver=cloudflare"
   db:
     image: mariadb:lts
     hostname: db
