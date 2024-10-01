@@ -27,7 +27,12 @@
     pkgs.unstable.packwiz
     pkgs.nvd
     pkgs.arrpc
+
+    # TODO: Move to module
     pkgs.unstable.jetbrains.rust-rover
+    pkgs.unstable.rustup
+    
+    # TODO: Move to module
     pkgs.unstable.kicad
     pkgs.unstable.logisim-evolution
   ];
