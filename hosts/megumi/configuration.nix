@@ -27,6 +27,7 @@
     pkgs.unstable.packwiz
     pkgs.nvd
     pkgs.arrpc
+    pkgs.unstable.jetbrains.rust-rover
     pkgs.unstable.kicad
     pkgs.unstable.logisim-evolution
   ];
