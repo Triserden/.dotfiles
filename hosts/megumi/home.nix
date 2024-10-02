@@ -10,7 +10,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  rust.enable = true;
   gui.enable = true;
   cli.enable = true;
   git.enable = true;
