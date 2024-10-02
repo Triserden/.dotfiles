@@ -27,12 +27,6 @@
     pkgs.unstable.packwiz
     pkgs.nvd
     pkgs.arrpc
-
-    # TODO: Move to module
-    pkgs.unstable.jetbrains.rust-rover
-    pkgs.rustc
-    pkgs.cargo
-
     # TODO: Move to module
     pkgs.unstable.kicad
     pkgs.unstable.logisim-evolution
@@ -128,6 +122,7 @@
     authkey = config.sops.secrets.tailscale_key.path;
   };
 
+  rust.enable = true;
   gui.enable = true;
   cli.enable = true;
   gpg.enable = true;

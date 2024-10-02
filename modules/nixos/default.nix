@@ -2,6 +2,7 @@
 {
   # NixOS Modules:
   imports = [
+    ./rust.nix
     ./user.nix
     ./docker.nix
     ./tailscale.nix
