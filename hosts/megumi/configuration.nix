@@ -31,7 +31,8 @@
     # TODO: Move to module
     pkgs.unstable.jetbrains.rust-rover
     pkgs.unstable.rustup
-    
+    pkgs.unstable.rustc
+
     # TODO: Move to module
     pkgs.unstable.kicad
     pkgs.unstable.logisim-evolution
