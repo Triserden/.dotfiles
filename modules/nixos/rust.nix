@@ -6,8 +6,8 @@
   
   config = lib.mkIf config.rust.enable {
     environment.systemPackages = [
-      pkgs.direnv
       pkgs.unstable.jetbrains.rust-rover
     ];
+    programs.direnv.enable = true;
   };
 }
