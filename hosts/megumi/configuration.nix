@@ -30,8 +30,8 @@
 
     # TODO: Move to module
     pkgs.unstable.jetbrains.rust-rover
-    pkgs.unstable.rustup
-    pkgs.unstable.rustc
+    pkgs.rustc
+    pkgs.cargo
 
     # TODO: Move to module
     pkgs.unstable.kicad
