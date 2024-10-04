@@ -6,8 +6,11 @@
   
   config = lib.mkIf config.rust.enable {
     environment.systemPackages = [
-      pkgs.unstable.jetbrains.rust-rover
+      pkgs.jetbrains.rust-rover
       pkgs.unstable.devenv
+      pkgs.rustc
+      pkgs.rustup
+      pkgs.gcc
     ];
     programs.direnv.enable = true;
     nix.extraOptions = ''
