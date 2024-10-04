@@ -8,9 +8,6 @@
     environment.systemPackages = [
       pkgs.jetbrains.rust-rover
       pkgs.unstable.devenv
-      pkgs.rustc
-      pkgs.rustup
-      pkgs.gcc
     ];
     programs.direnv.enable = true;
     nix.extraOptions = ''
