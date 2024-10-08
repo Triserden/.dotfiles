@@ -36,6 +36,7 @@
     pkgs.logisim-evolution
   ];
   
+  services.keybase.enable = true;
 
   ## == Sound ==
   # TODO: Might be an idea to move this to it's own module
