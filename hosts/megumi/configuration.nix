@@ -27,6 +27,10 @@
     pkgs.unstable.packwiz
     pkgs.nvd
     pkgs.arrpc
+
+    pkgs.bisq-desktop
+    pkgs.keybase-gui
+
     # TODO: Move to module
     pkgs.kicad
     pkgs.logisim-evolution
