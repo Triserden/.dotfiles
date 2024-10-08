@@ -28,7 +28,7 @@
     pkgs.nvd
     pkgs.arrpc
 
-    pkgs.bisq-desktop
+    pkgs.unstable.bisq-desktop
     pkgs.keybase-gui
 
     # TODO: Move to module
