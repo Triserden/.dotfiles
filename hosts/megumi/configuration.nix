@@ -28,8 +28,7 @@
     pkgs.nvd
     pkgs.arrpc
 
-    pkgs.unstable.bisq-desktop
-    pkgs.keybase-gui
+    pkgs.unstable.obsidian
 
     # TODO: Move to module
     pkgs.kicad
