@@ -1,6 +1,6 @@
 prometheus.remote_write "default" {
   endpoint {
-    url = "http://mimir:8080/api/v1/push/"
+    url = http://mimir:9009/api/v1/push/
   }
 }
 
@@ -8,5 +8,13 @@ prometheus.scrape "nodeexporter" {
   targets = [{
     __address__ = "node-exporter:9100",
   },]
+  forward_to = [prometheus.remote_write.default.receiver,]
+}
+
+prometheus.exporter.self "self_metrics" {
+}
+
+prometheus.scrape "self_scrape" {
+  targets    = prometheus.exporter.self.self_metrics.targets
   forward_to = [prometheus.remote_write.default.receiver,]
 }
