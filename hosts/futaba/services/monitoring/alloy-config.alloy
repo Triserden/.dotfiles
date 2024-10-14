@@ -4,7 +4,7 @@ prometheus.remote_write "default" {
   }
 }
 
-prometheus.scrape "node-exporter" {
+prometheus.scrape "nodeexporter" {
   targets = [{
     __address__ = "node-exporter:9100",
   },]
