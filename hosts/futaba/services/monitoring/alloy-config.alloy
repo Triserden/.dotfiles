@@ -1,6 +1,6 @@
 prometheus.remote_write "default" {
   endpoint {
-    url = http://mimir:9009/api/v1/push/
+    url = "http://mimir:9009/api/v1/push/"
   }
 }
 
