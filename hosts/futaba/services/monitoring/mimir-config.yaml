@@ -16,9 +16,8 @@ common:
 # Blocks storage requires a prefix when using a common object storage bucket.
 blocks_storage:
   storage_prefix: blocks
-  tsdb:
-    dir: /data/ingester
-
+  s3:
+    bucket_name: mimir-bucket
 ruler:
   rule_path: /data/ruler
   alertmanager_url: http://127.0.0.1:8080/alertmanager
