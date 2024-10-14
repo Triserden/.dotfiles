@@ -36,6 +36,9 @@ services:
     depends_on:
       - minio
     env_file: .env
+    environment:
+      - MINIO_ROOT_USER=mimir
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
     command: --config.file=/etc/mimir/config.yaml
     labels:
       - "traefik.enable=true"

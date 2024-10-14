@@ -17,7 +17,7 @@ common:
 blocks_storage:
   storage_prefix: blocks
   s3:
-    bucket_name: mimir-bucket
+    bucket_name: mimir
 ruler:
   rule_path: /data/ruler
   alertmanager_url: http://127.0.0.1:8080/alertmanager
