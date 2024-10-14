@@ -22,6 +22,7 @@ services:
     env_file: .env
     environment:
       - MINIO_ROOT_USER=mimir
+      - MINIO_DEFAULT_BUCKETS=mimir
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
     volumes:
       - /data/monitoring/minio:/data
@@ -39,7 +40,6 @@ services:
     environment:
       - MINIO_ROOT_USER=mimir
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
-      - MINIO_DEFAULT_BUCKETS=mimir
     command: --config.file=/etc/mimir/config.yaml
     labels:
       - "traefik.enable=true"
