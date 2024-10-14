@@ -21,9 +21,6 @@ blocks_storage:
 ruler:
   rule_path: /data/ruler
   alertmanager_url: http://127.0.0.1:8080/alertmanager
-  ring:
-    heartbeat_period: 30s
-    heartbeat_timeout: 10s
 
 alertmanager:
   data_dir: /data/alertmanager

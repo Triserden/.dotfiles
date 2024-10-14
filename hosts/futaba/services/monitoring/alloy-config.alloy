@@ -6,7 +6,7 @@ prometheus.remote_write "default" {
 
 prometheus.scrape "node-exporter" {
   targets = [{
-    __address__ = "node-exporter:9100"
-  }]
-  forward_to = [prometheus.remote_write.default.receiver]
+    __address__ = "node-exporter:9100",
+  },]
+  forward_to = [prometheus.remote_write.default.receiver,]
 }
