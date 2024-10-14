@@ -20,8 +20,8 @@ services: # https://github.com/pi-hole/docker-pi-hole/
       - "traefik.http.routers.pihole.rule=Host(`pihole.local.triserden.dev`) && PathPrefix(`/admin`)"
       
       - "traefik.http.routers.pihole2.rule=Host(`pihole.local.triserden.dev`)"
-      - "traefik.http.middlewares.piholeredirect.redirectregex.regex=^https:\/\/([^\/]+)\/?(.*)$$"
-      - "traefik.http.middlewares.piholeredirect.redirectregex.replacement=https://$${1}/admin/$${2}"
+      - traefik.http.middlewares.piholeredirect.redirectregex.regex=^https:\/\/([^\/]+)\/?(.*)$$
+      - traefik.http.middlewares.piholeredirect.redirectregex.replacement=https://$${1}/admin/$${2}
       - "traefik.http.routers.pihole2.middlewares=piholeredirect"
         
 
