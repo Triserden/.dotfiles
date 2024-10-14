@@ -33,6 +33,40 @@
       firefly3_importer_env = {
         path = "/home/triserden/services/firefly3/.importer.env";
       };
+      monitoring_env = {
+        path = "/home/triserden/services/monitoring/.env";
+        owner="triserden";
+      };
+    }; 
+  };
+
+  ## === User ===
+  # Enable user and pass password to module
+  user.triserden = {
+    enable = true;
+    hashedPassword = "$y$j9T$tM7GLVR0bQVHJjd/VVQaU1$/foK/4wed6K7QSd5t65ey2t/dzpaSzDJ8.MsFbv.Zg3";
+  };
+
+
+  sops.secrets.tailscale_key = { };
+  ## === Config ===
+
+  docker = {
+    enable = true;
+    storageDriver = "zfs";
+  };
+
+  tailscale = {
+    enable = true;
+    authkey = config.sops.secrets.tailscale_key.path;
+  };
+
+  # Open minecraft port
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 25565 ];
+    allowedUDPPorts = [ 25565 ];
+  };
     }; 
   };
 
