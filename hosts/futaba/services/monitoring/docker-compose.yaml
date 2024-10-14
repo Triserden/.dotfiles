@@ -7,7 +7,7 @@ services:
       - /data/monitoring/grafana:/var/lib/grafana
     environment:
       - GF_SERVER_ROOT_URL=https://grafana.local.triserden.dev
-     - GF_INSTALL_PLUGINS=grafana-clock-panel
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`grafana.local.triserden.dev`)"
@@ -19,6 +19,7 @@ services:
     image: minio/minio
     entrypoint: [""]
     command: ["sh", "-c", "mkdir -p /data/mimir && minio server --quiet /data"]
+    env_file: .env
     environment:
       - MINIO_ROOT_USER=mimir
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
@@ -31,6 +32,7 @@ services:
     volumes:
       - './mimir-config.yaml:/etc/mimir/config.yaml'
     image: grafana/mimir:latest
+    env_file: .env
     command: --config.file=/etc/mimir/config.yaml
     labels:
       - "traefik.enable=true"
