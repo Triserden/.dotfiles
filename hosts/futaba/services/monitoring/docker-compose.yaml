@@ -31,6 +31,7 @@ services:
     container_name: mimir
     volumes:
       - './mimir-config.yaml:/etc/mimir/config.yaml'
+      - './fallback-config.yaml:/etc/alertmanager-fallback-config.yaml'
     image: grafana/mimir:latest
     env_file: .env
     command: --config.file=/etc/mimir/config.yaml
