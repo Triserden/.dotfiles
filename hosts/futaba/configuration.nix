@@ -37,6 +37,10 @@
         path = "/home/triserden/services/monitoring/.env";
         owner="triserden";
       };
+      pihole_env = {
+        path = "/home/triserden/services/pihole/.env";
+        owner="triserden";
+      };
     }; 
   };
 

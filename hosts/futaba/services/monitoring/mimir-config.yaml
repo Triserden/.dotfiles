@@ -20,12 +20,12 @@ blocks_storage:
     bucket_name: mimir
 ruler:
   rule_path: /data/ruler
-  alertmanager_url: http://127.0.0.1:8080/alertmanager
+  alertmanager_url: http://127.0.0.1:9009/alertmanager
 
 alertmanager:
   data_dir: /data/alertmanager
   fallback_config_file: /etc/alertmanager-fallback-config.yaml
-  external_url: https://mimir.local.triserden.dev/alertmanager
+  external_url: http://mimir:9009/alertmanager
 
 store_gateway:
   sharding_ring:
