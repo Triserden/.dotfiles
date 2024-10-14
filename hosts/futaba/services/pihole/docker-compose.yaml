@@ -12,6 +12,18 @@ services: # https://github.com/pi-hole/docker-pi-hole/
       - NET_ADMIN
     restart: unless-stopped
     network_mode: service:pihole-tailscale
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.entrypoints=websecure"
+      - "traefik.http.routers.pihole.tls.certresolver=cloudflare"
+      - "traefik.http.services.pihole.loadbalancer.server.port=80"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.local.triserden.dev`) && PathPrefix(`/admin`)"
+      
+      - "traefik.http.routers.pihole2.rule=Host(`pihole.local.triserden.dev`)"
+      - "traefik.http.middlewares.piholeredirect.redirectregex.regex=^https:\/\/([^\/]+)\/?(.*)$$"
+      - "traefik.http.middlewares.piholeredirect.redirectregex.replacement=https://$${1}/admin/$${2}"
+      - "traefik.http.routers.pihole2.middlewares=piholeredirect"
+        
 
   pihole-tailscale: # https://tailscale.com/kb/1282/docker
     image: tailscale/tailscale:latest
@@ -30,3 +42,8 @@ services: # https://github.com/pi-hole/docker-pi-hole/
       - net_admin
       - sys_module
     restart: unless-stopped
+
+networks:
+  default:
+    name: internal
+    external: true
