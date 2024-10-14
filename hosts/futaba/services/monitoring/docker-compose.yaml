@@ -1,0 +1,56 @@
+services:
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: unless-stopped
+    volumes:
+      - /data/monitoring/grafana:/var/lib/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=https://grafana.local.triserden.dev
+     - GF_INSTALL_PLUGINS=grafana-clock-panel
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.local.triserden.dev`)"
+      - "traefik.http.routers.grafana.entrypoints=websecure"
+      - "traefik.http.routers.grafana.tls.certresolver=cloudflare"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+
+  # All metrics collected by Alloy ends up here
+  mimir:
+    container_name: mimir
+    volumes:
+      - './mimir-config.yaml:/etc/mimir/config.yaml'
+    image: grafana/mimir:latest
+    command: --config.file=/etc/mimir/config.yaml
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mimir.rule=Host(`mimir.local.triserden.dev`)"
+      - "traefik.http.routers.mimir.entrypoints=websecure"
+      - "traefik.http.routers.mimir.tls.certresolver=cloudflare"
+      - "traefik.http.services.mimir.loadbalancer.server.port=9009"
+  
+  # Note: Alloy is probably 1 per host, all pushing to Mimir. 
+  alloy:
+    volumes:
+      - ./alloy-config.alloy:/etc/alloy/config.alloy
+    image: grafana/alloy:latest
+    command: run --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+
+networks:
+  default:
+    name: internal
+    external: true
