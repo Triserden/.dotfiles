@@ -21,6 +21,7 @@ services:
     entrypoint: [""]
     command: ["sh", "-c", "mkdir -p /data/mimir && minio server /data"]
     env_file: .env
+    user: 1000:100
     environment:
       - MINIO_ROOT_USER=mimir
       - MINIO_DEFAULT_BUCKETS=mimir
@@ -41,7 +42,7 @@ services:
     environment:
       - MINIO_ROOT_USER=mimir
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
-    command: --config.file=/etc/mimir/config.yaml
+    command: "--config.file=/etc/mimir/config.yaml -config.expand-env=true"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mimir.rule=Host(`mimir.local.triserden.dev`)"
