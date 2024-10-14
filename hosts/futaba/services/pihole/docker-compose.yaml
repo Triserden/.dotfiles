@@ -1,11 +1,10 @@
 services: # https://github.com/pi-hole/docker-pi-hole/
   pihole:
     container_name: pihole
-    hostname: pihole
     image: pihole/pihole:latest
     environment:
       TZ: 'Europe/Ansterdam'
-      VIRTUAL_HOST: 'pihole'
+      VIRTUAL_HOST: 'futaba'
     volumes:
       - '/data/pihole/etc/pihole:/etc/pihole'
       - '/data/pihole/etc/dnsmasq.d:/etc/dnsmasq.d'
