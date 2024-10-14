@@ -11,6 +11,13 @@ prometheus.scrape "nodeexporter" {
   forward_to = [prometheus.remote_write.default.receiver,]
 }
 
+prometheus.scrape "pihole" {
+  targets = [{
+    __address__ = "pihole-exporter:9617",
+  },]
+  forward_to = [prometheus.remote_write.default.receiver,]
+}
+
 prometheus.exporter.self "self_metrics" {
 }
 
