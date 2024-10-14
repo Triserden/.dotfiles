@@ -19,7 +19,7 @@ blocks_storage:
   s3:
     bucket_name: mimir
 ruler:
-    heartbeat_timeout: 10s
+  heartbeat_timeout: 10s
   rule_path: /data/ruler
   alertmanager_url: http://127.0.0.1:8080/alertmanager
 
