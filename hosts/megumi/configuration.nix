@@ -28,6 +28,8 @@
     pkgs.nvd
     pkgs.arrpc
 
+    pkgs.jetbrains.pycharm-community-bin
+
     pkgs.unstable.obsidian
 
     # TODO: Move to module
