@@ -31,9 +31,8 @@
     pkgs.jetbrains.pycharm-community-bin
 
     pkgs.unstable.obsidian
-   
-    # TODO: Make mail declarative
-    pkgs.unstable.thunderbird-latest
+    
+    pkgs.thunderbird-bin-unwrapped
 
     # TODO: Move to module
     pkgs.kicad
