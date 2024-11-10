@@ -33,7 +33,7 @@
     pkgs.unstable.obsidian
    
     # TODO: Make mail declarative
-    pkgs.unstable.thunderbird-bin-unwrapped
+    pkgs.thunderbird-bin
 
     # TODO: Move to module
     pkgs.kicad
