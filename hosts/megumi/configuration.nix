@@ -29,6 +29,7 @@
     pkgs.arrpc
 
     pkgs.jetbrains.pycharm-community-bin
+    pkgs.python310Full
 
     pkgs.unstable.obsidian
     
