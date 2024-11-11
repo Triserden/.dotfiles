@@ -30,6 +30,7 @@
 
     pkgs.jetbrains.pycharm-community-bin
     pkgs.python310Full
+    pkgs.python310Packages.pip
 
     pkgs.unstable.obsidian
     
