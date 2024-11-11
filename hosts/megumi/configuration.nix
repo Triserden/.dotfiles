@@ -28,6 +28,8 @@
     pkgs.nvd
     pkgs.arrpc
 
+    # TODO: Move all jetbrains stuff to own module
+    pkgs.unstable.jetbrains.jdk
     pkgs.jetbrains.pycharm-community-bin
     pkgs.python310Full
     pkgs.python310Packages.pip
