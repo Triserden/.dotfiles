@@ -30,9 +30,9 @@
 
     # TODO: Move all jetbrains stuff to own module
     pkgs.unstable.jetbrains.jdk
-    pkgs.jetbrains.pycharm-community-bin
-    pkgs.python310Full
-    pkgs.python310Packages.pip
+    pkgs.unstable.jetbrains.pycharm-community-bin
+    pkgs.python3
+    pkgs.python3Packages.pip
 
     pkgs.unstable.obsidian
     
