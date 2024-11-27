@@ -1,0 +1,20 @@
+---
+services:
+  foldingathome:
+    image: lscr.io/linuxserver/foldingathome:latest
+    container_name: foldingathome
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Amsterdam/Europe
+      - ACCOUNT_TOKEN=${FAH_TOKEN}
+      - MACHINE_NAME=futaba
+      - CLI_ARGS= #optional
+    volumes:
+      - /data/foldingathome/data:/config
+    restart: unless-stopped
+
+networks:
+  default:
+    name: internal
+    external: true

@@ -41,6 +41,10 @@
         path = "/home/triserden/services/pihole/.env";
         owner="triserden";
       };
+      fah_env = {
+        path = "/home/triserden/services/foldingathome/.env";
+        owner="triserden";
+      };
     }; 
   };
 

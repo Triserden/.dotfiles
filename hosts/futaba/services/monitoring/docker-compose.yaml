@@ -3,6 +3,7 @@ services:
     image: grafana/grafana-enterprise
     container_name: grafana
     restart: unless-stopped
+    command: "-disable-reporting"
     volumes:
       - /data/monitoring/grafana:/var/lib/grafana
     environment:
@@ -42,7 +43,7 @@ services:
     environment:
       - MINIO_ROOT_USER=mimir
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
-    command: "--config.file=/etc/mimir/config.yaml -config.expand-env=true"
+    command: "--config.file=/etc/mimir/config.yaml -disable-reporting -config.expand-env=true"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mimir.rule=Host(`mimir.local.triserden.dev`)"
@@ -55,7 +56,7 @@ services:
     volumes:
       - ./alloy-config.alloy:/etc/alloy/config.alloy
     image: grafana/alloy:latest
-    command: run --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+    command: run --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy -disable-reporting
 
   node-exporter:
     image: prom/node-exporter:latest
