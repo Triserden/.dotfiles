@@ -3,9 +3,10 @@ services:
     image: grafana/grafana-enterprise
     container_name: grafana
     restart: unless-stopped
-    command: "-disable-reporting"
+    command: "--config /etc/config.yaml"
     volumes:
       - /data/monitoring/grafana:/var/lib/grafana
+      - ./grafana-config.yaml:/etc/config.yaml
     environment:
       - GF_SERVER_ROOT_URL=https://grafana.local.triserden.dev
       - GF_INSTALL_PLUGINS=grafana-clock-panel
