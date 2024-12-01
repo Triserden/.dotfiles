@@ -37,6 +37,8 @@
     pkgs.unstable.obsidian
     
     pkgs.thunderbird-bin
+    
+    pkgs.unstable.qbittorent
 
     # TODO: Move to module
     pkgs.kicad
