@@ -170,7 +170,7 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes"];
   networking.hostName = "megumi";
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
   home-manager.users."triserden" = {
     imports = [
