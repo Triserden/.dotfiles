@@ -4,5 +4,6 @@
     ./gui.nix
     ./git.nix
     ./cli.nix
-  ];
+    ./hyprland.nix
+];
 }

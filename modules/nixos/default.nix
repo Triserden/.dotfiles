@@ -10,6 +10,7 @@
     ./cli.nix
     ./git.nix
     ./gui.nix
+    ./hyprland.nix
     ./gpg.nix
     ./printers.nix
     ./nvidia.nix
