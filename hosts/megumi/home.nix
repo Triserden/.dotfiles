@@ -30,4 +30,5 @@
 
 
   programs.home-manager.enable = true;
+  backupFileExtension = ".BAK";
 }
