@@ -6,6 +6,7 @@
 
   config = lib.mkIf config.gui.enable {
     xdg.configFile."hypr".source = ./config/hypr;
+    wayland.windowManager.hyprland.enable = true; # enable Hyprland
     programs.foot = {
       enable = true;
       # TODO: Style foot
