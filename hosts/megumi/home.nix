@@ -4,7 +4,7 @@
 
   home.username = "triserden";
   home.homeDirectory = "/home/triserden/";
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   home.sessionVariables = {
     EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
@@ -16,5 +16,18 @@
   ssh.enable = true;
 
   xdg.enable = true;
+
+  
+  programs = {
+    direnv = {
+      enable = true;
+      enableBashIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
+    };
+
+    bash.enable = true; # see note on other shells below
+  };
+
+
   programs.home-manager.enable = true;
 }

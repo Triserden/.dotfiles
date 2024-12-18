@@ -8,10 +8,9 @@
     ## == Nvidia ==
     services.xserver.videoDrivers = [ "nvidia" "amdgpu" ]; # TODO: Separate amdgpu to it's own file
 
-    hardware.opengl = {  
+    hardware.graphics = {  
       enable = true;  
-      driSupport = true;  
-      driSupport32Bit = true;  
+      enable32Bit = true;  
     };
 
     hardware.nvidia = {

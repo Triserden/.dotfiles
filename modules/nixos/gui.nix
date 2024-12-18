@@ -15,7 +15,7 @@
       pkgs.swww
       pkgs.fuzzel
       pkgs.grimblast
-      pkgs.cinnamon.nemo
+      pkgs.nemo
       pkgs.brightnessctl
       pkgs.starship
     ];
