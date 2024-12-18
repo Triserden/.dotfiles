@@ -29,8 +29,5 @@
   };
 
 
-  programs.home-manager = {
-    enable = true;
-    backupFileExtension = ".BAK";
-    };
+  programs.home-manager.enable = true;
 }
