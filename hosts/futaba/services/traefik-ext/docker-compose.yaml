@@ -3,7 +3,7 @@ version: "3.3"
 services:
   traefik:
     image: "traefik:v3.1"
-    container_name: "traefik"
+    container_name: "traefik-ext"
     command:
       #- "--log.level=DEBUG"
       - "--api.insecure=true"
@@ -30,8 +30,8 @@ services:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "${server_ip}:80:80"
+      - "${server_ip}:443:443"
 
 networks:
   default:
