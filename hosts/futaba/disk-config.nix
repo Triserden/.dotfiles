@@ -1,4 +1,4 @@
-{config, ...}:
+{pkgs, ...}:
 {
   disko.devices = {
     disk = {
@@ -104,7 +104,7 @@
   };
   
   boot.supportedFilesystems = [ "zfs" ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages; 
+  boot.kernelPackages = pkgs.kinuxPackages.linux_6_12; 
   boot.zfs.requestEncryptionCredentials = false;
 }
 

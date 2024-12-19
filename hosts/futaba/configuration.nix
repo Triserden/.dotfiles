@@ -48,6 +48,9 @@
       hlr_env = {
         sopsFile = ./services/hlr/config.yaml;
         format = "yaml";
+        path = "/home/triserden/services/hlr/config.yaml";
+        owner="triserden";
+        key = "";
       };
     }; 
   };
