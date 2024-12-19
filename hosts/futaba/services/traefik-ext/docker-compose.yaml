@@ -20,6 +20,8 @@ services:
     labels:
       - traefik.enable=true
       - expose-external=true
+      - "traefik.http.routers.traefik-ext.entrypoints=websecure"
+      - "traefik.http.routers.traefik-ext.certresolver=http"
       - traefik.http.routers.traefik-ext.rule=Host(`traefik.triserden.dev`)
       - traefik.http.routers.traefik-ext.service=api@internal
       - traefik.http.routers.traefik-ext.middlewares=auth
