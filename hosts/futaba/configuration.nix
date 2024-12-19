@@ -46,7 +46,7 @@
         owner="triserden";
       };
       hlr_env = {
-        sopsFile = ./services/hlr/config.yaml;
+        sopsFile = ./hlrconfig.yaml;
         format = "yaml";
         path = "/home/triserden/services/hlr/config.yaml";
         owner="triserden";
@@ -115,11 +115,15 @@
   };
  
   # Home-manager
-  home-manager.extraSpecialArgs = { inherit inputs outputs; };
-  home-manager.users."triserden" = {
-    imports = [./home-configuration.nix]; 
+  home-manager = { 
+    backupFileExtension = ".BAK";
+    extraSpecialArgs = { inherit inputs outputs; };
+    users."triserden" = {
+      imports = [./home-configuration.nix]; 
+    };
   };
 
+  
   networking.useNetworkd = true;
   networking.hostId = "088fdbf6";
   networking.hostName = "futaba";

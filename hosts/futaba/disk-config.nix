@@ -104,7 +104,7 @@
   };
   
   boot.supportedFilesystems = [ "zfs" ];
-  boot.kernelPackages = pkgs.linuxPackages.linux_6_12; 
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12; 
   boot.zfs.requestEncryptionCredentials = false;
 }
 
