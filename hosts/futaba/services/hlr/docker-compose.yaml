@@ -8,15 +8,13 @@ services:
       - 2022:2022
     restart: unless-stopped
     volumes:
-      - /data/hlc/data.d/:${DAEMON_DATA_DIRECTORY:-/mnt/nvme2/pterodactyl}:z
-      - ${DOCKER_SOCKET:-/var/run/docker.sock}:${DOCKER_SOCKET:-/var/run/docker.sock}
+      - /data/hlc/var/lib/pterodactyl:/var/lib/pterodactyl
+      - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/pterodactyl/:/tmp/pterodactyl/:Z
       - /data/hlc/conf.d/daemon:/etc/pterodactyl:Z
       - /data/hlc/conf.d/letsencrypt:/etc/letsencrypt:ro
       - /data/hlc/conf.d/certs:/etc/certs:ro
-      - /data/hlc/etc/pterodactyl:/etc/pterodactyl
-      - /data/hlc/var/lib/pterodactyl/volumes:/var/lib/pterodactyl/volumes
-    working_dir: ${DAEMON_DATA_DIRECTORY:-/mnt/nvme2/pterodactyl}
+    working_dir: /var/lib/pterodactyl
     labels:
       - "traefik.enable=true"
       - "expose-external=true"
