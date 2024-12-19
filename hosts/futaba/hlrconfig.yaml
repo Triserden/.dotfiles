@@ -16,6 +16,12 @@ system:
         bind_port: ENC[AES256_GCM,data:DrI1rw==,iv:EKH1mIaOdgEXXxkGnUHee4xD6yda/6AJMq/sPEH1dMw=,tag:tDlLAk1et9nukqOWI26D1w==,type:int]
 allowed_mounts: []
 remote: ENC[AES256_GCM,data:slZnKKS5F5snmcqMKziRct/voCS4wq7t5kTzggJVjCGBynufXdI=,iv:nZWyub/st4WEtS04FSyVPFtwoU6Hv2+ANmzl+o2pq/s=,tag:1ExX4W0fSHB7HDHnDOsCqg==,type:str]
+docker:
+    network:
+        interfaces:
+            v4:
+                subnet: ENC[AES256_GCM,data:Dp0ODJmlXD4UzOC1IA==,iv:CDHSL3gX30mGbrvhX9XsKFKAKKtLrZ/ltObD4elL+rc=,tag:Ak8LuxIgKCyEhwGtfRYugw==,type:str]
+                gateway: ENC[AES256_GCM,data:2j7wiEw9NEXhBQ==,iv:zBokv1EYqDXiCmWS17cYwJ+Jje2AhllpVm+bJPrg7Ss=,tag:DJXVyvuq+BcSlpHLZfLHBQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -31,8 +37,8 @@ sops:
             cHIzYUtmRk1ubXJwdis1U3pNdFU3b2cKZPuYDLSRYWsjeIpVahIfmBSDL90QbsCc
             UZoCx3/zq/mdwzkn9uQ8OAploKTTD85o4r0vDfvDUwB9lMuGvhiKqg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-19T13:16:04Z"
-    mac: ENC[AES256_GCM,data:bJuUplXjK8iI6FL+CDJ+dfB1P5xWvU6rC4+0V74nhJaMSf0v2e9cWlzW6sQWZEZ68amfjj44f69PJ9NdSy++dkpMi0EacfpREBxQVibA2Lwy0iWWZi8Dt1v7xo41qXsa+UzQh/fguXXkPVPEtCcp9ftaTBPqq4Jd0XWWGuugWuQ=,iv:ft7sg1p2nRMHd7NGq3hteGjdYiTJbSvMelyPdLwmER8=,tag:S0OMv9Wpy48dSES1mr3M7Q==,type:str]
+    lastmodified: "2024-12-19T21:33:53Z"
+    mac: ENC[AES256_GCM,data:v0F3DqMuHQ/r0iXP4C+L2d2ktq0qW16sxQtQqqpj7qSLx/2DSc87scZSI1jS3OeaSIdNx7Mv8zIh58Rj9C8xZpT66ZL1L7ldV0j0qDgBxpb69u1ZNDWVrYRYjgme8SguheW/G9w4mWRtSqRsA6X7DvosLaHBhADSwfMU29s+c4c=,iv:bgVS+jKA8+PIkCrXNZfn8lpEgWx4qwr6PJrl86dj03g=,tag:712P1jOGSy1lrUoo2jjIxg==,type:str]
     pgp:
         - created_at: "2024-12-19T13:15:41Z"
           enc: |-
