@@ -14,7 +14,7 @@ services:
       - /data/hlc/conf.d/daemon:/etc/pterodactyl:Z
       - /data/hlc/conf.d/letsencrypt:/etc/letsencrypt:ro
       - /data/hlc/conf.d/certs:/etc/certs:ro
-      - ./config.yaml:/etc/pterodactyl:ro
+      - ./config.yaml:/etc/pterodactyl/config.yaml:ro
     working_dir: /var/lib/pterodactyl
     labels:
       - "traefik.enable=true"
