@@ -45,6 +45,10 @@
         path = "/home/triserden/services/foldingathome/.env";
         owner="triserden";
       };
+      hlr_env = {
+        sopsFile = ./services/hlr/config.yaml;
+        format = "yaml";
+      };
     }; 
   };
 

@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+  traefik:
+    image: "traefik:v3.1"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entrypoint.scheme=https"
+      - "--providers.docker.constraints:expose-external=true"
+      - "--certificatesresolvers.http.acme.email=triserden@gmail.com"
+      - "--certificatesresolvers.http.acme.storage=acme.json"
+      - "--certificatesresolvers.http.acme.httpchallenge.entrypoint=web"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik-ext.rule=Host(`traefik.triserden.dev`)
+      - traefik.http.routers.traefik-ext.service=api@internal
+      - traefik.http.routers.traefik-ext.middlewares=auth
+      - traefik.http.middlewares.auth.basicauth.users=triserden@gmail.com:$$2y$$05$$soF//uDSduDZj.lSvGzcWuXeAQbXnPjlXwjsLvD/3KVJqOG2Nfj0i
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/data/traefik/letsencrypt-ext:/letsencrypt"
+    environment: 
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+
+networks:
+  default:
+    name: external
+    external: true

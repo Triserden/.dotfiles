@@ -1,0 +1,36 @@
+version: '2'
+services:
+  daemon:
+    environment:
+      - TZ="Europe/Amsterdam"
+    image: ccarney16/pterodactyl-daemon:latest
+    ports:
+      - 2022:2022
+    restart: unless-stopped
+    volumes:
+      - /data/hlc/data.d/:${DAEMON_DATA_DIRECTORY:-/mnt/nvme2/pterodactyl}:z
+      - ${DOCKER_SOCKET:-/var/run/docker.sock}:${DOCKER_SOCKET:-/var/run/docker.sock}
+      - /tmp/pterodactyl/:/tmp/pterodactyl/:Z
+      - /data/hlc/conf.d/daemon:/etc/pterodactyl:Z
+      - /data/hlc/conf.d/letsencrypt:/etc/letsencrypt:ro
+      - /data/hlc/conf.d/certs:/etc/certs:ro
+      - /data/hlc/etc/pterodactyl:/etc/pterodactyl
+      - /data/hlc/var/lib/pterodactyl/volumes:/var/lib/pterodactyl/volumes
+    working_dir: ${DAEMON_DATA_DIRECTORY:-/mnt/nvme2/pterodactyl}
+    labels:
+      - "traefik.enable=true"
+      - "expose-external=true"
+      - "traefik.http.routers.pterodactyl-daemon.entrypoints=websecure"
+      - "traefik.http.routers.pterodactyl-daemon.rule=Host(`game-node2.hlresort.community`)"
+      - "traefik.http.routers.pterodactyl-daemon-secure.entrypoints=websecure"
+      - "traefik.http.routers.pterodactyl-daemon-secure.rule=Host(`game-node2.hlresort.community`)"
+      - "traefik.http.routers.pterodactyl-daemon-secure.tls=true"
+      - "traefik.http.routers.pterodactyl-daemon-secure.tls.certresolver=http"
+      - "traefik.http.routers.pterodactyl-daemon-secure.service=pterodactyl-daemon"
+      - "traefik.http.services.pterodactyl-daemon.loadbalancer.server.port=8080"
+      - "traefik.docker.network=external"
+
+networks:
+    default:
+        name: external
+        external: true
