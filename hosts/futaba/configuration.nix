@@ -21,7 +21,7 @@
         path = "/home/triserden/services/rss/.env";
         owner="triserden";
       };
-      server_ip = {
+      traefik-ext_env = {
         path = "/home/triserden/services/traefik-ext/.env";
       };
       traefik_env = {

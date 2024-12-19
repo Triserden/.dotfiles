@@ -30,8 +30,8 @@ services:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     restart: unless-stopped
     ports:
-      - ${server_ip}:80:80
-      - ${server_ip}:443:443
+      - "${server_ip}:80:80"
+      - "${server_ip}:443:443"
 
 networks:
   default:
