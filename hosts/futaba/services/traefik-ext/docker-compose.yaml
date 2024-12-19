@@ -17,15 +17,6 @@ services:
       - "--certificatesresolvers.http.acme.email=triserden@gmail.com"
       - "--certificatesresolvers.http.acme.storage=acme.json"
       - "--certificatesresolvers.http.acme.httpchallenge.entrypoint=web"
-    labels:
-      - traefik.enable=true
-      - expose-external=true
-      - "traefik.http.routers.traefik-ext.entrypoints=websecure"
-      - "traefik.http.routers.traefik-ext.certresolver=http"
-      - traefik.http.routers.traefik-ext.rule=Host(`traefik.triserden.dev`)
-      - traefik.http.routers.traefik-ext.service=api@internal
-      - traefik.http.routers.traefik-ext.middlewares=auth
-      - traefik.http.middlewares.auth.basicauth.users=triserden@gmail.com:$$2y$$05$$soF//uDSduDZj.lSvGzcWuXeAQbXnPjlXwjsLvD/3KVJqOG2Nfj0i
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "/data/traefik/letsencrypt-ext:/letsencrypt"
