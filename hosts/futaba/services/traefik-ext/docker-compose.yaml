@@ -19,6 +19,7 @@ services:
       - "--certificatesresolvers.http.acme.httpchallenge.entrypoint=web"
     labels:
       - traefik.enable=true
+      - expose-external=true
       - traefik.http.routers.traefik-ext.rule=Host(`traefik.triserden.dev`)
       - traefik.http.routers.traefik-ext.service=api@internal
       - traefik.http.routers.traefik-ext.middlewares=auth
