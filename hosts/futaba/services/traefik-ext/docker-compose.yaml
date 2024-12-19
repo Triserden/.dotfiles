@@ -13,7 +13,7 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entryPoints.web.http.redirections.entrypoint.scheme=https"
-      - "--providers.docker.constraints:expose-external=true"
+      - "--providers.docker.constraints=Label(`expose-external`,`true`)"
       - "--certificatesresolvers.http.acme.email=triserden@gmail.com"
       - "--certificatesresolvers.http.acme.storage=acme.json"
       - "--certificatesresolvers.http.acme.httpchallenge.entrypoint=web"
