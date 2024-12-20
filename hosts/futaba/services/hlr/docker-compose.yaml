@@ -8,14 +8,14 @@ services:
       - 2022:2022
     restart: unless-stopped
     volumes:
-      - /data/hlresortrvar/lib/pterodactyl:/var/lib/pterodactyl
+      - /data/hlresort/var/lib/pterodactyl:/data/hlresort/var/lib/pterodactyl
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/pterodactyl/:/tmp/pterodactyl/:Z
       - /data/hlresort/conf.d/daemon:/etc/pterodactyl:Z
       - /data/hlresort/conf.d/letsencrypt:/etc/letsencrypt:ro
       - /data/hlresort/conf.d/certs:/etc/certs:ro
       - ./config.yaml:/etc/pterodactyl/config.yml
-    working_dir: /var/lib/pterodactyl
+    working_dir: /data/hlresort/var/lib/pterodactyl
     labels:
       - "traefik.enable=true"
       - "expose-external=true"
