@@ -43,6 +43,8 @@
     # TODO: Move to module
     pkgs.kicad
     pkgs.logisim-evolution
+
+    pkgs.easyeffects
   ];
  
   # Note: delete once Jetbrains gets outta Dotnet 6
