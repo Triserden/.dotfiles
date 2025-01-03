@@ -45,6 +45,9 @@
     pkgs.logisim-evolution
 
     pkgs.easyeffects
+
+    pkgs.orca-slicer
+    pkgs.freecad-wayland
   ];
  
   # Note: delete once Jetbrains gets outta Dotnet 6
