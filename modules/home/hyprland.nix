@@ -23,7 +23,6 @@
 
         exec-once = [
           "swww-daemon"
-          "waybar"
           "arrpc"
         ];
 
