@@ -56,6 +56,7 @@
     pkgs.stm32cubemx
     pkgs.stm32flash
     pkgs.openocd
+    pkgs.gcc-arm-embedded
     pkgs.stlink-gui
   ];
  
