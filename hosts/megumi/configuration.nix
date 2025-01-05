@@ -55,6 +55,7 @@
     pkgs.arduino-ide
     pkgs.stm32cubemx
     pkgs.stm32flash
+    pkgs.openocd
     pkgs.stlink-gui
   ];
  
