@@ -46,8 +46,14 @@
 
     pkgs.easyeffects
 
+    #TODO: Move to CAD/3dPrinter module
     pkgs.orca-slicer
     pkgs.freecad-wayland
+
+    ## TODO: Move to Embedded dev module
+    pkgs.pulseview
+    pkgs.arduino-ide
+    pkgs.stm32cubemx
   ];
  
   # Note: delete once Jetbrains gets outta Dotnet 6
