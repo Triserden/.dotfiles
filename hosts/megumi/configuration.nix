@@ -54,6 +54,7 @@
     pkgs.pulseview
     pkgs.arduino-ide
     pkgs.stm32cubemx
+    pkgs.stm32flash
   ];
  
   # Note: delete once Jetbrains gets outta Dotnet 6
