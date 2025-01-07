@@ -1,7 +1,8 @@
 {lib, config, ...}: 
 {
   options.hyprland.enable = lib.mkEnableOption "Enable hyprland and configure";
-  config = lib.mkIf config.hyprland.enable { 
+  config = lib.mkIf config.hyprland.enable {
+    services.playerctld.enable = true;
     wayland.windowManager.hyprland = {
       enable = true; # enable Hyprland
       settings = {
@@ -135,7 +136,30 @@
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 "$mainMod" = "SUPER";
 
+bindl = [
+        # Requires playerctl
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+];
+bindel = [
+        # Laptop multimedia keys for volume and LCD brightness
+        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
+        ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+];
+binde = [
+"$mainMod SHIFT, right, resizeactive, 10 0"
+"$mainMod SHIFT, left, resizeactive, -10 0"
+"$mainMod SHIFT, up, resizeactive, 0 -10"
+"$mainMod SHIFT, down, resizeactive, 0 10"
+];
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+# Bind flags at https://wiki.hyprland.org/Configuring/Binds/#bind-flags
 bind = [", Print, exec, exec grimblast --notify copy area"
         "$mainMod, Q, exec, $terminal"
         "$mainMod, C, killactive,"
@@ -145,10 +169,6 @@ bind = [", Print, exec, exec grimblast --notify copy area"
         "$mainMod, R, exec, fuzzel"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
-        ", code:232, exec, exec brightnessctl set 5%-"
-        ", code:233, exec, exec brightnessctl set 5%+"
-        ", code:122, exec, exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
-        ", code:123, exec, exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
