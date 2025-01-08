@@ -39,6 +39,8 @@ services:
     image: mariadb:10.5
     restart: always
     command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - internal
     volumes:
       - "/data/pterodactyl/panel/srv/pterodactyl/database:/var/lib/mysql"
     environment:
@@ -48,6 +50,8 @@ services:
   cache:
     image: redis:alpine
     restart: always
+    networks:
+      - internal
   panel:
     image: ghcr.io/pterodactyl/panel:latest
     restart: always
