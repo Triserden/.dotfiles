@@ -51,7 +51,7 @@ services:
     image: redis:alpine
     restart: always
     networks:
-      - internal
+      - external
   panel:
     container_name: pterodactyl_panel
     image: ghcr.io/pterodactyl/panel:latest
@@ -83,14 +83,13 @@ services:
       - "traefik.http.routers.pterodactylpanel.rule=Host(`pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactylpanel.entrypoints=websecure"
       - "traefik.http.routers.pterodactylpanel.tls.certresolver=cloudflare"
+      - "traefik.docker.network=external"
 
 networks:
   default:
     ipam:
       config:
         - subnet: 172.23.0.0/16
-  internal:
-    external: true
-  tailscale:
+  external:
     external: true
 

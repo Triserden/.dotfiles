@@ -6,8 +6,7 @@ services:
     restart: always
     networks:
       - wings0
-      - internal
-      - tailscale 
+      - external
     tty: true
     ports:
       - "25600-25610:25600-25610"
@@ -36,6 +35,7 @@ services:
       - "traefik.http.routers.pterodactylwing.entrypoints=websecure"
       - "traefik.http.routers.pterodactylwing.tls.certresolver=http"
       - "traefik.http.services.pterodactylwing.loadbalancer.server.port=8080"
+      - "traefik.docker.network=external"
 
 networks:
   wings0:
@@ -46,7 +46,5 @@ networks:
         - subnet: "172.22.0.0/16"
     driver_opts:
       com.docker.network.bridge.name: wings0
-  internal:
-    external: true
-  tailscale:
+  external:
     external: true
