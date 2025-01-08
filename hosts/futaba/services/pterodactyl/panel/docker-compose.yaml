@@ -79,7 +79,8 @@ services:
       DB_PORT: "3306"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.pterodactylpanel.rule=Host(`pterodactyl.local.triserden.dev`)"
+      - "expose-external=true"
+      - "traefik.http.routers.pterodactylpanel.rule=Host(`pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactylpanel.entrypoints=websecure"
       - "traefik.http.routers.pterodactylpanel.tls.certresolver=cloudflare"
 

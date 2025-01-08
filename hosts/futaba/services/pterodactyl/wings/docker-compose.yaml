@@ -31,9 +31,10 @@ services:
       #- "/etc/letsencrypt/:/etc/letsencrypt/"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.pterodactylwing.rule=Host(`node1.pterodactyl.local.triserden.dev`)"
+      - "expose-external=true"
+      - "traefik.http.routers.pterodactylwing.rule=Host(`node1.pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactylwing.entrypoints=websecure"
-      - "traefik.http.routers.pterodactylwing.tls.certresolver=cloudflare"
+      - "traefik.http.routers.pterodactylwing.tls.certresolver=http"
       - "traefik.http.services.pterodactylwing.loadbalancer.server.port=8080"
 
 networks:
