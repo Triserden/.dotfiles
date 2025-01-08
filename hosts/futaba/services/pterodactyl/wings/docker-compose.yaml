@@ -3,7 +3,7 @@ version: '3.8'
 services:
   wings:
     image: ghcr.io/pterodactyl/wings:v1.6.1
-    restart: always
+    restart: unless-stopped
     networks:
       - external
     tty: true
@@ -21,7 +21,7 @@ services:
       - "/data/pterodactyl/wings/var/lib/docker/containers/:/var/lib/docker/containers/"
       - "/data/pterodactyl/wings/var/lib/pterodactyl/:/var/lib/pterodactyl/"
       - "/data/pterodactyl/wings/etc/pterodactyl/:/etc/pterodactyl/"
-      - "./config.yaml:/etc/pterodactyl/config.yml:ro"
+      - "./config.yaml:/etc/pterodactyl/config.yml"
       - "/data/pterodactyl/wings/var/log/pterodactyl/:/var/log/pterodactyl/"
       - "/data/pterodactyl/wings/tmp/pterodactyl/:/tmp/pterodactyl/"
       - "/data/pterodactyl/wings/etc/ssl/certs:/etc/ssl/certs:ro"
