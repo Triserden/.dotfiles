@@ -49,6 +49,10 @@
         owner="triserden";
       };
       pterodactyl_env = {
+        path = "/home/triserden/services/pterodactyl/panel/.env";
+        owner="triserden";
+      };
+      pterodactyl_config = {
         sopsFile = ./pterodactylconfig.yaml;
         format = "yaml";
         path = "/home/triserden/services/pterodactyl/wings/config.yaml";
