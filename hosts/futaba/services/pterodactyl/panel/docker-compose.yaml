@@ -61,7 +61,8 @@ services:
       - cache
     networks:
       - internal
-      - tailscale
+      tailscale:
+        ipv4_address: 100.32.234.12
     volumes:
       - "/data/pterodactyl/panel/srv/pterodactyl/var/:/app/var/"
       - "/data/pterodactyl/panel/srv/pterodactyl/nginx/:/etc/nginx/http.d/"
