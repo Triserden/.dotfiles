@@ -7,8 +7,8 @@ services:
     networks:
       - wings0
       - internal
-      tailscale:
-        ipv4_address: 100.32.123.12
+      - tailscale:
+         ipv4_address: 100.32.123.12
       
     tty: true
     ports:
