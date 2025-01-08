@@ -28,10 +28,10 @@ services:
       #- "/etc/letsencrypt/:/etc/letsencrypt/"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.grafana.rule=Host(`node1.pterodactyl.local.triserden.dev`)"
-      - "traefik.http.routers.grafana.entrypoints=websecure"
-      - "traefik.http.routers.grafana.tls.certresolver=cloudflare"
-      - "traefik.http.services.grafana.loadbalancer.server.port=8080"
+      - "traefik.http.routers.pterodactylwing.rule=Host(`node1.pterodactyl.local.triserden.dev`)"
+      - "traefik.http.routers.pterodactylwing.entrypoints=websecure"
+      - "traefik.http.routers.pterodactylwing.tls.certresolver=cloudflare"
+      - "traefik.http.services.pterodactylwing.loadbalancer.server.port=8080"
 
 networks:
   wings0:

@@ -78,9 +78,9 @@ services:
       DB_PORT: "3306"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.grafana.rule=Host(`pterodactyl.local.triserden.dev`)"
-      - "traefik.http.routers.grafana.entrypoints=websecure"
-      - "traefik.http.routers.grafana.tls.certresolver=cloudflare"
+      - "traefik.http.routers.pterodactylpanel.rule=Host(`pterodactyl.local.triserden.dev`)"
+      - "traefik.http.routers.pterodactylpanel.entrypoints=websecure"
+      - "traefik.http.routers.pterodactylpanel.tls.certresolver=cloudflare"
 
 networks:
   default:
