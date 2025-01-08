@@ -37,7 +37,6 @@ services:
       - "traefik.http.routers.pterodactylwing.entrypoints=websecure"
       - "traefik.http.routers.pterodactylwing.tls=true"
       - "traefik.http.routers.pterodactylwing.tls.certresolver=http"
-      - "traefik.http.services.pterodactylwing.loadbalancer.server.port=8081"
       - "traefik.docker.network=external"
 
 networks:
