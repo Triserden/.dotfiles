@@ -4,6 +4,12 @@ keys:
   - &megumi age1rldtavqum7mtsvd5zjkafdlvc4tw5j735x2tnpy22znad2jgm9fsuvhxay
 
 creation_rules:
+  - path_regex: hosts/futaba/pterodactylconfig.yaml$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *futaba
   - path_regex: hosts/futaba/hlrconfig.yaml$
     key_groups:
       - pgp:
