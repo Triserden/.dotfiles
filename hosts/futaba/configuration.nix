@@ -51,7 +51,7 @@
       pterodactyl_env = {
         sopsFile = ./pterodactylconfig.yaml;
         format = "yaml";
-        path = "/home/triserden/services/pterodacty/wings/config.yaml";
+        path = "/home/triserden/services/pterodactyl/wings/config.yaml";
         owner="triserden";
         key = "";
       };
