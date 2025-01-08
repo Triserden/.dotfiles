@@ -10,6 +10,8 @@ services:
     tty: true
     ports:
       - "25600-25610:25600-25610"
+      - 2023:2022
+      - 8081:8080
     environment:
       TZ: "UTC"
       WINGS_UID: 988
@@ -33,8 +35,9 @@ services:
       - "expose-external=true"
       - "traefik.http.routers.pterodactylwing.rule=Host(`node1.pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactylwing.entrypoints=websecure"
+      - "traefik.http.routers.pterodactylpanel.tls=true"
       - "traefik.http.routers.pterodactylwing.tls.certresolver=http"
-      - "traefik.http.services.pterodactylwing.loadbalancer.server.port=8080"
+      - "traefik.http.services.pterodactylwing.loadbalancer.server.port=8081"
       - "traefik.docker.network=external"
 
 networks:
