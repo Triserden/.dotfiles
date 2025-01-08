@@ -8,6 +8,8 @@ services:
       - wings0
       - internal
     tty: true
+    ports:
+      - "25600-25610:25600-25610"
     environment:
       TZ: "UTC"
       WINGS_UID: 988
