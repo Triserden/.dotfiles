@@ -40,7 +40,7 @@ services:
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     networks:
-      - internal
+      - external
     volumes:
       - "/data/pterodactyl/panel/srv/pterodactyl/database:/var/lib/mysql"
     environment:
@@ -60,7 +60,7 @@ services:
       - database
       - cache
     networks:
-      - internal
+      - external
     volumes:
       - "/data/pterodactyl/panel/srv/pterodactyl/var/:/app/var/"
       - "/data/pterodactyl/panel/srv/pterodactyl/nginx/:/etc/nginx/http.d/"
