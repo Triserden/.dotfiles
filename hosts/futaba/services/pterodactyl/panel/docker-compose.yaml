@@ -9,7 +9,7 @@ x-common:
   panel:
     &panel-environment
     # This URL should be the URL that your reverse proxy routes to the panel server
-    APP_URL: "https://pterodactyl.local.triserden.dev"
+    APP_URL: "https://pterodactyl.triserden.dev"
     # A list of valid timezones can be found here: http://php.net/manual/en/timezones.php
     APP_TIMEZONE: "Europe/Amsterdam"
     APP_SERVICE_AUTHOR: "triserden@gmail.com"
