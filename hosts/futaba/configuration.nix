@@ -48,6 +48,13 @@
         path = "/home/triserden/services/foldingathome/.env";
         owner="triserden";
       };
+      pterodactyl_env = {
+        sopsFile = ./pterodactylconfig.yaml;
+        format = "yaml";
+        path = "/home/triserden/services/pterodactyl/config.yaml";
+        owner="triserden";
+        key = "";
+      };
       hlr_env = {
         sopsFile = ./hlrconfig.yaml;
         format = "yaml";
