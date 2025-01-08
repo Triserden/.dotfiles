@@ -18,7 +18,7 @@
     defaultSopsFile = ./secrets.yaml;
     secrets = {
       tailscale_subnet_env = {
-        path = "/home/triserden/services/tailscale_subnet/.env";
+        path = "/home/triserden/services/tailscale-subnet/.env";
         owner="triserden";
       };
       freshrss_env = {
