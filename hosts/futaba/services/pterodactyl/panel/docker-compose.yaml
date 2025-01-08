@@ -53,6 +53,7 @@ services:
     networks:
       - internal
   panel:
+    container_name: pterodactyl_panel
     image: ghcr.io/pterodactyl/panel:latest
     restart: always
     links:
