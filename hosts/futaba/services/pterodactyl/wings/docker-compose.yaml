@@ -5,7 +5,6 @@ services:
     image: ghcr.io/pterodactyl/wings:v1.6.1
     restart: always
     networks:
-      - wings0
       - external
     tty: true
     ports:
@@ -13,7 +12,7 @@ services:
       - 2023:2022
       - 8081:8080
     environment:
-      TZ: "UTC"
+      TZ: "Europe/Amsterdam"
       WINGS_UID: 988
       WINGS_GID: 988
       WINGS_USERNAME: pterodactyl
@@ -40,13 +39,5 @@ services:
       - "traefik.docker.network=external"
 
 networks:
-  wings0:
-    name: wings0
-    driver: bridge
-    ipam:
-      config:
-        - subnet: "172.22.0.0/16"
-    driver_opts:
-      com.docker.network.bridge.name: wings0
   external:
     external: true
