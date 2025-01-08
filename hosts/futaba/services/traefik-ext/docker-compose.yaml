@@ -14,6 +14,7 @@ services:
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entryPoints.web.http.redirections.entrypoint.scheme=https"
       - "--providers.docker.constraints=Label(`expose-external`,`true`)"
+      - "--entryPoints.web.forwardedHeaders.trustedIPs=127.0.0.1/32,192.168.1.7"
       - "--certificatesresolvers.http.acme.email=triserden@gmail.com"
       - "--certificatesresolvers.http.acme.storage=acme.json"
       - "--certificatesresolvers.http.acme.httpchallenge.entrypoint=web"
