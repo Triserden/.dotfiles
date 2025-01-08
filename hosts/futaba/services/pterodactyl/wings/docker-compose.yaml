@@ -35,7 +35,7 @@ services:
       - "expose-external=true"
       - "traefik.http.routers.pterodactylwing.rule=Host(`node1.pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactylwing.entrypoints=websecure"
-      - "traefik.http.routers.pterodactylpanel.tls=true"
+      - "traefik.http.routers.pterodactylwing.tls=true"
       - "traefik.http.routers.pterodactylwing.tls.certresolver=http"
       - "traefik.http.services.pterodactylwing.loadbalancer.server.port=8081"
       - "traefik.docker.network=external"
