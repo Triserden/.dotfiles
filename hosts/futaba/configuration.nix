@@ -112,7 +112,7 @@
   };
 
   networking.hosts = {
-  "78.46.38.222" = ["pterodactyl.triserden.dev" "node1.pterodactyl.triserden.dev"];
+  "172.19.0.6/16" = ["pterodactyl.triserden.dev"];
 };
 
 

@@ -14,7 +14,8 @@ services:
       - TZ=${DAEMON_TIMEZONE:-UTC}
     image: docker.io/ccarney16/pterodactyl-daemon:${DAEMON_VERSION:-latest}
     ports:
-      - 2023:2023
+      - 2023:2022
+      - 8081:8080
     expose:
       - 8081
       - 2023
@@ -47,6 +48,8 @@ services:
       - traefik.http.middlewares.cors-headers.headers.accessControlAllowOriginList=*
       - traefik.http.routers.pterodactyl-wing-secure.middlewares=secure-headers,cors-headers
       - "traefik.docker.network=external"
+    extra_hosts:
+      - "pterodactyl.triserden.dev:172.19.0.5"
   ##
   # -- MariaDB --
   # Required for the control panel to work.
