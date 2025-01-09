@@ -19,12 +19,6 @@ services:
       - "--certificatesresolvers.http.acme.storage=acme.json"
       - "--certificatesresolvers.http.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.http.acme.httpchallenge.entrypoint=web"
-    labels:
-      - "traefik.http.middlewares.corsheader.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"
-      - "traefik.http.middlewares.corsheader.headers.accesscontrolallowheaders=*"
-      - "traefik.http.middlewares.corsheader.headers.accesscontrolalloworiginlist=https://pterodactyl.triserden.dev,https://node1.pterodactyl.triserden.dev"
-      - "traefik.http.middlewares.corsheader.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.corsheader.headers.addvaryheader=true"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "/data/traefik/letsencrypt-ext:/letsencrypt"
