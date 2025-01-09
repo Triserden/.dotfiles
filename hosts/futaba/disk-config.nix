@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, lib, ...}:
 {
   disko.devices = {
     disk = {
@@ -101,6 +101,10 @@
   programs.bash.shellAliases = {
     unlock = "sudo zfs load-key zroot/encrypted; sudo zfs mount zroot/encrypted/data";
     lock = "sudo zfs unmount zroot/encrypted/data; sudo zfs unload-key zroot/encrypted";
+  };
+
+  systemd.services.docker = {
+    wantedBy = lib.mkForce [];
   };
   
   boot.supportedFilesystems = [ "zfs" ];
