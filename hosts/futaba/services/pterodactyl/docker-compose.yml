@@ -38,7 +38,7 @@ services:
       - "traefik.http.routers.pterodactyl-wing-secure.rule=Host(`node1.ptero.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-wing-secure.tls=true"
       - "traefik.http.routers.pterodactyl-wing-secure.tls.certresolver=http"
-      - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-wing-secure"
+      - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-wing"
       - "traefik.http.services.pterodactyl-wing-secure.loadbalancer.server.port=8081"
       - "traefik.http.middlewares.pterodactyl-wing-secure.headers.stsSeconds=315"
       - "traefik.http.middlewares.pterodactyl-wing-secure.headers.forceSTSHeader=false"
