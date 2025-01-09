@@ -45,7 +45,7 @@ services:
       - "traefik.http.middlewares.pterodactyl-wing-secure.headers.stsIncludeSubdomains=false"
       - traefik.http.middlewares.secure-headers.headers.customrequestheaders.X-Forwarded-Proto=https
       - traefik.http.middlewares.cors-headers.headers.accessControlAllowOriginList=*
-      - traefik.http.routers.pterodactyl-panel-secure.middlewares=secure-headers,cors-headers
+      - traefik.http.routers.pterodactyl-wing-secure.middlewares=secure-headers,cors-headers
       - "traefik.docker.network=external"
   ##
   # -- MariaDB --
