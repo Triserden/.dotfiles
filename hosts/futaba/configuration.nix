@@ -101,6 +101,11 @@
     allowedUDPPorts = [ 25565 8443 8081 2023 ];
   };
 
+  networking.hosts = {
+  "78.46.38.222" = ["pterodactyl.triserden.dev" "node1.pterodactyl.triserden.dev"];
+};
+
+
   
   ssh.enable = false;
 
