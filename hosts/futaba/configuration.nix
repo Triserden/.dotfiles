@@ -97,8 +97,8 @@
   # Open minecraft port
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 25565 ];
-    allowedUDPPorts = [ 25565 ];
+    allowedTCPPorts = [ 25565 8443 8081 2023 ];
+    allowedUDPPorts = [ 25565 8443 8081 2023 ];
   };
 
   
