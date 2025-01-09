@@ -88,6 +88,7 @@ services:
       - "traefik.http.routers.pterodactyl-panel-secure.tls=true"
       - "traefik.http.routers.pterodactyl-panel-secure.tls.certresolver=http"
       - "traefik.http.routers.pterodactyl-panel-secure.service=pterodactyl-panel"
+      - "traefik.http.services.pterodactyl-panel.loadbalancer.server.port=80"
       - "traefik.docker.network=external"
     depends_on:
       mariadb:
