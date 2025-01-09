@@ -18,6 +18,10 @@ services:
       - "--certificatesresolvers.http.acme.email=triserden@gmail.com"
       - "--certificatesresolvers.http.acme.storage=acme.json"
       - "--certificatesresolvers.http.acme.httpchallenge.entrypoint=web"
+      - "traefik.http.middlewares.cors.headers.accesscontrolallowmethods=*"
+      - "traefik.http.middlewares.cors.headers.accesscontrolalloworiginlist=*"
+      - "traefik.http.middlewares.cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.cors.headers.addvaryheader=true"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "/data/traefik/letsencrypt-ext:/letsencrypt"

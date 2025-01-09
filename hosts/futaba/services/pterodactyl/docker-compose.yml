@@ -40,10 +40,7 @@ services:
       - "traefik.http.routers.pterodactyl-wing-secure.tls=true"
       - "traefik.http.routers.pterodactyl-wing-secure.tls.certresolver=http"
       - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-wing"
-      - "traefik.http.middlewares.pterodactyl-wing.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"   
-      - "traefik.http.middlewares.pterodactyl-wing.headers.accesscontrolalloworigin=origin-list-or-null"   
-      - "traefik.http.middlewares.pterodactyl-wing.headers.accesscontrolmaxage=100"   
-      - "traefik.http.middlewares.pterodactyl-wing.headers.addvaryheader=true"
+      - "traefik.http.routers.pterodactyl-wing-secure.middlewares=cors"
       - "traefik.http.services.pterodactyl-wing.loadbalancer.server.port=8081"
       - "traefik.docker.network=external"
   ##
@@ -84,10 +81,7 @@ services:
       - "traefik.http.routers.pterodactyl-panel-secure.tls.certresolver=http"
       - "traefik.http.routers.pterodactyl-panel-secure.service=pterodactyl-panel"
       - "traefik.http.services.pterodactyl-panel.loadbalancer.server.port=80"
-      - "traefik.http.middlewares.pterodactyl-panel.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"   
-      - "traefik.http.middlewares.pterodactyl-panel.headers.accesscontrolalloworigin=origin-list-or-null"   
-      - "traefik.http.middlewares.pterodactyl-panel.headers.accesscontrolmaxage=100"   
-      - "traefik.http.middlewares.pterodactyl-panel.headers.addvaryheader=true"
+      - "traefik.http.routers.pterodactyl-panel-secure.middlewares=cors"
       - "traefik.docker.network=external"
     depends_on:
       mariadb:
