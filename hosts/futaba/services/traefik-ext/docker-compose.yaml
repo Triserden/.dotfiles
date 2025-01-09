@@ -19,6 +19,7 @@ services:
       - "--certificatesresolvers.http.acme.storage=acme.json"
       # - "--certificatesresolvers.http.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.http.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "/data/traefik/letsencrypt-ext:/letsencrypt"
