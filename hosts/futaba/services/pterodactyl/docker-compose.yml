@@ -35,7 +35,7 @@ services:
       - "traefik.enable=true"
       - "expose-external=true"
       - "traefik.http.routers.pterodactyl-wing-secure.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl-wing-secure.rule=Host(`node1.pterodactyl.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-wing-secure.rule=Host(`node1.ptero.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-wing-secure.tls=true"
       - "traefik.http.routers.pterodactyl-wing-secure.tls.certresolver=http"
       - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-wing"
@@ -49,7 +49,7 @@ services:
       - traefik.http.routers.pterodactyl-wing-secure.middlewares=secure-headers,cors-headers
       - "traefik.docker.network=external"
     extra_hosts:
-      - "pterodactyl.triserden.dev:172.19.0.5"
+      - "ptero.triserden.dev:172.19.0.5"
   ##
   # -- MariaDB --
   # Required for the control panel to work.
@@ -81,7 +81,7 @@ services:
       - "traefik.enable=true"
       - "expose-external=true"
       - "traefik.http.routers.pterodactyl-panel-secure.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl-panel-secure.rule=Host(`pterodactyl.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-panel-secure.rule=Host(`ptero.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-panel-secure.tls=true"
       - "traefik.http.routers.pterodactyl-panel-secure.tls.certresolver=http"
       - "traefik.http.routers.pterodactyl-panel-secure.service=pterodactyl-panel"
