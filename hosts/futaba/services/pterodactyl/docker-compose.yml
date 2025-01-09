@@ -1,0 +1,127 @@
+###
+# Minimal Configuration File
+#
+# This configuration strips services to the absolute bare essentials to function.
+# Very useful for reverse proxy configurations where a user would override networking anyways.
+###
+services:
+  ##
+  # -- Panel Cron --
+  # These are required for schedules and other misc tasks to 
+  # function correctly.
+  ##
+  cron:
+    command: p:cron
+    env_file: ./conf.d/panel.env
+    image: ccarney16/pterodactyl-panel:${PANEL_VERSION:-latest}
+    profiles: [ panel ]
+    restart: unless-stopped
+    volumes:
+      - /data/pterodactyl/data/panel:/data
+  ##
+  # -- Pterodactyl Daemon --
+  # This service provides the wings runtime.
+  ##
+  daemon:
+    environment:
+      - TZ=${DAEMON_TIMEZONE:-UTC}
+    image: docker.io/ccarney16/pterodactyl-daemon:${DAEMON_VERSION:-latest}
+    ports:
+      - 2023:2022
+    privileged: true
+    profiles: [ daemon ]
+    restart: unless-stopped
+    networks:
+      external:
+        external: true
+    volumes:
+      - /data/pterodactyl/var/lib/pterodactyl:/var/lib/pterodactyl
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/pterodactyl/:/tmp/pterodactyl/
+      - /data/pterodactyl/conf.d/daemon:/etc/pterodactyl
+      - ./conf.d/letsencrypt:/etc/letsencrypt:ro
+      - ./conf.d/certs:/etc/certs:ro
+    working_dir: ${DAEMON_DATA_DIRECTORY:-/var/lib/pterodactyl}
+    labels:
+      - "traefik.enable=true"
+      - "expose-external=true"
+      - "traefik.http.routers.pterodactyl-wing.entrypoints=websecure"
+      - "traefik.http.routers.pterodactyl-wing.rule=Host(`node1.pterodactyl.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-wing-secure.entrypoints=websecure"
+      - "traefik.http.routers.pterodactyl-wing-secure.rule=Host(`node1.pterodactyl.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-wing-secure.tls=true"
+      - "traefik.http.routers.pterodactyl-wing-secure.tls.certresolver=http"
+      - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-daemon"
+      - "traefik.http.services.pterodactyl-wing.loadbalancer.server.port=8080"
+      - "traefik.docker.network=external"
+  ##
+  # -- MariaDB --
+  # Required for the control panel to work.
+  # Stores Server/User information
+  ##
+  mariadb:
+    image: docker.io/library/mariadb:10.11
+    env_file: ./conf.d/mariadb.env
+    networks:
+      default:
+        aliases:
+          - mysql
+    profiles: [ panel ]
+    restart: unless-stopped
+    volumes:
+      - /data/pterodactyl/data/mysql:/var/lib/mysql
+  ##
+  # -- Pterodactyl Panel --
+  # This is the container that provides the main web interface.
+  ##
+  panel:
+    env_file: ./conf.d/panel.env
+    image: docker.io/ccarney16/pterodactyl-panel:${PANEL_VERSION:-latest}
+    profiles: [ panel ]
+    restart: unless-stopped
+    networks:
+      external:
+        external: true
+    volumes:
+      - /data/pterodactyl/data/panel:/data
+    labels:
+      - "traefik.enable=true"
+      - "expose-external=true"
+      - "traefik.http.routers.pterodactyl-panel.entrypoints=websecure"
+      - "traefik.http.routers.pterodactyl-panel.rule=Host(`pterodactyl.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-panel-secure.entrypoints=websecure"
+      - "traefik.http.routers.pterodactyl-panel-secure.rule=Host(`pterodactyl.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-panel-secure.tls=true"
+      - "traefik.http.routers.pterodactyl-panel-secure.tls.certresolver=http"
+      - "traefik.http.routers.pterodactyl-panel-secure.service=pterodactyl-daemon"
+      - "traefik.docker.network=external"
+    depends_on:
+      mariadb:
+        condition: service_started
+      redis:
+        condition: service_started
+  ##
+  # -- Redis --
+  ##
+  redis:
+    cpu_count: 2
+    cpu_percent: 50
+    image: docker.io/library/redis:alpine
+    mem_limit: 128m
+    networks:
+      default:
+        aliases:
+          - cache
+    profiles: [ panel ]
+    restart: unless-stopped
+  ##
+  # -- Panel Worker --
+  ##
+  worker:
+    command: p:worker
+    env_file: ./conf.d/panel.env
+    image: docker.io/ccarney16/pterodactyl-panel:${PANEL_VERSION:-latest}
+    profiles: [ panel ]
+    restart: unless-stopped
+    volumes:
+      - /data/pterodactyl/data/panel:/data

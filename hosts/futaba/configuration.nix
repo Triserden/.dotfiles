@@ -56,10 +56,24 @@
         path = "/home/triserden/services/pterodactyl/panel/.env";
         owner="triserden";
       };
-      pterodactyl_config = {
-        sopsFile = ./pterodactylconfig.yaml;
+      pterodactyl_mariadb_config = {
+        sopsFile = ./secrets/pterodactyl_mariadb_config.env;
+        format = "dotenv";
+        path = "/home/triserden/services/pterodactyl/conf.d/mariadb.env";
+        owner="triserden";
+        key = "";
+      };
+      pterodactyl_panel_config = {
+        sopsFile = ./secrets/pterodactyl_panel_config.env;
+        format = "dotenv";
+        path = "/home/triserden/services/pterodactyl/conf.d/panel.env";
+        owner="triserden";
+        key = "";
+      };
+      pterodactyl_wing_config = {
+        sopsFile = ./secrets/pterodactyl_wing_config.yaml;
         format = "yaml";
-        path = "/home/triserden/services/pterodactyl/wings/config.yaml";
+        path = "/home/triserden/services/pterodactyl/conf.d/daemon/config.yml";
         owner="triserden";
         key = "";
       };
