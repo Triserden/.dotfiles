@@ -25,6 +25,9 @@ services:
     environment: 
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     restart: unless-stopped
+    networks:
+      default:
+        ipv4_address: "172.19.0.2"
     ports:
       - "${server_ip}:80:80"
       - "${server_ip}:443:443"

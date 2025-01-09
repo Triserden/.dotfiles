@@ -49,7 +49,7 @@ services:
       - traefik.http.routers.pterodactyl-wing-secure.middlewares=secure-headers,cors-headers
       - "traefik.docker.network=external"
     extra_hosts:
-      - "ptero.triserden.dev:172.19.0.6"
+      - "ptero.triserden.dev:172.19.0.2"
   ##
   # -- MariaDB --
   # Required for the control panel to work.
@@ -74,9 +74,6 @@ services:
     env_file: ./conf.d/panel.env
     image: docker.io/ccarney16/pterodactyl-panel:${PANEL_VERSION:-latest}
     profiles: [ panel ]
-    networks:
-      default:
-        ipv4_address: "172.19.0.6"
     restart: unless-stopped
     volumes:
       - /data/pterodactyl/data/panel:/data
