@@ -31,9 +31,6 @@ services:
     privileged: true
     profiles: [ daemon ]
     restart: unless-stopped
-    networks:
-      external:
-        external: true
     volumes:
       - /data/pterodactyl/var/lib/pterodactyl:/var/lib/pterodactyl
       - /var/run/docker.sock:/var/run/docker.sock
@@ -79,9 +76,6 @@ services:
     image: docker.io/ccarney16/pterodactyl-panel:${PANEL_VERSION:-latest}
     profiles: [ panel ]
     restart: unless-stopped
-    networks:
-      external:
-        external: true
     volumes:
       - /data/pterodactyl/data/panel:/data
     labels:
@@ -125,3 +119,7 @@ services:
     restart: unless-stopped
     volumes:
       - /data/pterodactyl/data/panel:/data
+networks:
+    default:
+        name: external
+        external: true

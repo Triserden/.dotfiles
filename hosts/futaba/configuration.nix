@@ -52,10 +52,6 @@
         path = "/home/triserden/services/foldingathome/.env";
         owner="triserden";
       };
-      pterodactyl_env = {
-        path = "/home/triserden/services/pterodactyl/panel/.env";
-        owner="triserden";
-      };
       pterodactyl_mariadb_config = {
         sopsFile = ./secrets/pterodactyl_mariadb_config.env;
         format = "dotenv";
