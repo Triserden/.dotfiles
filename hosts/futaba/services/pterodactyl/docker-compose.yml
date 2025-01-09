@@ -48,7 +48,7 @@ services:
       - "traefik.http.routers.pterodactyl-wing-secure.rule=Host(`node1.pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-wing-secure.tls=true"
       - "traefik.http.routers.pterodactyl-wing-secure.tls.certresolver=http"
-      - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-daemon"
+      - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-wing"
       - "traefik.http.services.pterodactyl-wing.loadbalancer.server.port=8080"
       - "traefik.docker.network=external"
   ##
@@ -87,7 +87,7 @@ services:
       - "traefik.http.routers.pterodactyl-panel-secure.rule=Host(`pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-panel-secure.tls=true"
       - "traefik.http.routers.pterodactyl-panel-secure.tls.certresolver=http"
-      - "traefik.http.routers.pterodactyl-panel-secure.service=pterodactyl-daemon"
+      - "traefik.http.routers.pterodactyl-panel-secure.service=pterodactyl-panel"
       - "traefik.docker.network=external"
     depends_on:
       mariadb:
