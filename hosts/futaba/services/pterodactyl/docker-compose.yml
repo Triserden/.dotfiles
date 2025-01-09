@@ -27,9 +27,10 @@ services:
       - TZ=${DAEMON_TIMEZONE:-UTC}
     image: docker.io/ccarney16/pterodactyl-daemon:${DAEMON_VERSION:-latest}
     ports:
-      - 2023:2022
+      - 2023:2023
     expose:
       - 8081
+      - 2023
     privileged: true
     profiles: [ daemon ]
     restart: unless-stopped
