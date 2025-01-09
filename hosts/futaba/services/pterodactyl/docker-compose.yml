@@ -33,18 +33,16 @@ services:
     labels:
       - "traefik.enable=true"
       - "expose-external=true"
-      - "traefik.http.routers.pterodactyl-wing.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl-wing.rule=Host(`node1.pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-wing-secure.entrypoints=websecure"
       - "traefik.http.routers.pterodactyl-wing-secure.rule=Host(`node1.pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-wing-secure.tls=true"
       - "traefik.http.routers.pterodactyl-wing-secure.tls.certresolver=http"
       - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-wing"
       - "traefik.http.services.pterodactyl-wing.loadbalancer.server.port=8081"
-      - "traefik.http.middlewares.oo-header.headers.stsSeconds=315"
-      - "traefik.http.middlewares.oo-header.headers.forceSTSHeader=false"
-      - "traefik.http.middlewares.oo-header.headers.stsPreload=false"
-      - "traefik.http.middlewares.oo-header.headers.stsIncludeSubdomains=false"
+      - "traefik.http.middlewares.pterodactyl-wing-secure.headers.stsSeconds=315"
+      - "traefik.http.middlewares.pterodactyl-wing-secure.headers.forceSTSHeader=false"
+      - "traefik.http.middlewares.pterodactyl-wing-secure.headers.stsPreload=false"
+      - "traefik.http.middlewares.pterodactyl-wing-secure.headers.stsIncludeSubdomains=false"
       - traefik.http.middlewares.secure-headers.headers.customrequestheaders.X-Forwarded-Proto=https
       - traefik.http.middlewares.cors-headers.headers.accessControlAllowOrigin=*
       - traefik.http.routers.pterodactyl-panel-secure.middlewares=secure-headers,cors-headers
@@ -79,8 +77,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "expose-external=true"
-      - "traefik.http.routers.pterodactyl-panel.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl-panel.rule=Host(`pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-panel-secure.entrypoints=websecure"
       - "traefik.http.routers.pterodactyl-panel-secure.rule=Host(`pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-panel-secure.tls=true"
@@ -90,10 +86,10 @@ services:
       - traefik.http.middlewares.secure-headers.headers.customrequestheaders.X-Forwarded-Proto=https
       - traefik.http.middlewares.cors-headers.headers.accessControlAllowOrigin=*
       - traefik.http.routers.pterodactyl-panel-secure.middlewares=secure-headers,cors-headers
-      - "traefik.http.middlewares.oo-header.headers.stsSeconds=315"
-      - "traefik.http.middlewares.oo-header.headers.forceSTSHeader=false"
-      - "traefik.http.middlewares.oo-header.headers.stsPreload=false"
-      - "traefik.http.middlewares.oo-header.headers.stsIncludeSubdomains=false"
+      - "traefik.http.middlewares.pterodactyl-panel-secure.headers.stsSeconds=315"
+      - "traefik.http.middlewares.pterodactyl-panel-secure.headers.forceSTSHeader=false"
+      - "traefik.http.middlewares.pterodactyl-panel-secure.headers.stsPreload=false"
+      - "traefik.http.middlewares.pterodactyl-panel-secure.headers.stsIncludeSubdomains=false"
       - "traefik.docker.network=external"
     depends_on:
       mariadb:
