@@ -53,6 +53,7 @@ services:
     networks:
       - external
   panel:
+    dns: 1.1.1.1
     container_name: pterodactyl_panel
     image: ghcr.io/pterodactyl/panel:latest
     restart: always

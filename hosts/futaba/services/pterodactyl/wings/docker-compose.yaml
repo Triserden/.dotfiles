@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   wings:
+    dns: 1.1.1.1
     image: ghcr.io/pterodactyl/wings:v1.6.1
     restart: unless-stopped
     networks:
@@ -11,6 +12,7 @@ services:
       - "25600-25610:25600-25610"
       - 2023:2022
       - 8081:8080
+      - 8443:8443
     environment:
       TZ: "Europe/Amsterdam"
       WINGS_UID: 988
