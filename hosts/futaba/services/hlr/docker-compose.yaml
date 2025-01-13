@@ -6,6 +6,7 @@ services:
     image: ccarney16/pterodactyl-daemon:latest
     ports:
       - 2022:2022
+      - 22565:22565
     restart: unless-stopped
     volumes:
       - /data/hlresort/var/lib/pterodactyl:/data/hlresort/var/lib/pterodactyl
