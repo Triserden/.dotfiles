@@ -67,7 +67,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.changedetection.entrypoints=websecure"
-      - "traefik.http.routers.changedetection.rule=Host(`game-node2.hlresort.community`)"
+      - "traefik.http.routers.changedetection.rule=Host(`changedetection.local.triserden.dev`)"
       - "traefik.http.routers.changedetection.tls=true"
       - "traefik.http.routers.changedetection.tls.certresolver=cloudflare"
       - "traefik.http.services.changedetection.loadbalancer.server.port=5000"
