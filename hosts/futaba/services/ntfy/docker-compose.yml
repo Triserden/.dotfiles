@@ -4,8 +4,6 @@ services:
     container_name: ntfy
     command:
       - serve
-    environment:
-      - TZ=Europe/Amsterdam    # optional: set desired timezone
     user: 1000:1000 # optional: replace with your own user/group or uid/gid
     volumes:
       - /data/ntfy/var/cache/ntfy:/var/cache/ntfy
@@ -13,6 +11,7 @@ services:
       - /data/ntfy/etc/ntfy:/etc/ntfy
     environment:
       NTFY_BASE_URL: https://ntfy.local.triserden.dev
+      - TZ=Europe/Amsterdam    # optional: set desired timezone
       NTFY_CACHE_FILE: /var/lib/ntfy/cache.db
       NTFY_AUTH_FILE: /var/lib/ntfy/auth.db
       NTFY_AUTH_DEFAULT_ACCESS: deny-all
