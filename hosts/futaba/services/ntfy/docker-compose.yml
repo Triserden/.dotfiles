@@ -10,7 +10,7 @@ services:
       - /data/ntfy/var/lib/ntfy:/var/lib/ntfy
       - /data/ntfy/etc/ntfy:/etc/ntfy
     environment:
-      - NTFY_BASE_URL="https://ntfy.local.triserden.dev"
+      - NTFY_BASE_URL=https://ntfy.local.triserden.dev
       - TZ=Europe/Amsterdam    # optional: set desired timezone
       - NTFY_CACHE_FILE=/var/lib/ntfy/cache.db
       - NTFY_AUTH_FILE=/var/lib/ntfy/auth.db
@@ -18,7 +18,7 @@ services:
       - NTFY_BEHIND_PROXY=true
       - NTFY_ATTACHMENT_CACHE_DIR=/var/lib/ntfy/attachments
       - NTFY_ENABLE_LOGIN =true
-      - NTFY_UPSTREAM_BASE_URL="https://ntfy.sh"
+      - NTFY_UPSTREAM_BASE_URL=https://ntfy.sh    
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ntfy.entrypoints=websecure"
