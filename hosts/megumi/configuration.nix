@@ -192,6 +192,10 @@
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.supportedFilesystems = ["ntfs" "btrfs"];
   
+  environment.sessionVariables = {
+    NTFY_KEY = config.sops.secrets.ntfy_key;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes"];

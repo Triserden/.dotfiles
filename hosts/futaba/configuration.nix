@@ -17,6 +17,7 @@
 
     defaultSopsFile = ./secrets.yaml;
     secrets = {
+      ntfy_key = {};
       tailscale_subnet_env = {
         path = "/home/triserden/services/tailscale-subnet/.env";
         owner="triserden";
@@ -102,6 +103,10 @@
   tailscale = {
     enable = true;
     authkey = config.sops.secrets.tailscale_key.path;
+  };
+
+  environment.sessionVariables = {
+    NTFY_KEY = config.sops.secrets.ntfy_key;
   };
 
   # Open minecraft port
