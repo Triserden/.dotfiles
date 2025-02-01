@@ -1,13 +1,19 @@
 {pkgs, config, lib, inputs, outputs, ...}:
+let
+  ntfy-send = pkgs.writeShellScriptBin "ntfy-send" ''
+    ${pkgs.curl}/bin/curl -u :$(cat ${config.sops.secrets.ntfy_key.path}) -d "$2" https://ntfy.local.triserden.dev/$1
+  '';
+in
 {
   imports = [
     ./disk-config.nix
     ./impermanence.nix
   ];
-
+ 
   environment.systemPackages = [
     pkgs.jdk17
     pkgs.zellij
+    ntfy-send
   ];
 
   # Setup sops-nix
@@ -17,7 +23,9 @@
 
     defaultSopsFile = ./secrets.yaml;
     secrets = {
-      ntfy_key = {};
+      ntfy_key = {
+        owner="triserden";
+      };
       tailscale_subnet_env = {
         path = "/home/triserden/services/tailscale-subnet/.env";
         owner="triserden";
@@ -103,10 +111,6 @@
   tailscale = {
     enable = true;
     authkey = config.sops.secrets.tailscale_key.path;
-  };
-
-  environment.sessionVariables = {
-    NTFY_KEY = config.sops.secrets.ntfy_key;
   };
 
   # Open minecraft port

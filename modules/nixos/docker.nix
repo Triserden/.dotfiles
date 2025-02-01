@@ -14,6 +14,8 @@
       enable = true;
       storageDriver = config.docker.storageDriver;
     };
+    # Enable nvidia
+    hardware.nvidia-container-toolkit.enable = lib.mkIf (config.nvidia.enable == true) true;
 
     # Create internal docker network
     systemd.services.mkInternalNetwork = {

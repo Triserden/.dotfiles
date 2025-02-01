@@ -10,7 +10,7 @@
         #TODO: Make specialization for vertical/horizontal monitor?
         monitor = [ 
           "eDP-1,1920x1080@120.002,auto,1"
-          "desc:RTD Display 0x01010101, highres, auto-left, auto, transform, 3"
+          "desc:RTD Display 0x01010101, highres, auto-up, auto"
           ",preferred,auto,auto"
         ];
 
@@ -25,6 +25,7 @@
         exec-once = [
           "swww-daemon"
           "arrpc"
+          "clipse -listen"
         ];
 
         env = [
@@ -90,6 +91,8 @@
           "rounding 0, floating:0, onworkspace:w[tv1]"
           "bordersize 0, floating:0, onworkspace:f[1]"
           "rounding 0, floating:0, onworkspace:f[1]"
+          "float,class:(foot),title:(clipse)"
+          "size 622 622,class:(foot),title:(clipse)"
           ];
 
         animations = {
@@ -165,7 +168,7 @@ bind = [", Print, exec, exec grimblast --notify copy area"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, E, exec, $fileManager"
-        "$mainMod, V, togglefloating,"
+        "$mainMod, F, togglefloating,"
         "$mainMod, R, exec, fuzzel"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
@@ -175,6 +178,7 @@ bind = [", Print, exec, exec grimblast --notify copy area"
         "$mainMod, down, movefocus, d"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+        "$mainMod, V, exec, $terminal -T clipse -e 'clipse'"
         ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}

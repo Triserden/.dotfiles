@@ -1,4 +1,9 @@
 {config, pkgs, inputs, outputs, ...}:
+let
+  ntfy-send = pkgs.writeShellScriptBin "ntfy-send" ''
+    ${pkgs.curl}/bin/curl -u :$(cat ${config.sops.secrets.ntfy_key.path}) -d "$2" https://ntfy.local.triserden.dev/$1
+  '';
+in
 {
   imports = [
     ./disk-config.nix
@@ -10,8 +15,9 @@
     firefox.enable = true;
     steam.enable = true;
     adb.enable = true;
-  };
+    };
   environment.systemPackages = [
+        pkgs.ticktick
     pkgs.winetricks
     pkgs.wineWowPackages.waylandFull
     pkgs.unstable.prismlauncher
@@ -39,6 +45,10 @@
     pkgs.thunderbird-bin
     
     pkgs.unstable.qbittorrent
+    
+    # TODO: Move to clipboard module
+    pkgs.wl-clipboard
+    pkgs.clipse
 
     # TODO: Move to module
     pkgs.kicad
@@ -58,8 +68,13 @@
     pkgs.openocd
     pkgs.gcc-arm-embedded
     pkgs.stlink-gui
-  ];
+
+    ntfy-send
+];
  
+  ## TODO: Move to Waydroid module
+  virtualisation.waydroid.enable = true;
+
   # Note: delete once Jetbrains gets outta Dotnet 6
   nixpkgs.config.permittedInsecurePackages = [                                                                                                                                                                                
                 "dotnet-sdk-6.0.428"                                                                                                                                                                                                      
@@ -143,6 +158,11 @@
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     age.keyFile = "/var/lib/sops-nix/key.txt";
     age.generateKey = true;
+    secrets = {
+      ntfy_key = {
+        owner="triserden";
+      };
+    };
   };
 
   # Enable user and pass password to module
@@ -192,10 +212,6 @@
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.supportedFilesystems = ["ntfs" "btrfs"];
   
-  environment.sessionVariables = {
-    NTFY_KEY = config.sops.secrets.ntfy_key;
-  };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes"];
