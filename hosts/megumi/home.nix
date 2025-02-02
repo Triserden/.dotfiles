@@ -7,6 +7,8 @@
   home.stateVersion = "24.11";
   home.sessionVariables = {
     EDITOR = "nvim";
+    # TODO: Move to gaming module
+	  STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
     NIXOS_OZONE_WL = "1";
   };
 

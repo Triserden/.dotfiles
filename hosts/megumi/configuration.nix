@@ -78,10 +78,6 @@ in
 
 ];
 
-  # TODO: Move to gaming module
-  home.sessionVariables = {
-	STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-};
  
   ## TODO: Move to Waydroid module
   virtualisation.waydroid.enable = true;
