@@ -80,8 +80,7 @@ in
 
  # TODO: Maybe move to kdeconnect module?
  programs.kdeconnect.enable = true;
- networking.firewall = { 
-    enable = true;
+ networking.firewall.interfaces."tailscale0" = { 
     allowedTCPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
     ];  
