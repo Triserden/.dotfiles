@@ -78,7 +78,9 @@ in
 
 ];
 
- 
+ # TODO: Maybe move to kdeconnect module?
+ programs.kdeconnect.enable = true;
+
   ## TODO: Move to Waydroid module
   virtualisation.waydroid.enable = true;
 
