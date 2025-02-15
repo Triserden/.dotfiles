@@ -75,7 +75,10 @@ in
 
 
     ntfy-send
+    
+    pkgs.unstable.osu-lazer-bin
 
+    pkgs.jellyfin-media-player
 ];
 
  # TODO: Maybe move to kdeconnect module?
