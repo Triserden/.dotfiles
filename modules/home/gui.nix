@@ -3,10 +3,10 @@
   options = {
     gui.enable = lib.mkEnableOption "Enable the GUI (Hyprland) and it's required packages";
   };
+    imports = [ inputs.textfox.homeManagerModules.default ];
     config = lib.mkIf config.gui.enable {
     
     ## TODO: Move to dedicated firefox module
-    imports = [ inputs.textfox.homeManagerModules.default ];
 
     textfox = {
         enable = true;
