@@ -1,10 +1,22 @@
-{lib, config, ...}: 
+{inputs, lib, config, ...}: 
 {
   options = {
     gui.enable = lib.mkEnableOption "Enable the GUI (Hyprland) and it's required packages";
   };
+    config = lib.mkIf config.gui.enable {
+    
+    ## TODO: Move to dedicated firefox module
+    imports = [ inputs.textfox.homeManagerModules.default ];
 
-  config = lib.mkIf config.gui.enable {
+    textfox = {
+        enable = true;
+        profile = "default";
+        config = {
+        # Optional config
+        };
+    };
+
+
     hyprland.enable = true;
     programs.foot = {
       enable = true;

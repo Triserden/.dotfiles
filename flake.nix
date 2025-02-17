@@ -7,6 +7,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     impermanence.url = "github:nix-community/impermanence";
     #stylix.url = "github:danth/stylix/release-24.05";
+    textfox.url = "github:adriankarlen/textfox";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
