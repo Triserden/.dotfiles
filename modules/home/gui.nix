@@ -9,7 +9,7 @@
     ## TODO: Move to dedicated firefox module
 
     textfox = {
-        enable = true;
+        enable = false;
         profile = "default";
         config = {
         # Optional config
