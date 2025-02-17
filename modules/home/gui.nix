@@ -10,7 +10,7 @@
 
     textfox = {
         enable = true;
-        profile = "Profile0";
+        profile = "School";
         config = {
         # Optional config
         };
