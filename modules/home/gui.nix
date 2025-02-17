@@ -12,7 +12,7 @@
         enable = true;
         profile = "jdbha1cq.default";
         config = {
-        # Optional config
+            displayHorizontalTabs = true;
         };
     };
 
