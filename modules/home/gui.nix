@@ -10,7 +10,7 @@
 
     textfox = {
         enable = true;
-        profile = "jdbha1cq.default";
+        profile = "Profile0";
         config = {
         # Optional config
         };
