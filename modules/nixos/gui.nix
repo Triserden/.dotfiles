@@ -20,6 +20,12 @@
       pkgs.starship
     ];
 
+    programs.foot = {
+      enable = true;
+      theme = "catppuccin-macchiato";
+      # TODO: Style foot
+      # https://mynixos.com/home-manager/option/programs.foot.settings
+    };
     hyprland.enable = true;
 
     # Main config?
