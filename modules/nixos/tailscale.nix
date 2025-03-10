@@ -48,7 +48,7 @@
         fi
 
         # Check if key is almost expired
-        if (( $(date --date $(${tailscale}/bin/tailscale status --json | ${jq}/bin/jq '.Self.KeyExpiry' | tr -d '"') +'%s') > $(date --date "30 days ago" +'%s') ))
+        if (( $(date --date $(${tailscale}/bin/tailscale status --json | ${jq}/bin/jq '.Self.KeyExpiry' | tr -d '"') +'%s') < $(date --date "+30 days" +'%s') ))
         then
           echo "Force reauthenticating tailscale"
           ${tailscale}/bin/tailscale up --force-reauth --authkey=$(cat "${config.tailscale.authkey}") --ssh 
