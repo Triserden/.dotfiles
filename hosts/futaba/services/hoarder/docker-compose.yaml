@@ -47,3 +47,7 @@ services:
     volumes:
       - /data/hoarder/meilisearch:/meili_data
 
+networks:
+  default:
+    name: internal
+    external: true
