@@ -89,6 +89,10 @@ in
         owner="triserden";
         key = "";
       };
+      hoarder_env = {
+        path = "/home/triserden/services/hoarder/.env";
+        owner="triserden";
+      };
     }; 
   };
 
