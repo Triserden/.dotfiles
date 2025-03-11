@@ -26,10 +26,6 @@ in
       ntfy_key = {
         owner="triserden";
       };
-      tailscale_subnet_env = {
-        path = "/home/triserden/services/tailscale-subnet/.env";
-        owner="triserden";
-      };
       freshrss_env = {
         path = "/home/triserden/services/rss/.env";
         owner="triserden";
