@@ -77,6 +77,7 @@ in
     ntfy-send
     
     pkgs.unstable.osu-lazer-bin
+    pkgs.unstable.flightgear
 
     pkgs.jellyfin-media-player
 ];
