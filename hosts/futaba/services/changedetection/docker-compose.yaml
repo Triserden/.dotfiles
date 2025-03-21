@@ -23,15 +23,15 @@ services:
     depends_on:
       sockpuppetbrowser:
         condition: service_started
-    sockpuppetbrowser:
-      hostname: sockpuppetbrowser
-      image: 'dgtlmoon/sockpuppetbrowser:latest'
-      cap_add:
-        - SYS_ADMIN
-      restart: unless-stopped
-      environment:
-        - SCREEN_WIDTH=1920
-        - SCREEN_HEIGHT=1024
-        - SCREEN_DEPTH=16
-        - MAX_CONCURRENT_CHROME_PROCESSES=10
+  sockpuppetbrowser:
+    hostname: sockpuppetbrowser
+    image: 'dgtlmoon/sockpuppetbrowser:latest'
+    cap_add:
+      - SYS_ADMIN
+    restart: unless-stopped
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1024
+      - SCREEN_DEPTH=16
+      - MAX_CONCURRENT_CHROME_PROCESSES=10
 
