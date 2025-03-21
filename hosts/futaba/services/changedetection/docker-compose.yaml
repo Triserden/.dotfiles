@@ -35,3 +35,8 @@ services:
       - SCREEN_DEPTH=16
       - MAX_CONCURRENT_CHROME_PROCESSES=10
 
+
+networks:
+  default:
+    name: internal
+    external: true
