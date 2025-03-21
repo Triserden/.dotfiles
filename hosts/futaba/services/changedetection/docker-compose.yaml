@@ -6,32 +6,32 @@ services:
     hostname: changedetection
     volumes:
       - '/data/changedetection:/datastore'
-  environment:
-    - 'BASE_URL=https://changedetection.local.triserden.dev'
-    - USE_X_SETTINGS=1
-    - HIDE_REFERER=true
-    - TZ=Europe/Amsterdam
-  labels:
-    - traefik.enable=true
-    - traefik.http.routers.changedetection.entrypoints=websecure
-    - >-
-      traefik.http.routers.changedetection.rule=Host(`changedetection.local.triserden.dev`)
-    - traefik.http.routers.changedetection.tls=true
-    - traefik.http.routers.changedetection.tls.certresolver=cloudflare
-    - traefik.http.services.changedetection.loadbalancer.server.port=5000
-  restart: unless-stopped
-  depends_on:
-    sockpuppetbrowser:
-      condition: service_started
-  sockpuppetbrowser:
-    hostname: sockpuppetbrowser
-    image: 'dgtlmoon/sockpuppetbrowser:latest'
-    cap_add:
-      - SYS_ADMIN
-    restart: unless-stopped
     environment:
-      - SCREEN_WIDTH=1920
-      - SCREEN_HEIGHT=1024
-      - SCREEN_DEPTH=16
-      - MAX_CONCURRENT_CHROME_PROCESSES=10
+      - 'BASE_URL=https://changedetection.local.triserden.dev'
+      - USE_X_SETTINGS=1
+      - HIDE_REFERER=true
+      - TZ=Europe/Amsterdam
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.changedetection.entrypoints=websecure
+      - >-
+        traefik.http.routers.changedetection.rule=Host(`changedetection.local.triserden.dev`)
+      - traefik.http.routers.changedetection.tls=true
+      - traefik.http.routers.changedetection.tls.certresolver=cloudflare
+      - traefik.http.services.changedetection.loadbalancer.server.port=5000
+    restart: unless-stopped
+    depends_on:
+      sockpuppetbrowser:
+        condition: service_started
+    sockpuppetbrowser:
+      hostname: sockpuppetbrowser
+      image: 'dgtlmoon/sockpuppetbrowser:latest'
+      cap_add:
+        - SYS_ADMIN
+      restart: unless-stopped
+      environment:
+        - SCREEN_WIDTH=1920
+        - SCREEN_HEIGHT=1024
+        - SCREEN_DEPTH=16
+        - MAX_CONCURRENT_CHROME_PROCESSES=10
 
