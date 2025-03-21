@@ -12,6 +12,7 @@ in
   
   ## == General Applications ==
   programs = {
+    # TODO: Replace with Floorp?
     firefox.enable = true;
     steam.enable = true;
     adb.enable = true;
@@ -27,6 +28,8 @@ in
     pkgs.btop
     pkgs.wget
     pkgs.pv
+
+    ##TODO: Move vencord to nixcord module
     pkgs.vesktop
     pkgs.android-studio
     pkgs.nix-output-monitor
@@ -73,11 +76,9 @@ in
     pkgs.steam-run
     pkgs.protonup
 
-
     ntfy-send
     
     pkgs.unstable.osu-lazer-bin
-    pkgs.unstable.flightgear
 
     pkgs.jellyfin-media-player
 ];
@@ -93,8 +94,6 @@ in
     ];  
   };
 
-  ## TODO: Move to Waydroid module
-  virtualisation.waydroid.enable = true;
 
   # Note: delete once Jetbrains gets outta Dotnet 6
   nixpkgs.config.permittedInsecurePackages = [                                                                                                                                                                                

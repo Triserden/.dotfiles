@@ -36,6 +36,26 @@
     services.xserver.enable = true; # Might need this for Xwayland  
     environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
 
+    stylix = {
+      enable = true;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+      polarity = "dark";
+      image = pkgs.fetchurl {
+        url = "https://whvn.cc/yxgyyx";
+        sha256 = "sha256-lW95raJ6XFqpJb4FBWo6gt6jPDw7rDcFjpKqDNNAQik=";
+      };
+      fonts = {
+        monospace = {
+          package = pkgs.unstable.nerd-fonts.jetbrains-mono;
+          name = "Nerd Fonts: Jetbrains";
+        };
+      };
+      opacity = {
+        terminal = 0.6;
+        applications=0.6;
+      };
+    };
+
 
     # Note: IDK what this is doing here but I probably need it
     xdg.portal.enable = true;

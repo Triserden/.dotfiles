@@ -3,7 +3,7 @@
   options.hyprland.enable = lib.mkEnableOption "Enable hyprland and configure";
   config = lib.mkIf config.hyprland.enable {
     services.playerctld.enable = true;
-    wayland.windowManager.hyprland = {
+    wayland.windowManager.hyprland = lib.mkDefault {
       enable = true; # enable Hyprland
       settings = {
         # Monitors

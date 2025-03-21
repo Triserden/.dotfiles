@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
     impermanence.url = "github:nix-community/impermanence";
-    #stylix.url = "github:danth/stylix/release-24.05";
+    stylix.url = "github:danth/stylix/release-24.11";
     textfox.url = "github:adriankarlen/textfox";
     disko = {
       url = "github:nix-community/disko";
@@ -19,7 +19,7 @@
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-unstable, sops-nix, disko, impermanence, ... }@inputs:
+    { self, nixpkgs, nixpkgs-unstable, sops-nix, disko, impermanence, stylix, ... }@inputs:
     {
       
       # Megumi (Lenovo Ideapad Gaming 3)
@@ -34,7 +34,7 @@
           ./hosts/megumi/configuration.nix
           ./modules/nixos
           inputs.sops-nix.nixosModules.sops
-          #inputs.stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
           disko.nixosModules.disko
 
 
@@ -63,7 +63,6 @@
           ./modules/nixos
           impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
-          #inputs.stylix.nixosModules.stylix
           disko.nixosModules.disko
 
           inputs.home-manager.nixosModules.home-manager
