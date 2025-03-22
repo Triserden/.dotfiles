@@ -80,7 +80,6 @@ in
       };
       pterodactyl_env = {
         sopsFile = ./secrets/pterodactyl.yaml;
-        format = "yaml";
         path = "/home/triserden/services/pterodactyl/.env";
         owner="triserden";
         key = "";
