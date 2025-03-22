@@ -105,8 +105,8 @@ networks:
     default:
         name: external
         external: true
-    wings0:
-      name: wings0
+    ptero-wings0:
+      name: ptero-wings0
       driver: bridge
       ipam:
         config:
