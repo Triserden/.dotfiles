@@ -79,7 +79,7 @@ in
         key = "";
       };
       pterodactyl_env = {
-        sopsFile = ./secrets/pterodactyl.yaml;
+        sopsFile = ./secrets/pterodactyl.env;
         path = "/home/triserden/services/pterodactyl/.env";
         format = "dotenv";
         owner="triserden";
