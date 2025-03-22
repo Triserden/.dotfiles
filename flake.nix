@@ -63,6 +63,7 @@
           ./modules/nixos
           impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
+          inputs.stylix.nixosModules.stylix
           disko.nixosModules.disko
 
           inputs.home-manager.nixosModules.home-manager
