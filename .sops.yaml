@@ -21,6 +21,12 @@ creation_rules:
       - pgp:
           - *triserden
         age:
+  - path_regex: hosts/futaba/secrets/pterodactyl.yaml$
+    key_groups:
+      - pgp:
+          - *triserden
+        age:
+          - *futaba
           - *futaba
   - path_regex: hosts/futaba/hlrconfig.yaml$
     key_groups:

@@ -1,119 +1,116 @@
-###
-# Minimal Configuration File
-#
-# This configuration strips services to the absolute bare essentials to function.
-# Very useful for reverse proxy configurations where a user would override networking anyways.
-###
-services:
-  ##
-  # -- Pterodactyl Daemon --
-  # This service provides the wings runtime.
-  ##
-  daemon:
-    environment:
-      - TZ=${DAEMON_TIMEZONE:-UTC}
-    image: docker.io/ccarney16/pterodactyl-daemon:${DAEMON_VERSION:-latest}
-    ports:
-      - 2023:2023
-      - 8081:8081
-    expose:
-      - 8081
-      - 2023
-    privileged: true
-    profiles: [ daemon ]
-    restart: unless-stopped
-    volumes:
-      - /data/pterodactyl/var/lib/pterodactyl:/var/lib/pterodactyl
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /tmp/pterodactyl/:/tmp/pterodactyl/
-      - /data/pterodactyl/conf.d/daemon:/etc/pterodactyl
-      - ./conf.d/daemon/config.yml:/etc/pterodactyl/config.yml
-      - ./conf.d/letsencrypt:/etc/letsencrypt:ro
-      - ./conf.d/certs:/etc/certs:ro
-    working_dir: ${DAEMON_DATA_DIRECTORY:-/var/lib/pterodactyl}
-    labels:
-      - "traefik.enable=true"
-      - "expose-external=true"
-      - "traefik.http.routers.pterodactyl-wing-secure.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl-wing-secure.rule=Host(`node1.ptero.triserden.dev`)"
-      - "traefik.http.routers.pterodactyl-wing-secure.tls=true"
-      - "traefik.http.routers.pterodactyl-wing-secure.tls.certresolver=http"
-      - "traefik.http.routers.pterodactyl-wing-secure.service=pterodactyl-wing"
-      - "traefik.http.services.pterodactyl-wing-secure.loadbalancer.server.port=8081"
-      - "traefik.http.middlewares.pterodactyl-wing-secure.headers.stsSeconds=315"
-      - "traefik.http.middlewares.pterodactyl-wing-secure.headers.forceSTSHeader=false"
-      - "traefik.http.middlewares.pterodactyl-wing-secure.headers.stsPreload=false"
-      - "traefik.http.middlewares.pterodactyl-wing-secure.headers.stsIncludeSubdomains=false"
-      - traefik.http.middlewares.secure-headers.headers.customrequestheaders.X-Forwarded-Proto=https
-      - traefik.http.middlewares.cors-headers.headers.accessControlAllowOriginList=*
-      - traefik.http.routers.pterodactyl-wing-secure.middlewares=secure-headers,cors-headers
-      - "traefik.docker.network=external"
-    extra_hosts:
-      - "ptero.triserden.dev:172.19.0.2"
-  ##
-  # -- MariaDB --
-  # Required for the control panel to work.
-  # Stores Server/User information
-  ##
-  mariadb:
-    image: docker.io/library/mariadb:10.11
-    env_file: ./conf.d/mariadb.env
-    networks:
-      default:
-        aliases:
-          - mysql
-    profiles: [ panel ]
-    restart: unless-stopped
-    volumes:
-      - /data/pterodactyl/data/mysql:/var/lib/mysql
-  ##
-  # -- Pterodactyl Panel --
-  # This is the container that provides the main web interface.
-  ##
+version: '3.8'
+x-common:
+  database:
+    &db-environment
+    # Do not remove the "&db-password" from the end of the line below, it is important
+    # for Panel functionality.
+    MYSQL_PASSWORD: &db-password ${MARIADB_PASS}
+    MYSQL_ROOT_PASSWORD: ${MARIADB_ROOTPASS}
   panel:
-    env_file: ./conf.d/panel.env
-    image: docker.io/ccarney16/pterodactyl-panel:${PANEL_VERSION:-latest}
-    profiles: [ panel ]
-    restart: unless-stopped
+    &panel-environment
+  APP_URL: "https://pterodactyl.triserden.dev"
+    # A list of valid timezones can be found here: http://php.net/manual/en/timezones.php
+    APP_TIMEZONE: "CEST"
+    APP_SERVICE_AUTHOR: "triserden@gmail.com"
+    # Uncomment the line below and set to a non-empty value if you want to use Let's Encrypt
+    # to generate an SSL certificate for the Panel.
+    # LE_EMAIL: ""
+  mail:
+    &mail-environment
+    MAIL_FROM: "noreply@example.com"
+    MAIL_DRIVER: "smtp"
+    MAIL_HOST: "mail"
+    MAIL_PORT: "1025"
+    MAIL_USERNAME: ""
+    MAIL_PASSWORD: ""
+    MAIL_ENCRYPTION: "true"
+
+#
+# ------------------------------------------------------------------------------------------
+# DANGER ZONE BELOW
+#
+# The remainder of this file likely does not need to be changed. Please only make modifications
+# below if you understand what you are doing.
+#
+services:
+  database:
+    image: mariadb:10.5
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - /data/pterodactyl/data/panel:/data
-    labels:
-      - "traefik.enable=true"
-      - "expose-external=true"
-      - "traefik.http.routers.pterodactyl-panel-secure.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl-panel-secure.rule=Host(`ptero.triserden.dev`)"
-      - "traefik.http.routers.pterodactyl-panel-secure.tls=true"
-      - "traefik.http.routers.pterodactyl-panel-secure.tls.certresolver=http"
-      - "traefik.http.routers.pterodactyl-panel-secure.service=pterodactyl-panel"
-      - "traefik.http.services.pterodactyl-panel.loadbalancer.server.port=80"
-      - traefik.http.middlewares.secure-headers.headers.customrequestheaders.X-Forwarded-Proto=https
-      - traefik.http.middlewares.cors-headers.headers.accessControlAllowOriginList=*
-      - traefik.http.routers.pterodactyl-panel-secure.middlewares=secure-headers,cors-headers
-      - "traefik.http.middlewares.pterodactyl-panel-secure.headers.stsSeconds=315"
-      - "traefik.http.middlewares.pterodactyl-panel-secure.headers.forceSTSHeader=false"
-      - "traefik.http.middlewares.pterodactyl-panel-secure.headers.stsPreload=false"
-      - "traefik.http.middlewares.pterodactyl-panel-secure.headers.stsIncludeSubdomains=false"
-      - "traefik.docker.network=external"
-    depends_on:
-      mariadb:
-        condition: service_started
-      redis:
-        condition: service_started
-  ##
-  # -- Redis --
-  ##
-  redis:
-    cpu_count: 2
-    cpu_percent: 50
-    image: docker.io/library/redis:alpine
-    mem_limit: 128m
+      - "/srv/pterodactyl/database:/var/lib/mysql"
+    environment:
+      <<: *db-environment
+      MYSQL_DATABASE: "panel"
+      MYSQL_USER: "pterodactyl"
+
+  cache:
+    image: redis:alpine
+    restart: always
+
+  wings:
+    image: ghcr.io/pterodactyl/wings:latest
+    restart: always
     networks:
-      default:
-        aliases:
-          - cache
-    profiles: [ panel ]
-    restart: unless-stopped
+      - default
+      - wings0
+    ports:
+      - "8080:8080"
+      - "2022:2022"
+    tty: true
+    environment:
+      TZ: "UTC"
+      WINGS_UID: 988
+      WINGS_GID: 988
+      WINGS_USERNAME: pterodactyl
+    volumes:
+      - "/data/pterodactyl/wings/var/run/docker.sock:/var/run/docker.sock"
+      - "/data/pterodactyl/wings/var/lib/docker/containers/:/var/lib/docker/containers/"
+      - "/data/pterodactyl/wings/etc/pterodactyl/:/etc/pterodactyl/"
+      - "/data/pterodactyl/wings/var/lib/pterodactyl/:/var/lib/pterodactyl/"
+      - "/data/pterodactyl/wings/var/log/pterodactyl/:/var/log/pterodactyl/"
+      - "/tmp/pterodactyl/:/tmp/pterodactyl/"
+      - "/data/pterodactyl/wings/etc/ssl/certs:/etc/ssl/certs:ro"
+      # you may need /srv/daemon-data if you are upgrading from an old daemon
+      #- "/srv/daemon-data/:/srv/daemon-data/"
+      # Required for ssl if you use let's encrypt. uncomment to use.
+      #- "/etc/letsencrypt/:/etc/letsencrypt/"
+
+  panel:
+    image: ghcr.io/pterodactyl/panel:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - database
+      - cache
+    volumes:
+      - "/data/pterodactyl/panel/srv/pterodactyl/var/:/app/var/"
+      - "/data/pterodactyl/panel/srv/pterodactyl/nginx/:/etc/nginx/http.d/"
+      - "/data/pterodactyl/panel/srv/pterodactyl/certs/:/etc/letsencrypt/"
+      - "/data/pterodactyl/panel/srv/pterodactyl/logs/:/app/storage/logs"
+    environment:
+      <<: [*panel-environment, *mail-environment]
+      DB_PASSWORD: *db-password
+      APP_ENV: "production"
+      APP_ENVIRONMENT_ONLY: "false"
+      CACHE_DRIVER: "redis"
+      SESSION_DRIVER: "redis"
+      QUEUE_DRIVER: "redis"
+      REDIS_HOST: "cache"
+      DB_HOST: "database"
+      DB_PORT: "3306"
+
 networks:
     default:
         name: external
         external: true
+    wings0:
+      name: wings0
+      driver: bridge
+      ipam:
+        config:
+          - subnet: "172.21.0.0/16"
+      driver_opts:
+        com.docker.network.bridge.name: ptero-wings0

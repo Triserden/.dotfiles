@@ -57,24 +57,31 @@ in
         path = "/home/triserden/services/foldingathome/.env";
         owner="triserden";
       };
-      pterodactyl_mariadb_config = {
-        sopsFile = ./secrets/pterodactyl_mariadb_config.env;
-        format = "dotenv";
-        path = "/home/triserden/services/pterodactyl/conf.d/mariadb.env";
-        owner="triserden";
-        key = "";
-      };
+      # pterodactyl_mariadb_config = {
+      #   sopsFile = ./secrets/pterodactyl_mariadb_config.env;
+      #   format = "dotenv";
+      #   path = "/home/triserden/services/pterodactyl/conf.d/mariadb.env";
+      #   owner="triserden";
+      #   key = "";
+      # };
       pterodactyl_panel_config = {
         sopsFile = ./secrets/pterodactyl_panel_config.env;
         format = "dotenv";
-        path = "/home/triserden/services/pterodactyl/conf.d/panel.env";
+        path = "/data/pterodactyl/panel/etc/pterodactyl/panel.env";
         owner="triserden";
         key = "";
       };
       pterodactyl_wing_config = {
         sopsFile = ./secrets/pterodactyl_wing_config.yaml;
         format = "yaml";
-        path = "/home/triserden/services/pterodactyl/conf.d/daemon/config.yml";
+        path = "/data/pterodactyl/wings/etc/pterodactyl/config.yml";
+        owner="triserden";
+        key = "";
+      };
+      pterodactyl_env = {
+        sopsFile = ./secrets/pterodactyl.yaml;
+        format = "yaml";
+        path = "/home/triserden/services/pterodactyl/.env";
         owner="triserden";
         key = "";
       };
