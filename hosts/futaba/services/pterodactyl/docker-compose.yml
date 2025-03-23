@@ -52,7 +52,7 @@ services:
     restart: always
     networks:
       - default
-      - ptero-wings0
+      # - ptero-wings0
     ports:
       - 2023:2022
     tty: true
