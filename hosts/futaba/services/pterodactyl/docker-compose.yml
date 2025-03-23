@@ -53,6 +53,8 @@ services:
     networks:
       - default
       - ptero-wings0
+    ports:
+      - 2023:2022
     tty: true
     environment:
       TZ: "UTC"
@@ -80,6 +82,7 @@ services:
       - "traefik.http.routers.pterodactyl-wings.tls=true"
       - "traefik.http.routers.pterodactyl-wings.tls.certresolver=http"
       - "traefik.docker.network=external"
+      - "traefik.http.services.pterodactyl-wings.loadbalancer.server.port=8080"
 
   panel:
     image: ghcr.io/pterodactyl/panel:latest
