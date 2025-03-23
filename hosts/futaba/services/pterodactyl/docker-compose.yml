@@ -75,6 +75,8 @@ services:
   panel:
     image: ghcr.io/pterodactyl/panel:latest
     restart: always
+    networks:
+      - default
     links:
       - database
       - cache
