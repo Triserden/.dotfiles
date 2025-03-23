@@ -71,6 +71,14 @@ services:
       #- "/srv/daemon-data/:/srv/daemon-data/"
       # Required for ssl if you use let's encrypt. uncomment to use.
       #- "/etc/letsencrypt/:/etc/letsencrypt/"
+    labels:
+      - "traefik.enable=true"
+      - "expose-external=true"
+      - "traefik.http.routers.pterodactyl-wings.entrypoints=websecure"
+      - "traefik.http.routers.pterodactyl-wings.rule=Host(`node1.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-wings.tls=true"
+      - "traefik.http.routers.pterodactyl-wings.tls.certresolver=http"
+      - "traefik.docker.network=external"
 
   panel:
     image: ghcr.io/pterodactyl/panel:latest
@@ -99,10 +107,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "expose-external=true"
-      - "traefik.http.routers.pterodactyl.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl.rule=Host(`pterodactyl.triserden.dev`)"
-      - "traefik.http.routers.pterodactyl.tls=true"
-      - "traefik.http.routers.pterodactyl.tls.certresolver=http"
+      - "traefik.http.routers.pterodactyl-panel.entrypoints=websecure"
+      - "traefik.http.routers.pterodactyl-panel.rule=Host(`pterodactyl.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-panel.tls=true"
+      - "traefik.http.routers.pterodactyl-panel.tls.certresolver=http"
       - "traefik.docker.network=external"
 
 networks:
