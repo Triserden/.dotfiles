@@ -75,7 +75,7 @@ services:
       - "traefik.enable=true"
       - "expose-external=true"
       - "traefik.http.routers.pterodactyl-wings.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl-wings.rule=Host(`node1.triserden.dev`)"
+      - "traefik.http.routers.pterodactyl-wings.rule=Host(`node1.pterodactyl.triserden.dev`)"
       - "traefik.http.routers.pterodactyl-wings.tls=true"
       - "traefik.http.routers.pterodactyl-wings.tls.certresolver=http"
       - "traefik.docker.network=external"
