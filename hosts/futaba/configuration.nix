@@ -75,7 +75,7 @@ in
         sopsFile = ./secrets/pterodactyl_wing_config.yaml;
         format = "yaml";
         path = "/data/pterodactyl/wings/etc/pterodactyl/config.yml";
-        owner=988;
+        owner="988";
         group="users";
         key = "";
       };
