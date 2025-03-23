@@ -56,6 +56,8 @@ services:
     ports:
       - 2023:2022
     tty: true
+    dns:
+      - 1.1.1.1
     environment:
       TZ: "UTC"
       WINGS_UID: 988
