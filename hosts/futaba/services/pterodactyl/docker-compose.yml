@@ -63,6 +63,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/var/lib/docker/containers/:/var/lib/docker/containers/"
       - "/data/pterodactyl/wings/etc/pterodactyl/:/etc/pterodactyl/"
+      - "/data/pterodactyl/wings/etc/pterodactyl/config.yml:/etc/pterodactyl/config.yml:ro"
       - "/data/pterodactyl/wings/var/lib/pterodactyl/:/var/lib/pterodactyl/"
       - "/data/pterodactyl/wings/var/log/pterodactyl/:/var/log/pterodactyl/"
       - "/tmp/pterodactyl/:/tmp/pterodactyl/"
