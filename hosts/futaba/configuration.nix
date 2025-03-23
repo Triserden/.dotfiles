@@ -124,13 +124,10 @@ in
   # Open minecraft port
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 25565 8443 8081 2023 ];
-    allowedUDPPorts = [ 25565 8443 8081 2023 ];
+    allowedTCPPorts = [ 25565 8443 8081 8080 2023 ];
+    allowedUDPPorts = [ 25565 8443 8081 8080 2023 ];
   };
 
-  networking.hosts = {
-  "172.19.0.6/16" = ["pterodactyl.triserden.dev"];
-};
 
 
   
