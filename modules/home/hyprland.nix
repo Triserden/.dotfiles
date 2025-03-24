@@ -3,14 +3,15 @@
   options.hyprland.enable = lib.mkEnableOption "Enable hyprland and configure";
   config = lib.mkIf config.hyprland.enable {
     services.playerctld.enable = true;
-    wayland.windowManager.hyprland = lib.mkDefault {
+    wayland.windowManager.hyprland = {
       enable = true; # enable Hyprland
       settings = {
         # Monitors
         #TODO: Make specialization for vertical/horizontal monitor?
         monitor = [ 
           "eDP-1,1920x1080@120.002,auto,1"
-          "desc:RTD Display 0x01010101, highres, auto-up, auto"
+          # "desc:RTD Display 0x01010101, highres, auto-up, auto"
+          "desc:RTD Display 0x01010101, highres, auto-left, auto"
            # "desc:RTD Display 0x01010101, highres, auto-up, auto, transform, 3"
           ",preferred,auto,auto"
         ];

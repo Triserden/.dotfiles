@@ -36,7 +36,7 @@
     services.xserver.enable = true; # Might need this for Xwayland  
     environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
 
-    stylix = {
+    stylix = lib.mkForce {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
       polarity = "dark";
