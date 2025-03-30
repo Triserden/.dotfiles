@@ -18,7 +18,6 @@ in
     adb.enable = true;
     };
   environment.systemPackages = [
-        pkgs.ticktick
     pkgs.winetricks
     pkgs.wineWowPackages.waylandFull
     pkgs.unstable.prismlauncher
@@ -79,7 +78,7 @@ in
     ntfy-send
     
     pkgs.unstable.osu-lazer-bin
-
+    pkgs.pass-wayland
     pkgs.jellyfin-media-player
 ];
 
