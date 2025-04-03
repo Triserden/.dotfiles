@@ -4,29 +4,11 @@ keys:
   - &megumi age1rldtavqum7mtsvd5zjkafdlvc4tw5j735x2tnpy22znad2jgm9fsuvhxay
 
 creation_rules:
-  - path_regex: hosts/futaba/secrets/pterodactyl_panel_config.env$
+  - path_regex: hosts/futaba/secrets/.*
     key_groups:
       - pgp:
           - *triserden
         age:
-          - *futaba
-  - path_regex: hosts/futaba/secrets/pterodactyl_mariadb_config.env$
-    key_groups:
-      - pgp:
-          - *triserden
-        age:
-          - *futaba
-  - path_regex: hosts/futaba/secrets/pterodactyl_wing_config.yaml$
-    key_groups:
-      - pgp:
-          - *triserden
-        age:
-  - path_regex: hosts/futaba/secrets/pterodactyl.env$
-    key_groups:
-      - pgp:
-          - *triserden
-        age:
-          - *futaba
           - *futaba
   - path_regex: hosts/futaba/hlrconfig.yaml$
     key_groups:

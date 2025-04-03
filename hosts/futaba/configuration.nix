@@ -97,6 +97,12 @@ in
         path = "/home/triserden/services/hoarder/.env";
         owner="triserden";
       };
+      ntfy_env = {
+        path = "/home/triserden/services/ntfy/ntfy.env";
+        format="dotenv";
+        sopsFile = ./secrets/ntfy.env;
+        owner="triserden";
+      };
     }; 
   };
 

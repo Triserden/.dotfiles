@@ -19,6 +19,8 @@ services:
       - NTFY_ATTACHMENT_CACHE_DIR=/var/lib/ntfy/attachments
       - NTFY_ENABLE_LOGIN =true
       - NTFY_UPSTREAM_BASE_URL=https://ntfy.sh    
+      - NTFY_WEB_PUSH_FILE = /var/cache/ntfy/webpush.db
+    env_file: ntfy.env
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ntfy.entrypoints=websecure"
