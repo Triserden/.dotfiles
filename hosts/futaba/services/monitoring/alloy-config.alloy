@@ -4,6 +4,14 @@ prometheus.remote_write "default" {
   }
 }
 
+prometheus.scrape "server2.minecraft.triserden.dev" {
+  scrape_interval = "10s"
+  targets = [{
+    __address__ = "server2-minecraft:25585",
+  },]
+  forward_to = [prometheus.remote_write.default.receiver,]
+}
+
 prometheus.scrape "nodeexporter" {
   scrape_interval = "10s"
   targets = [{

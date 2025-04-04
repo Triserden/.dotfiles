@@ -136,6 +136,7 @@ in
 
   networking.hosts = {
   "172.19.0.3" = ["pterodactyl.triserden.dev" "node1.pterodactyl.triserden.dev"];
+  "172.18.0.7" = ["futaba.internal.triserden.dev"];
 };
 
 
