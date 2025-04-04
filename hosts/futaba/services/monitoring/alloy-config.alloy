@@ -5,7 +5,8 @@ prometheus.remote_write "default" {
 }
 
 prometheus.scrape "server2" {
-  scrape_interval = "10s"
+  scrape_interval = "5s"
+  scrape_timeout = "900ms"
   targets = [{
     __address__ = "server2-minecraft:25585",
   },]
