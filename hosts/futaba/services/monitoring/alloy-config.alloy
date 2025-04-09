@@ -4,7 +4,15 @@ prometheus.remote_write "default" {
   }
 }
 
-prometheus.scrape "server2" {
+prometheus.scrape "server2_minecraft_statistics" {
+  scrape_interval = "5s"
+  scrape_timeout = "900ms"
+  targets = [{
+    __address__ = "server2-minecraft-statistics:25586",
+  },]
+  forward_to = [prometheus.remote_write.default.receiver,]
+}
+prometheus.scrape "server2_minecraft_world" {
   scrape_interval = "5s"
   scrape_timeout = "900ms"
   targets = [{

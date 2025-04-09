@@ -64,7 +64,7 @@ in
 
     ## TODO: Move to Embedded dev module
     pkgs.pulseview
-    pkgs.arduino-ide
+    pkgs.unstable.arduino-ide
     pkgs.stm32cubemx
     pkgs.stm32flash
     pkgs.openocd
@@ -230,6 +230,45 @@ in
   };  
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.supportedFilesystems = ["ntfs" "btrfs"];
+  # Mount Windows-Linux filesystem
+  # systemd.mounts = [
+  #   {
+  #     what = "/dev/disk/by-partuuid/ccc75582-49a8-47fe-bb67-aa7c5f2e29e2";
+  #     where = "/home/triserden/Data";
+  #     options = "rw uid=1000 user";
+  #     wantedBy = ["multi-user.target"];
+  #
+  #   }
+  # ];
+  # systemd.services.mount-data-partition = {
+  #   description = "Mount Windows-Linux shared partition";
+  #   wantedBy = ["default.target"];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     ExecStart = "${pkgs.util-linux}/bin/mount /dev/disk/by-partuuid/ccc75582-49a8-47fe-bb67-aa7c5f2e29e2 /home/triserden/Data";
+  #     ExecStop = "${pkgs.util-linux}/bin/umount /home/triserden/Data";
+  #     RemainAfterExit = true;
+  #   };
+  # };
+    systemd.services.datapart-mount = {
+      description = "Automatic connection to Tailscale";
+
+      # make sure tailscale is running before trying to connect to tailscale
+      wantedBy = [ "multi-user.target" ];
+
+      # set this service as a oneshot job
+      serviceConfig.Type = "oneshot";
+
+      # have the job run this shell script
+      script = with pkgs; ''
+                ${pkgs.util-linux}/bin/mount /dev/disk/by-partuuid/ccc75582-49a8-47fe-bb67-aa7c5f2e29e2 /home/triserden/Data
+      '';
+    };
+  # fileSystems."/data" = {
+  #   mountPoint = "/data";
+  #   device = "/dev/disk/by-partuuid/ccc75582-49a8-47fe-bb67-aa7c5f2e29e2";
+  #   options = [ "rw" "uid=1000" "bind"];
+  # };
   
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
