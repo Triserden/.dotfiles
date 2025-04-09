@@ -42,7 +42,7 @@ in
     pkgs.python3
     pkgs.python3Packages.pip
 
-    pkgs.unstable.obsidian
+    pkgs.obsidian
     
     pkgs.thunderbird-bin
     
