@@ -53,7 +53,7 @@ in
     pkgs.clipse
 
     # TODO: Move to module
-    pkgs.kicad
+    pkgs.unstable.kicad 
     pkgs.logisim-evolution
 
     pkgs.easyeffects
