@@ -4,7 +4,7 @@
     gui.enable = lib.mkEnableOption "Enable the GUI (Hyprland) and it's required packages";
   };
     config = lib.mkIf config.gui.enable {
-    
+    stylix.targets.kde.enable = false; 
     hyprland.enable = true;
     programs.starship = {
       enable = true;
