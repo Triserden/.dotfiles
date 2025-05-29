@@ -10,8 +10,8 @@
         #TODO: Make specialization for vertical/horizontal monitor?
         monitor = [ 
           "eDP-1,1920x1080@120.002,auto,1"
-          # "desc:RTD Display 0x01010101, highres, auto-up, auto"
-          "desc:RTD Display 0x01010101, highres, auto-left, auto"
+          "desc:RTD Display 0x01010101, highres, auto-up, auto"
+          # "desc:RTD Display 0x01010101, highres, auto-left, auto"
            # "desc:RTD Display 0x01010101, highres, auto-up, auto, transform, 3"
           ",preferred,auto,auto"
         ];
@@ -32,6 +32,7 @@
 
         env = [
           "XCURSOR_SIZE,24"
+          "GDK_BACKEND,wayland,x11"
         ];
         
         input = {

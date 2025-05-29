@@ -1,4 +1,4 @@
-{config, pkgs, inputs, outputs, ...}:
+{config, pkgs, inputs, outputs, lib, ...}:
 let
   ntfy-send = pkgs.writeShellScriptBin "ntfy-send" ''
     ${pkgs.curl}/bin/curl -u :$(cat ${config.sops.secrets.ntfy_key.path}) -d "$2" https://ntfy.local.triserden.dev/$1
@@ -41,6 +41,7 @@ in
     pkgs.unstable.jetbrains.pycharm-community-bin
     pkgs.python3
     pkgs.python3Packages.pip
+    pkgs.uv
 
     pkgs.obsidian
     
@@ -54,7 +55,6 @@ in
 
     # TODO: Move to module
     pkgs.unstable.kicad 
-    pkgs.logisim-evolution
 
     pkgs.easyeffects
 
@@ -219,8 +219,15 @@ in
   };
   
   boot.loader.grub = {
+    efiInstallAsRemovable = true;
     useOSProber = true;
     efiSupport = true;
+    theme = lib.mkForce (pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "grub";
+            rev = "3f62cd4174465631b40269a7c5631e5ee86dec45";
+            sha256 = "d15FS7R78kdUKqC7EAei5Pe0Vuj2boVnm4WZYQdPURo=";
+          } + "/catppuccin-grub-theme");
     extraEntries = 
       ''
         menuentry "Windows 11" {
@@ -228,7 +235,7 @@ in
         }
       '';
   };  
-  boot.loader.grub.efiInstallAsRemovable = true;
+  boot.loader.systemd-boot.enable = false;
   boot.supportedFilesystems = ["ntfs" "btrfs"];
   # Mount Windows-Linux filesystem
   # systemd.mounts = [
@@ -251,7 +258,7 @@ in
   #   };
   # };
     systemd.services.datapart-mount = {
-      description = "Automatic connection to Tailscale";
+      description = "Automatically mount Data partition";
 
       # make sure tailscale is running before trying to connect to tailscale
       wantedBy = [ "multi-user.target" ];

@@ -8,6 +8,7 @@
     ./tailscale.nix
     ./ssh.nix
     ./cli.nix
+    # ./nvim.nix
     ./git.nix
     ./gui.nix
     ./hyprland.nix
