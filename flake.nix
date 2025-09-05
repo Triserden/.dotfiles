@@ -28,7 +28,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     hardware.url = "github:NixOS/nixos-hardware/master";
-    secrets.url = "git+ssh://git@github.com:Triserden/.secrets.git";
+    secrets.url = "git+ssh://git@github.com:Triserden/.secrets.git/main";
   };
 
 }
