@@ -43,7 +43,7 @@ users.users.${config.hostSpec.username} = {
   home-manager = {
     extraSpecialArgs = {
       inherit pkgs inputs;
-      hostSpec = config.hostSpec;
+    hostSpec = config.hostSpec;
     };
     users.${hostSpec.username} = {
       home.stateVersion = 25.05; 

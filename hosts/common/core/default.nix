@@ -4,6 +4,9 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
 
+    (map lib.custom.relativeToRoot [
+      "helpers"
+    ])
     (lib.custom.scanPaths ./.)
   ];
 
@@ -11,7 +14,7 @@
     username = "triserden"; 
   };
 
-  networking.hostName = config.hostSpec.hostName;
+  networking.hostName = config.hostSpec.hostname;
 
   home-manager = {
     useGlobalPkgs = true;
@@ -20,7 +23,7 @@
 
   nixpkgs = {
     overlays = [
-      outputs.overlays.default
+      #      outputs.overlays.default
     ];
     config = {
       allowUnfree = true;

@@ -6,7 +6,7 @@
     enable = true;
     openFirewall = false;
     extraUpFlags = [ "--ssh" ];
-    authKeyFile = config.sops."tailscale-oauth-key".path;
-    authKeyParameters = "--advertise-tags=tag:end-user";
+    authKeyFile = config.sops.secrets."tailscale-oauth-key".path;
+    extraSetFlags = ["--advertise-tags=tag:end-user"];
   };
 }

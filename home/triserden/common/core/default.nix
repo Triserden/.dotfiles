@@ -2,7 +2,7 @@
 {
   imports = lib.flatten [
     (lib.custom.scanPaths ./.)
-    (lib.custom.relativeToRoot [
+    (map lib.custom.relativeToRoot [
       "helpers"
     ])
   ];
