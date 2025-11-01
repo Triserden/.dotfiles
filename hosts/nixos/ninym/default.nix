@@ -12,8 +12,8 @@ in
   inherit hostSpec;
   imports = lib.flatten [
     inputs.disko.nixosModules.disko
-    "./disk-config.nix"
-    (modulesPath + "/virtualisation/proxmox-image.nix")
+    ./disk-config.nix
+    ./hardware-configuration.nix
     # --- Optionals ---
     (map lib.custom.relativeToRoot [
       "hosts/common/optional/udiskie.nix"
@@ -22,17 +22,17 @@ in
 
   ];
 
-  proxmox = {
-    qemuConf = {
-      cores = 6;
-      memory = 4096;
-      name = hostSpec.hostname;
-    };
+  boot.loader.grub = {
+    enable = true;
+    zfsSupport = true;
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    mirroredBoots = [
+      { devices = [ "nodev"]; path = "/boot"; }
+    ];
   };
 
 
-  services.cloud-init.network.enable = true;
-
-
+  networking.hostId = "1ff873af";
   system.stateVersion = hostSpec.stateVersion;
 }

@@ -4,7 +4,7 @@
     disk = {
       nvme0n1 = {
         type = "disk";
-        device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0";
+        device = "/dev/disk/by-id/ata-QEMU_HARDDISK_QM00005";
         content = {
           type = "gpt";
           partitions = {
@@ -28,53 +28,67 @@
         };
       };
     };
-
     zpool = {
       zroot = {
         type = "zpool";
         rootFsOptions = {
-          canmount = "off";
+          mountpoint = "none";
+          compression = "zstd";
+          acltype = "posixacl";
+          xattr = "sa";
+          "com.sun:auto-snapshot" = "true";
         };
-        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot/root@blank$' || zfs snapshot zroot/root@blank";
+        options.ashift = "12";
         datasets = {
-          root = {
-            type = "zfs_fs";
-            mountpoint = "/";
-          };
-          nix = {
-            type = "zfs_fs";
-            mountpoint = "/nix";
-          };
-          encrypted = {
+          "root" = {
             type = "zfs_fs";
             options = {
-              mountpoint = "none";
               encryption = "aes-256-gcm";
               keyformat = "passphrase";
+              #keylocation = "file:///tmp/secret.key";
               keylocation = "prompt";
             };
+            mountpoint = "/";
+
           };
-          "encrypted/data" = {
+          "root/nix" = {
             type = "zfs_fs";
+            options.mountpoint = "/nix";
+            mountpoint = "/nix";
+          };
+          "root/home" = {
+            type = "zfs_fs";
+            options.mountpoint = "/home";
+            mountpoint = "/home";
+          };
+          "root/data" = {
+            type = "zfs_fs";
+            options.mountpoint = "/data";
             mountpoint = "/data";
           };
-          "encrypted/home" = {
-            type = "zfs_fs";
-            mountpoint = "/home";
+
+          # README MORE: https://wiki.archlinux.org/title/ZFS#Swap_volume
+          "root/swap" = {
+            type = "zfs_volume";
+            size = "16G";
+            content = {
+              type = "swap";
+            };
+            options = {
+              volblocksize = "4096";
+              compression = "zle";
+              logbias = "throughput";
+              sync = "always";
+              primarycache = "metadata";
+              secondarycache = "none";
+              "com.sun:auto-snapshot" = "false";
+            };
           };
         };
       };
     };
   };
-  fileSystems = {
-    "/".neededForBoot = true;
-    "/nix".neededForBoot = true;
-    "/home".neededForBoot = true;
-    "/boot".neededForBoot = true;
-    "/persist".neededForBoot = true;
-  };
 
   boot.supportedFilesystems = [ "zfs" ];
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12; 
-  boot.zfs.requestEncryptionCredentials = true;
 }

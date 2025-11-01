@@ -5,8 +5,7 @@
   services.tailscale = {
     enable = true;
     openFirewall = false;
-    extraUpFlags = [ "--ssh" ];
     authKeyFile = config.sops.secrets."tailscale-oauth-key".path;
-    extraSetFlags = ["--advertise-tags=tag:end-user"];
+    extraUpFlags = ["--ssh" "--advertise-tags=tag:end-user"];
   };
 }
