@@ -18,6 +18,7 @@
               inherit inputs outputs lib;
               isDarwin = false;
             };
+            system = "x86_64-linux";
             modules = [
               ./hosts/nixos/${host}
             ];
@@ -54,7 +55,12 @@
     stylix.url = "github:danth/stylix/release-25.05";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     # Nvim
-    Neve.url = "github:redyf/Neve";
+    nixvim = {
+    url = "github:nix-community/nixvim";
+  };
+    Neve.url = "github:triserden/Neve/";
+
+    swww.url = "github:LGFae/swww/a2864804e48533f4c70c63930d8cb24b394288ec";
   };
 
 }

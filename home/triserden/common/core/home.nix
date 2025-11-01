@@ -1,9 +1,9 @@
 {config, ...}:
 {
   home = {
-    username = config.hostSpec.username;
+    username = config.hostSpec.primaryUser;
     homeDirectory = config.hostSpec.home;
-    stateVersion = config.hostSpec.stateVersion;
+    stateVersion = builtins.trace "setting stateversion" config.hostSpec.stateVersion;
     sessionVariables = {
       FLAKE = "$HOME/.dotfiles/";
       SHELL = "bash";

@@ -10,8 +10,7 @@ sops = {
       generateKey = true;
     };
     secrets = {
-
-      "passwords/${config.hostSpec.username}" = {
+      "passwords/${config.hostSpec.primaryUser}" = {
         neededForUsers = true;
       };
     };

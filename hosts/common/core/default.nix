@@ -1,20 +1,28 @@
 { inputs, config, lib, outputs, pkgs, ... }:
 {
   imports = lib.flatten [
+
+
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
 
     (map lib.custom.relativeToRoot [
       "helpers"
+      "hosts/common/users/"
     ])
     (lib.custom.scanPaths ./.)
   ];
 
-  hostSpec = {
-    username = "triserden"; 
-  };
 
   networking.hostName = config.hostSpec.hostname;
+  
+
+  environment.systemPackages = [
+      pkgs.just
+      pkgs.tree
+      pkgs.btop
+      pkgs.unzip
+    ];
 
   home-manager = {
     useGlobalPkgs = true;
@@ -29,6 +37,8 @@
       allowUnfree = true;
     };
   };
+
+  services.fwupd.enable = true;
 
   nix = {
     settings = {

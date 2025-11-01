@@ -1,5 +1,15 @@
 {inputs, lib, pkgs, ...}:
+let
+  
+  hostSpec = {
+    hostname = "megumi";
+    users = ["triserden"];
+    primaryUser = "triserden";
+    stateVersion = "25.05";
+  };
+in 
 {
+  inherit hostSpec;
   imports = lib.flatten [
     # --- Hardware ---
     inputs.hardware.nixosModules.lenovo-ideapad-15ach6
@@ -9,14 +19,20 @@
     inputs.disko.nixosModules.disko
     ./disk-config.nix
 
-
+    # --- Optionals ---
+    (map lib.custom.relativeToRoot [
+      "hosts/common/optional/stylix.nix"
+      "hosts/common/optional/hyprland.nix"
+      "hosts/common/optional/clipboard.nix"
+      #"hosts/common/optional/cursor.nix"
+      "hosts/common/optional/idlelock.nix"
+      "hosts/common/optional/pipewire.nix"
+      "hosts/common/optional/udiskie.nix"
+      "hosts/common/optional/wallpaper.nix"
+    ])
     (map lib.custom.relativeToRoot ["hosts/common/core"])
 
   ];
-
-  hostSpec = {
-    hostname = "megumi";
-  };
 
   networking = {
     networkmanager.enable = true;
@@ -30,9 +46,9 @@
     loader = {
       systemd-boot.enable = false;
         grub = {
-          efiInstallAsRemovable = true;
-          useOSProber = true;
-          efiSupport = true;
+          efiInstallAsRemovable = false;
+          useOSProber = false;
+          efiSupport = false;
           theme = lib.mkForce (pkgs.fetchFromGitHub {
                 owner = "catppuccin";
                 repo = "grub";
@@ -49,5 +65,5 @@
       };
   };
 
-  system.stateVersion = "25.05";
+  system.stateVersion = hostSpec.stateVersion;
 }

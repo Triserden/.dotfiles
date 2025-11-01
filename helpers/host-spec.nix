@@ -3,9 +3,13 @@
   options.hostSpec = lib.mkOption {
     type = lib.types.submodule {
       options = {
-        username = lib.mkOption {
+        primaryUser = lib.mkOption {
           type = lib.types.str;
-          description = "Username of host";
+          description = "Primary user of host";
+        };
+        users = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          description = "Usernames of host";
         };
         hostname = lib.mkOption {
           type = lib.types.str;
@@ -14,7 +18,7 @@
         home = lib.mkOption {
           type = lib.types.str;
           description = "Homedir of user";
-          default = "/home/${config.hostSpec.username}";
+          default = "/home/${config.hostSpec.primaryUser}";
         };
         stateVersion = lib.mkOption {
           type = lib.types.str;
