@@ -61,6 +61,8 @@
     Neve.url = "github:triserden/Neve/";
 
     swww.url = "github:LGFae/swww/a2864804e48533f4c70c63930d8cb24b394288ec";
+
+    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
   };
 
 }

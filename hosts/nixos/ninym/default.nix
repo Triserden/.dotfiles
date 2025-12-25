@@ -14,6 +14,7 @@ in
     inputs.disko.nixosModules.disko
     ./disk-config.nix
     ./hardware-configuration.nix
+    ./quadlet.nix
     # --- Optionals ---
     (map lib.custom.relativeToRoot [
       "hosts/common/optional/udiskie.nix"
