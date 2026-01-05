@@ -1,8 +1,8 @@
 let
   host = {
-    hostname = "ninym";
+    hostname = "mai";
     user = "triserden";
-    hostId = "c4a10c10";
+    hostId = "61a4f384";
     stateVersion = "25.11";
     home = "/home/${host.user}";
     docker_fs = "zfs";
@@ -25,6 +25,7 @@ in { inputs, ... }: {
   # Virt
   services.qemuGuest.enable = true;
   virtualisation.virtualbox.guest.enable = true;
+
   boot.loader.grub = {
     enable = true;
     zfsSupport = true;

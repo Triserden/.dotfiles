@@ -19,6 +19,17 @@
           type = lib.types.str;
           description = "First NixOS version";
         };
+        docker_fs = lib.mkOption {
+          type = lib.types.enum [
+            "aufs"
+            "btrfs"
+            "devicemapper"
+            "overlay"
+            "overlay2"
+            "zfs"
+          ];
+          description = "Filesystem type for docker.";
+        };
         hostId = lib.mkOption {
           type = lib.types.str;
           description = "HostID for zfs";

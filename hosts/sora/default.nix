@@ -1,11 +1,10 @@
 let
   host = {
-    hostname = "ninym";
+    hostname = "sora";
     user = "triserden";
-    hostId = "c4a10c10";
+    hostId = "40ae7f3c";
     stateVersion = "25.11";
     home = "/home/${host.user}";
-    docker_fs = "zfs";
   };
 in { inputs, ... }: {
   inherit host;
@@ -18,7 +17,6 @@ in { inputs, ... }: {
     ./disk-config.nix
 
     ../../programs/docker.nix
-    ./services
 
   ];
 

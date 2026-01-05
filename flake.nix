@@ -52,7 +52,21 @@
             }
           ];
         };
-      };
+        mai = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/mai
 
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit nix-colors inputs; };
+              };
+            }
+          ];
+        };
+      };
     };
 }
