@@ -67,6 +67,21 @@
             }
           ];
         };
+        sora = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/sora
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit nix-colors inputs; };
+              };
+            }
+          ];
+        };
       };
     };
 }

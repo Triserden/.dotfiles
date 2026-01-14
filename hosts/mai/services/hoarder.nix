@@ -4,7 +4,7 @@
 
 let secretsFolder = builtins.toString inputs.secrets;
 in {
-  sops.secrets."services/hlr_config.yaml" = {
+  sops.secrets."services/hoarder.env" = {
     sopsFile =
       "${secretsFolder}/sops/${config.host.hostname}/services/hoarder.env";
     format = "dotenv";

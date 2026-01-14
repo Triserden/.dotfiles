@@ -14,6 +14,7 @@ in {
     sopsFile =
       "${secretsFolder}/sops/${config.host.hostname}/services/hlr_config.yaml";
     format = "yaml";
+    key = "";
   };
   # Containers
   virtualisation.oci-containers.containers."hlr_pterodactyl-daemon" = {
@@ -26,7 +27,7 @@ in {
       "/data/hlresort/var/lib/pterodactyl:/data/hlresort/var/lib/pterodactyl:rw"
       "${
         config.sops.secrets."services/hlr_config.yaml".path
-      }: /etc/pterodactyl/config.yml:rw"
+      }: /etc/pterodactyl/config.yml:r"
       "/tmp/pterodactyl/:/tmp/pterodactyl:rw,Z"
       "/var/run/docker.sock:/var/run/docker.sock:rw"
     ];

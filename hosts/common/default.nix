@@ -1,4 +1,4 @@
-{ inputs, config, ... }: {
+{ inputs, config, pkgs, ... }: {
   imports = [
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
@@ -12,6 +12,11 @@
 
   # Default programs
   # wget, unzip, dig?, tree, term multiplexer (term?), nvim, screen, nnn, pueue, eza, fzf?, git, fonts, btop, A
+
+  environment.defaultPackages = [
+    pkgs.dig
+    pkgs.git
+  ];
 
   home-manager = {
     useGlobalPkgs = true;
