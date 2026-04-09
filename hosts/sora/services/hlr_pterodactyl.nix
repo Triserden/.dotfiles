@@ -16,6 +16,26 @@ in {
     format = "yaml";
     key = "";
   };
+
+  # Minecraft firewall
+    networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 25565 8443 8081 2023 ];
+    allowedUDPPorts = [ 25565 8443 8081 2023 ];
+    allowedUDPPortRanges = [
+      {
+        from = 25565;
+        to=25570;
+      }
+    ];
+    allowedTCPPortRanges = [
+      {
+        from = 25565;
+        to=25570;
+      }
+    ];
+  };
+
   # Containers
   virtualisation.oci-containers.containers."hlr_pterodactyl-daemon" = {
     image = "ccarney16/pterodactyl-daemon:latest";
@@ -27,11 +47,11 @@ in {
       "/data/hlresort/var/lib/pterodactyl:/data/hlresort/var/lib/pterodactyl:rw"
       "${
         config.sops.secrets."services/hlr_config.yaml".path
-      }: /etc/pterodactyl/config.yml:r"
+      }:/etc/pterodactyl/config.yml"
       "/tmp/pterodactyl/:/tmp/pterodactyl:rw,Z"
       "/var/run/docker.sock:/var/run/docker.sock:rw"
     ];
-    ports = [ "2022:2022/tcp" "22565:22565/tcp" ];
+    ports = [ "2022:2022/tcp" "22565:22565/tcp" "22565:22565/udp"];
     labels = {
       "traefik.docker.network" = "external";
       "traefik.enable" = "true";
@@ -43,7 +63,7 @@ in {
         "pterodactyl-daemon";
       "traefik.http.routers.pterodactyl-daemon-secure.tls" = "true";
       "traefik.http.routers.pterodactyl-daemon-secure.tls.certresolver" =
-        "http";
+        "https";
       "traefik.http.routers.pterodactyl-daemon.entrypoints" = "websecure";
       "traefik.http.routers.pterodactyl-daemon.rule" =
         "Host(`game-node2.hlresort.community`)";

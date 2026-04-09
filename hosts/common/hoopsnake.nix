@@ -29,7 +29,7 @@
     };
     ssh = {
       authorizedKeysFile = pkgs.writeText "authorized_keys"
-        ("ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxqr4QFoAlWRMtrH7TGTQxwLFqLVDHVsttqrkUHJGuw triserden@megumi");
+        ("ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIjFWIdB23LyQW7rDaLJd2tnWPXqYjMjhgEqD/+WVaAQ triserden@megumi");
     };
     tailscale = {
       name = "${config.networking.hostName}-unlock";

@@ -26,7 +26,7 @@ in {
     ports = [
       "80:80/tcp"
       "443:443/tcp"
-      "192.168.1.1:8080:8080/tcp"
+      "100.126.148.1:8080:8080/tcp"
     ];
     cmd = [
       "--api=true"
@@ -36,18 +36,17 @@ in {
       "--entrypoints.websecure.address=:443"
       "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-      "--certificatesresolvers.cloudflare.acme.dnschallenge=true"
-      "--certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare"
-      "--certificatesresolvers.cloudflare.acme.email=${inputs.secrets.emails.cloudflare_acme_email}"
-      "--certificatesresolvers.cloudflare.acme.storage=/letsencrypt/acme.json"
+      "--certificatesresolvers.https.acme.email=${inputs.secrets.emails.cloudflare_acme_email}"
+      "--certificatesresolvers.https.acme.storage=/letsencrypt/acme.json"
+      "--certificatesresolvers.https.acme.httpchallenge.entrypoint=web"
     ];
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.dashboard.rule" =
-        "Host(`traefik.mai.internal.triserden.dev`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))";
+        "Host(`traefik.sora.internal.triserden.dev`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))";
       "traefik.http.routers.dashboard.service" = "api@internal";
       "traefik.http.routers.dashboard.entrypoints" = "websecure";
-      "traefik.http.routers.dashboard.tls.certresolver" = "cloudflare";
+      "traefik.http.routers.dashboard.tls.certresolver" = "https";
     };
     environmentFiles = [ config.sops.secrets."services/traefik.env".path ];
     log-driver = "journald";

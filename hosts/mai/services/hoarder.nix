@@ -48,6 +48,7 @@ in {
     log-driver = "journald";
     environmentFiles = [ config.sops.secrets."services/hoarder.env".path ];
     extraOptions = [ "--network-alias=meilisearch" "--network=internal" ];
+    
   };
   systemd.services."docker-hoarder-meilisearch" = {
     serviceConfig = {
@@ -60,7 +61,7 @@ in {
     wantedBy = [ "docker-compose-hoarder-root.target" ];
   };
   virtualisation.oci-containers.containers."hoarder-web" = {
-    image = "ghcr.io/hoarder-app/hoarder:release";
+    image = "ghcr.io/karakeep-app/karakeep:0.30.0";
     environment = {
       "BROWSER_WEB_URL" = "http://chrome:9222";
       "DATA_DIR" = "/data";
@@ -78,6 +79,7 @@ in {
       "traefik.http.services.hoarder.loadbalancer.server.port" = "3000";
     };
     log-driver = "journald";
+    environmentFiles = [ config.sops.secrets."services/hoarder.env".path ];
     extraOptions = [ "--network-alias=web" "--network=internal" ];
   };
   systemd.services."docker-hoarder-web" = {

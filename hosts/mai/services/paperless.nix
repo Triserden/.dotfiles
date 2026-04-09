@@ -34,7 +34,7 @@ in {
     wantedBy = [ "docker-compose-paperless-root.target" ];
   };
   virtualisation.oci-containers.containers."paperless-db" = {
-    image = "docker.io/library/postgres:16";
+    image = "docker.io/library/postgres:16.12-alpine";
     environment = {
       "POSTGRES_DB" = "paperless";
       "POSTGRES_PASSWORD" = "paperless";
@@ -75,7 +75,7 @@ in {
     wantedBy = [ "docker-compose-paperless-root.target" ];
   };
   virtualisation.oci-containers.containers."paperless-tika" = {
-    image = "docker.io/apache/tika:latest";
+    image = "docker.io/apache/tika:3.2.3.0-full";
     log-driver = "journald";
     extraOptions = [ "--network-alias=tika" "--network=internal" ];
   };
@@ -90,7 +90,7 @@ in {
     wantedBy = [ "docker-compose-paperless-root.target" ];
   };
   virtualisation.oci-containers.containers."paperless-webserver" = {
-    image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
+    image = "ghcr.io/paperless-ngx/paperless-ngx:2.20.6";
     environment = {
       "PAPERLESS_DBHOST" = "db";
       "PAPERLESS_REDIS" = "redis://broker:6379";
