@@ -14,6 +14,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # GUI
+    noctalia = { url = "github:noctalia-dev/noctalia/cachix"; };
+
     # Misc 
     nixos-hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
@@ -32,11 +35,32 @@
     };
   };
 
+  nixConfig = {
+    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-trusted-public-keys =
+      [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+  };
+
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-colors, disko
     , sops-nix, nixos-hardware, impermanence, ... }@inputs:
     let inherit (self) outputs;
     in {
       nixosConfigurations = {
+        megumi = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/megumi
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit nix-colors inputs; };
+              };
+            }
+          ];
+        };
         ninym = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
