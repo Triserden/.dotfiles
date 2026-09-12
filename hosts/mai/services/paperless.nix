@@ -90,7 +90,7 @@ in {
     wantedBy = [ "docker-compose-paperless-root.target" ];
   };
   virtualisation.oci-containers.containers."paperless-webserver" = {
-    image = "ghcr.io/paperless-ngx/paperless-ngx:2.20.6";
+    image = "ghcr.io/paperless-ngx/paperless-ngx:2.20.15";
     environment = {
       "PAPERLESS_DBHOST" = "db";
       "PAPERLESS_REDIS" = "redis://broker:6379";

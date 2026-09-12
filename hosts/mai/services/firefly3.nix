@@ -31,7 +31,7 @@ in {
 
   # Containers
   virtualisation.oci-containers.containers."firefly_iii_core" = {
-    image = "fireflyiii/core:version-6.5.8";
+    image = "fireflyiii/core:version-6.6.6";
     volumes =
       [ "/data/firefly3/firefly_iii_upload:/var/www/html/storage/upload:rw" ];
     labels = {
@@ -99,7 +99,7 @@ in {
     wantedBy = [ "docker-compose-firefly3-root.target" ];
   };
   virtualisation.oci-containers.containers."firefly_iii_importer" = {
-    image = "fireflyiii/data-importer@sha256:9d2d375550286dcd1696922c2684eeee85c7b5b2e729478be57f55bf03c76a88";
+    image = "fireflyiii/data-importer:version-2.3.4";
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.fireflyimporter.entrypoints" = "websecure";
