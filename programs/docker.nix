@@ -2,13 +2,11 @@
   virtualisation.docker = {
     enable = true;
     storageDriver = config.host.docker_fs;
+  };
 
-    daemon.settings = {
-      pruning = {
-        enabled = true;
-        interval = "24h";
-      };
-    };
+  vivirtualisation.docker.autoPrune = {
+    enable = true;
+    dates = "weekly";
   };
 
   # In order to route to privileged ports, use firewall to forward traffic.
