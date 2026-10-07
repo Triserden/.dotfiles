@@ -3,8 +3,9 @@
     enable = true;
     storageDriver = config.host.docker_fs;
     autoPrune = {
-    enable = true;
-    dates = "weekly";
+      enable = true;
+      dates = "weekly";
+    };
   };
 
   # In order to route to privileged ports, use firewall to forward traffic.
