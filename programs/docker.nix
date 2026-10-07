@@ -2,9 +2,7 @@
   virtualisation.docker = {
     enable = true;
     storageDriver = config.host.docker_fs;
-  };
-
-  vivirtualisation.docker.autoPrune = {
+    autoPrune = {
     enable = true;
     dates = "weekly";
   };
