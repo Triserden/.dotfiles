@@ -14,3 +14,10 @@ lsblk -o NAME,LABEL,FSSIZE,ID-LINK
 ```
 
 And use the ID-LINK.
+
+# Adding docker (compose) services
+Write a docker compose file with the whole service stack, then run `compose2nix` to convert it to a nix file.
+```
+compose2nix --runtime=docker -output <project>.nix -inputs docker-compose.yaml -sops_file ~/.secrets/sops/<host>.yaml
+```
+
