@@ -33,6 +33,8 @@
     secrets = {
       url = "git+ssh://git@github.com/triserden/.secrets?ref=v1&shallow=1";
     };
+
+    compose2nix.url = "github:Triserden/compose2nix-module?ref=compose-containers-module";
   };
 
   nixConfig = {
@@ -42,7 +44,7 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-colors, disko
-    , sops-nix, nixos-hardware, impermanence, ... }@inputs:
+    , sops-nix, nixos-hardware, impermanence, compose2nix, ... }@inputs:
     let inherit (self) outputs;
     in {
       nixosConfigurations = {
@@ -80,7 +82,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/mai
-
+            compose2nix.nixosModules.compose-containers
             home-manager.nixosModules.home-manager
             {
               home-manager = {

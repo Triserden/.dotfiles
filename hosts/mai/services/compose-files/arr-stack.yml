@@ -1,0 +1,211 @@
+name: arr
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:12.2
+    container_name: jellyfin
+    user: 6134:6941
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.local.triserden.dev`)"
+      - "traefik.http.routers.jellyfin.entrypoints=websecure"
+      - "traefik.http.routers.jellyfin.tls.certresolver=cloudflare"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
+    ports:
+      - 192.168.1.10:7359:7359/udp
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: jellyfin
+      - /media:/media
+    restart: 'unless-stopped'
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:5.0.0-develop
+    container_name: sonarr
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, sonarr.env"
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.local.triserden.dev`)"
+      - "traefik.http.routers.sonarr.entrypoints=websecure"
+      - "traefik.http.routers.sonarr.tls.certresolver=cloudflare"
+      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: sonarr 
+      - /media:/media
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:7.0.0-nightly
+    container_name: radarr
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, radarr.env"
+      - "traefik.enable=true"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.local.triserden.dev`)"
+      - "traefik.http.routers.radarr.entrypoints=websecure"
+      - "traefik.http.routers.radarr.tls.certresolver=cloudflare"
+      - "traefik.http.services.radarr.loadbalancer.server.port=7878"
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: radarr 
+      - /media:/media
+    restart: unless-stopped
+
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:3.1.6-nightly
+    container_name: lidarr
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, lidarr.env"
+      - "traefik.enable=true"
+      - "traefik.http.routers.lidarr.rule=Host(`lidarr.local.triserden.dev`)"
+      - "traefik.http.routers.lidarr.entrypoints=websecure"
+      - "traefik.http.routers.lidarr.tls.certresolver=cloudflare"
+      - "traefik.http.services.lidarr.loadbalancer.server.port=9696"
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: lidarr
+      - /media:/media
+    restart: unless-stopped
+
+  navidrome:
+    image: deluan/navidrome:0.64.2
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, navidrome.env"
+      - "traefik.enable=true"
+      - "traefik.http.routers.navidrome.rule=Host(`navidrome.local.triserden.dev`)"
+      - "traefik.http.routers.navidrome.entrypoints=websecure"
+      - "traefik.http.routers.navidrome.tls.certresolver=cloudflare"
+      - "traefik.http.services.navidrome.loadbalancer.server.port=4533"
+    user: 5915:6941
+    restart: unless-stopped
+      # Optional: put your config options customization here. Examples:
+      # ND_LOGLEVEL: debug
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: navidrome
+      - "/media/music:/music:ro"
+
+  shelfmark:
+    image: ghcr.io/calibrain/shelfmark-lite:v1.4.0
+    container_name: shelfmark
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, shelfmark.env"
+      - "traefik.enable=true"
+      - "traefik.http.routers.shelfmark.rule=Host(`shelfmark.local.triserden.dev`)"
+      - "traefik.http.routers.shelfmark.entrypoints=websecure"
+      - "traefik.http.routers.shelfmark.tls.certresolver=cloudflare"
+      - "traefik.http.services.shelfmark.loadbalancer.server.port=8084"
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: shelfmark
+      - /media:/media
+    restart: unless-stopped
+
+  calibre-web-automated:
+    image: crocodilestick/calibre-web-automated:v4.0.8
+    container_name: calibre-web-automated
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, cwa.env"
+      - "traefik.enable=true"
+      - "traefik.http.routers.cwa.rule=Host(`cwa.local.triserden.dev`)"
+      - "traefik.http.routers.cwa.entrypoints=websecure"
+      - "traefik.http.routers.cwa.tls.certresolver=cloudflare"
+      - "traefik.http.services.cwa.loadbalancer.server.port=8083"
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: cwa
+      - /media/downloads/books:/cwa-book-ingest
+      # If you don't have an existing library, CWA will automatically create one at the bind provided here
+      - /media/books:/calibre-library
+    restart: unless-stopped
+    
+  recyclarr:
+    image: ghcr.io/recyclarr/recyclarr:8.8.0
+    container_name: recyclarr
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, recyclarr.env"
+    user: 9022:6941
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: recyclarr
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:2.6.5-nightly
+    container_name: prowlarr
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, prowlarr.env"
+      - "traefik.enable=true"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.local.triserden.dev`)"
+      - "traefik.http.routers.prowlarr.entrypoints=websecure"
+      - "traefik.http.routers.prowlarr.tls.certresolver=cloudflare"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: prowlarr
+    restart: unless-stopped
+
+  qbittorrent-nox:
+    container_name: qbittorrent-nox
+    image: qbittorrentofficial/qbittorrent-nox::5.2.4-1
+    labels:
+      - "compose2nix.settings.sops.secrets=arr.env, qbittorrent.env"
+      - "traefik.enable=true"
+      - "traefik.http.routers.qbittorrent.trule=Host(`qbittorrent.local.triserden.dev`)"
+      - "traefik.http.routers.qbittorrent.entrypoints=websecure"
+      - "traefik.http.routers.qbittorrent.tls.certresolver=cloudflare"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+    ports:
+      # for bittorrent traffic
+      - 6881:6881/tcp
+      - 6881:6881/udp
+    read_only: true
+    stop_grace_period: 30m
+    tmpfs:
+      - /tmp
+    volumes:
+      - type: volume
+        source: config
+        target: /config
+        volume:
+          subpath: qbittorrent
+      - /media/downloads:/downloads
+
+
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=truenas.local.triserden.dev,rw,vers=4.1
+      device: ":/mnt/ssd/configs/mai/arr-config"
+
+
+networks:
+  default:
+    name: internal
+    external: true
