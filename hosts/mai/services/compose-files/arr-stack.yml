@@ -4,6 +4,7 @@ services:
     image: jellyfin/jellyfin:12.2
     container_name: jellyfin
     user: 6134:6941
+    labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.local.triserden.dev`)"
       - "traefik.http.routers.jellyfin.entrypoints=websecure"
