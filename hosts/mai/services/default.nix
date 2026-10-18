@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./traefik.nix ./firefly3.nix ./paperless.nix ./hoarder.nix ];
+  imports = [ ./traefik.nix ./firefly3.nix ./paperless.nix ./hoarder.nix ./arr.nix];
 
   systemd.services.docker-networks = {
     script = ''

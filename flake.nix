@@ -34,7 +34,7 @@
       url = "git+ssh://git@github.com/triserden/.secrets?ref=v1&shallow=1";
     };
 
-    compose2nix.url = "github:Triserden/compose2nix-module?ref=compose-containers-module";
+    compose2nix.url = "github:Triserden/compose2nix-module?ref=rebase-pr";
   };
 
   nixConfig = {
