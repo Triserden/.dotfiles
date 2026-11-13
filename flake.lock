@@ -455,11 +455,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1792347896,
-        "narHash": "sha256-Ty1wTxDluBqvNUyogrgKz+Bq0ur8RQl1FQ1ZEo3QyCs=",
+        "lastModified": 1792396756,
+        "narHash": "sha256-QQ5vj+6PzshWeRdTXyzVCTqhOTJqifYuX8K/a2V53sU=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "aa0aa81ad2432ca63634d49bb5380f5db2114888",
+        "rev": "f7f11e9e11096cdd71a69b08cd789c875b38d1da",
         "type": "github"
       },
       "original": {
@@ -512,10 +512,10 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1792359899,
-        "narHash": "sha256-55v+M2we+Syc+0I7MbXqLiwWk6J4HY4SxzTa7bdYgq8=",
+        "lastModified": 1792402904,
+        "narHash": "sha256-cRqT2jTLbwB4EyV2AzsCpacs31nTKNN4ql76eH8etnU=",
         "ref": "v1",
-        "rev": "bcddf66f31f3e1424dfc080fafc032e891d2c829",
+        "rev": "2f9b193c502f161628ccf35a33c3a6509d485ca3",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/triserden/.secrets"

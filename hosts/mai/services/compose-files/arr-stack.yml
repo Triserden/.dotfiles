@@ -67,7 +67,7 @@ services:
       - "traefik.http.routers.lidarr.rule=Host(`lidarr.local.triserden.dev`)"
       - "traefik.http.routers.lidarr.entrypoints=websecure"
       - "traefik.http.routers.lidarr.tls.certresolver=cloudflare"
-      - "traefik.http.services.lidarr.loadbalancer.server.port=9696"
+      - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
     volumes:
       - type: volume
         source: config
@@ -93,7 +93,7 @@ services:
     volumes:
       - type: volume
         source: config
-        target: /config
+        target: /data
         volume:
           subpath: navidrome
       - "/media/music:/music:ro"
@@ -170,13 +170,13 @@ services:
           subpath: prowlarr
     restart: unless-stopped
 
-  qbittorrent-nox:
-    container_name: qbittorrent-nox
-    image: qbittorrentofficial/qbittorrent-nox::5.2.4-1
+  qbittorrent:
+    container_name: qbittorrent
+    image: lscr.io/linuxserver/qbittorrent
     labels:
       - "compose2nix.settings.sops.secrets=arr.env, qbittorrent.env"
       - "traefik.enable=true"
-      - "traefik.http.routers.qbittorrent.trule=Host(`qbittorrent.local.triserden.dev`)"
+      - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.local.triserden.dev`)"
       - "traefik.http.routers.qbittorrent.entrypoints=websecure"
       - "traefik.http.routers.qbittorrent.tls.certresolver=cloudflare"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
@@ -184,17 +184,23 @@ services:
       # for bittorrent traffic
       - 6881:6881/tcp
       - 6881:6881/udp
-    read_only: true
     stop_grace_period: 30m
-    tmpfs:
-      - /tmp
+    deploy:
+     resources:
+      limits:
+        cpus: '1'
+        memory: 300M
+      reservations:
+        cpus: '1'
+        memory: 200M
+
     volumes:
       - type: volume
         source: config
         target: /config
         volume:
           subpath: qbittorrent
-      - /media/downloads:/downloads
+      - /media/downloads:/media/downloads
 
 
 volumes:

@@ -15,6 +15,9 @@
     "net.ipv4.conf.eth0.forwarding" = 1; # enable port forwarding
   };
 
+  # Add nfs to supported filesystems
+  boot.supportedFilesystems = [ "nfs" ];
+
   systemd.services.create-docker-networks = {
     description = "Create docker networks manually";
     after = [ "docker.service" ];
