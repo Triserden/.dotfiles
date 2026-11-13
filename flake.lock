@@ -512,10 +512,10 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1792402904,
-        "narHash": "sha256-cRqT2jTLbwB4EyV2AzsCpacs31nTKNN4ql76eH8etnU=",
+        "lastModified": 1794607231,
+        "narHash": "sha256-KWXwLhKauRrJgGXmWfaYtKKMLHRLqvafapMl0omkXRI=",
         "ref": "v1",
-        "rev": "2f9b193c502f161628ccf35a33c3a6509d485ca3",
+        "rev": "9165aad15d504e9fec26029c1ebe523764abeadb",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/triserden/.secrets"

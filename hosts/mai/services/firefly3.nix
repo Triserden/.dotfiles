@@ -60,12 +60,8 @@ in {
   };
   virtualisation.oci-containers.containers."firefly_iii_cron" = {
     image = "alpine";
-    cmd = [
-      "sh"
-      "-c"
-      ''
-        echo "0 3 * * * wget -qO- http://app:8080/api/v1/cron/qhVIM2943RYIhfhxklDhWxi4BSkJA1U8" | crontab - && crond -f -L /dev/stdout''
-    ];
+    # TODO: Move this to env file and regen secrets
+     cmd = [ "sh" "-c" " apk add tzdata && ln -s /usr/share/zoneinfo/ /etc/localtime && echo \"0 3 * * * wget -qO- http://app:8080/api/v1/cron/qhVIM2943RYIhfhxklDhWxi4BSkJA1U8;echo\" > /tmp/crontab_tmp && echo -e \"40 2 * * * wget -qO - --post-data '' --header 'Accept: application/json' 'http://importer:8080/autoimport?directory=/import&secret=MOaEk9X549W4dnq5byBrxB1GZNvYE0ut'\" >> /tmp/crontab_tmp && crontab /tmp/crontab_tmp && rm /tmp/crontab_tmp && crond -f -L /dev/stdout" ];
     log-driver = "journald";
     extraOptions = [ "--network-alias=cron" "--network=internal" ];
   };
