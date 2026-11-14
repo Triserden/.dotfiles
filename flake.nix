@@ -16,6 +16,10 @@
 
     # GUI
     noctalia = { url = "github:noctalia-dev/noctalia/cachix"; };
+    noctalia-greeter = {
+  url = "github:noctalia-dev/noctalia-greeter";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
 
     # Misc 
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -54,6 +58,8 @@
             ./hosts/megumi
 
             home-manager.nixosModules.home-manager
+            inputs.noctalia-greeter.nixosModules.default
+            inputs.noctalia.nixosModules.default
             {
               home-manager = {
                 useGlobalPkgs = true;

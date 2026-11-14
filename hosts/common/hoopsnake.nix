@@ -1,10 +1,25 @@
-{ inputs, pkgs, config, lib, ... }: {
-  imports = [ inputs.hoopsnake.nixosModules.default ];
+{ inputs, pkgs, config, lib, ... }: let
+hoopsnakeModule = import (
+    builtins.toFile "hoopsnake-module.nix" (
+      lib.replaceStrings [ "config.boot.initrd.systemd.enable" ] [ "true" ] (
+        builtins.readFile "${inputs.hoopsnake}/nixos/module.nix"
+      )
+    )
+  ) {
+    # The upstream module takes flake-parts' `withSystem` only to default its
+    # `package` option to the input's own build.
+    withSystem =
+      _system: f:
+      f {
+        config.packages.default = inputs.hoopsnake.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      };
+  };
+  in {
+  imports = [ hoopsnakeModule ];
 
   boot.initrd = {
     network = { enable = true; };
     systemd.extraBin.ping = "${pkgs.iputils}/bin/ping";
-    systemd = { enable = true; };
   };
 
   boot.initrd.systemd.services.hoopsnake = {

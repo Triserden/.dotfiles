@@ -4,6 +4,8 @@
   environment.systemPackages =
     [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
+    services.greetd.enable = true;
+
   programs.noctalia = {
     enable = true;
 
@@ -11,6 +13,17 @@
     recommendedServices.enable = true;
     systemd.enable = true;
   };
+
+  services.displayManager.noctalia-greeter = {
+  enable = true;
+  settings = {
+    cursor = {
+      theme = "Bibata-Modern-Ice";
+      size = 24;
+      path = pkgs.bibata-cursors;
+    };
+  };
+};
 
   # Configuration
   home-manager.users.${config.host.user} = {

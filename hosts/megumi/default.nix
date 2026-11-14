@@ -7,7 +7,7 @@ let
     home = "/home/${host.user}";
     docker_fs = "btrfs";
   };
-in { inputs, ... }: {
+in { inputs, pkgs, lib, ... }: {
   inherit host;
   imports = [
     ../common
@@ -17,6 +17,7 @@ in { inputs, ... }: {
     ./hardware-configuration.nix
     ./disk-config.nix
     ../common/noctalia.nix
+    ../common/hyprland
 
     ../../programs/docker.nix
 
@@ -25,24 +26,31 @@ in { inputs, ... }: {
   # Virt
   services.qemuGuest.enable = true;
   virtualisation.virtualbox.guest.enable = true;
-
-  virtualisation.vmVariantWithBootLoader = {
+  virtualisation.vmVariantWithDisko = {
     # the following configuration is added only when building VM with `build-vm`
     users.users.testuser.isSystemUser = true;
     users.users.testuser.initialPassword = "testpassword";
+    users.users.triserden.password = "testpassword";
+    users.users.testuser.group = "testuser";
+      users.groups.testuser = {};
+    users.users.root.initialPassword = "rootpassword";
 
     virtualisation = {
+
       memorySize = 2048; # use 2048MiB memory
       cores = 3; # use 3 cpu cores
+        #fileSystems."/boot".device = lib.mkForce "/dev/vda";
     };
+
+    
   };
 
   # Boot
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.grub = {
     enable = true;
-    zfsSupport = true;
     efiSupport = true;
-    efiInstallAsRemovable = true;
+      #efiInstallAsRemovable = true;
     mirroredBoots = [{
       devices = [ "nodev" ];
       path = "/boot";
