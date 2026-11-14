@@ -6,7 +6,7 @@ let
   sopsHashedPasswordFile = config.sops.secrets."passwords/${user}".path;
 in {
   users.users."${config.host.user}" = {
-
+    createHome = true;
     home = "/home/${user}";
     isNormalUser = true;
     hashedPasswordFile = sopsHashedPasswordFile;

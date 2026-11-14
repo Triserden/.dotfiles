@@ -28,21 +28,17 @@ in { inputs, pkgs, lib, ... }: {
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.vmVariantWithDisko = {
     # the following configuration is added only when building VM with `build-vm`
-    users.users.testuser.isSystemUser = true;
-    users.users.testuser.initialPassword = "testpassword";
-    users.users.triserden.password = "testpassword";
-    users.users.testuser.group = "testuser";
-      users.groups.testuser = {};
-    users.users.root.initialPassword = "rootpassword";
+    users.users.root.initialPassword = "rootpswd";
+    users.users.triserden.password = "12345";
 
     virtualisation = {
 
+      fileSystems."/home".neededForBoot = true;
       memorySize = 2048; # use 2048MiB memory
       cores = 3; # use 3 cpu cores
-        #fileSystems."/boot".device = lib.mkForce "/dev/vda";
+      #fileSystems."/boot".device = lib.mkForce "/dev/vda";
     };
 
-    
   };
 
   # Boot
@@ -50,7 +46,7 @@ in { inputs, pkgs, lib, ... }: {
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
-      #efiInstallAsRemovable = true;
+    #efiInstallAsRemovable = true;
     mirroredBoots = [{
       devices = [ "nodev" ];
       path = "/boot";

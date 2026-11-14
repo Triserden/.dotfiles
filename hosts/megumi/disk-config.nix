@@ -1,8 +1,9 @@
 { pkgs, inputs, ... }: {
- imports = [ 
-    inputs.disko.nixosModules.disko 
+  imports = [
+    inputs.disko.nixosModules.disko
     #../common/hoopsnake.nix
   ];
+  fileSystems."/home".neededForBoot = true;
   disko.devices = {
     disk = {
       nvme0n1 = {
@@ -27,7 +28,7 @@
                 type = "luks";
                 name = "crypted";
                 passwordFile = "/tmp/secret.key"; # test password is disko
-                  askPassword = true;
+                askPassword = true;
                 settings = {
                   allowDiscards = true;
                   #keyFile = "/tmp/secret.key";
@@ -38,24 +39,15 @@
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = [ "compress=zstd" "noatime" ];
                     };
                     "/home" = {
                       mountpoint = "/home";
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = [ "compress=zstd" "noatime" ];
                     };
                     "/nix" = {
                       mountpoint = "/nix";
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = [ "compress=zstd" "noatime" ];
                     };
                     "/swap" = {
                       mountpoint = "/.swapvol";

@@ -4,7 +4,7 @@
     disk = {
       nvme0n1 = {
         type = "disk";
-        device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0";
+        device = "/dev/disk/by-id/wwn-0x5002538d00b93947";
         content = {
           type = "gpt";
           partitions = {

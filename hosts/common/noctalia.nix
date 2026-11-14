@@ -4,7 +4,7 @@
   environment.systemPackages =
     [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
-    services.greetd.enable = true;
+  services.greetd.enable = true;
 
   programs.noctalia = {
     enable = true;
@@ -15,17 +15,20 @@
   };
 
   services.displayManager.noctalia-greeter = {
-  enable = true;
-  settings = {
-    cursor = {
-      theme = "Bibata-Modern-Ice";
-      size = 24;
-      path = pkgs.bibata-cursors;
+    enable = true;
+    settings = {
+      cursor = {
+        theme = "Bibata-Modern-Ice";
+        size = 24;
+        path = pkgs.bibata-cursors;
+      };
     };
   };
-};
 
   # Configuration
+
+  services.displayManager.noctalia-greeter.passwordless-sync-users =
+    [ "triserden" ];
   home-manager.users.${config.host.user} = {
     imports = [ inputs.noctalia.homeModules.default ];
 
