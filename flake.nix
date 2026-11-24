@@ -17,14 +17,15 @@
     # GUI
     noctalia = { url = "github:noctalia-dev/noctalia/cachix"; };
     noctalia-greeter = {
-  url = "github:noctalia-dev/noctalia-greeter";
-  inputs.nixpkgs.follows = "nixpkgs";
-};
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Misc 
     nixos-hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
     hoopsnake.url = "github:boinkor-net/hoopsnake";
+    Neve.url = "github:triserden/Neve";
 
     disko = {
       url = "github:nix-community/disko";

@@ -20,6 +20,11 @@ in { inputs, pkgs, lib, ... }: {
     ../common/hyprland
 
     ../../programs/docker.nix
+    ../../programs/foot.nix
+    ../../programs/discord.nix
+    ../../programs/obsidian.nix
+    ../../programs/thunderbird.nix
+    ../../programs/prismlauncher.nix
 
   ];
 
@@ -46,7 +51,7 @@ in { inputs, pkgs, lib, ... }: {
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
-    #efiInstallAsRemovable = true;
+    efiInstallAsRemovable = true;
     mirroredBoots = [{
       devices = [ "nodev" ];
       path = "/boot";

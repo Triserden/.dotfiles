@@ -60,6 +60,19 @@
             recursive = true;
           };
         };
+
+        plugins = {
+          enabled = [
+            "noctalia/screen_recorder"
+
+          ];
+          source = {
+            name = "Official";
+            kind = "git";
+            location = "https://github.com/noctalia-dev/official-plugins";
+            enabled = true;
+          };
+        };
       };
     };
   };
